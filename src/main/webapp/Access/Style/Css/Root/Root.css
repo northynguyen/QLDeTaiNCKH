@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+:root {
+  --color-theme: #805ef1;
+
+}
+body{
+	padding:0;
+	margin:0;
+	display:flex;
+	  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;    
+  
+}
