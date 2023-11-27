@@ -10,8 +10,8 @@
     <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <script src="../Access/Style/Js/LeftSideBar.js" defer></script>
   </head>
-  <body>
-    <nav class="sidebar locked">
+<body>
+ <nav class="sidebar locked">
       <div class="logo_items flex">
         <span class="nav_image">
           <img src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t1.15752-9/398212517_358697683311773_2464055266940039865_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8cd0a2&_nc_eui2=AeHT2VizBNsGjxQTes0CWJXNlkwAk13JIdKWTACTXckh0sCBsXKyq9nTcnIr1xXccWohGCcqfhgWgI6pD9rJcm-B&_nc_ohc=cTnh5a_Hsu4AX8y7L8o&_nc_ht=scontent.fsgn5-8.fna&oh=03_AdS70Aux-3uIGVnHKEpzvKIbas3Yeh7r9HGXoxFM3z33tQ&oe=658A97A7" alt="logo_img" />
@@ -80,53 +80,7 @@
 
       </div>
     </nav>
-    
-
-<div class="container">
-
-    <!-- Navbar -->
-    <nav class="navbar flex">
-      <i class="bx bx-menu" id="sidebar-open"></i>
-      <h3>ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP.HCM</h3>
-      <span class="nav_image" onclick="settingsMenuToggle()">
-        <img src="images/profile.jpg" alt="logo_img" />
-      </span>
-      
-   <!--   setting hide -->
-    <div class="settings-menu">
-        <div id="dark-btn">
-          <span></span>
-        </div>
-        <div class="settings-menu-inner">
-          <div class="user-profile">
-            <img src="https://i.postimg.cc/cHg22LhR/profile-pic.png" />
-            <div style="    padding-left: 10px;">
-              <p>Huynh Hong Khanh</p>
-              <a href="./InforLogin">See your profile</a>
-            </div>
-          </div>
-          <hr />
-
-          <div class="settings-links">
-            <img
-              src="https://i.postimg.cc/PJC9GrMb/logout.png"
-              class="settings-icon"
-            />
-            <a href="#"
-              >Logout
-             </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    
-    <!--  IMPORT CODE PHẦN NÀY -->
-<div class="main_content">
-aaaaa
-</div>
-<!--  IMPORT CODE PHẦN NÀY -->
-</div>
-  </body>
+</body>
   <script >
   var settingsmenu = document.querySelector(".settings-menu");
   function settingsMenuToggle(){

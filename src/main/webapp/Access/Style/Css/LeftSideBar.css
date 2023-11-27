@@ -213,6 +213,7 @@ background-color: var(--color-theme);
 }
 .user-profile{
 	display:flex;
+	color: black;
 }
 .user-profile a{
     font-size: 12px;
