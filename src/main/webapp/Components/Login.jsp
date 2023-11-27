@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="../Access/Style/Css/Root/Root.css" />
 <link rel="stylesheet" href="../Access/Style/Css/Login.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="login-page">

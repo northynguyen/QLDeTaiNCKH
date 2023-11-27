@@ -81,19 +81,56 @@
       </div>
     </nav>
     
-<!--  IMPORT CODE PHẦN NÀY -->
-<div class="main_content">
-aaaaa
-</div>
-<!--  IMPORT CODE PHẦN NÀY -->
+
+<div class="container">
 
     <!-- Navbar -->
     <nav class="navbar flex">
       <i class="bx bx-menu" id="sidebar-open"></i>
-      <input type="text" placeholder="Search..." class="search_box" />
-      <span class="nav_image">
+      <h3>ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP.HCM</h3>
+      <span class="nav_image" onclick="settingsMenuToggle()">
         <img src="images/profile.jpg" alt="logo_img" />
       </span>
+      
+   <!--   setting hide -->
+    <div class="settings-menu">
+        <div id="dark-btn">
+          <span></span>
+        </div>
+        <div class="settings-menu-inner">
+          <div class="user-profile">
+            <img src="https://i.postimg.cc/cHg22LhR/profile-pic.png" />
+            <div style="    padding-left: 10px;">
+              <p>Huynh Hong Khanh</p>
+              <a href="./InforLogin">See your profile</a>
+            </div>
+          </div>
+          <hr />
+
+          <div class="settings-links">
+            <img
+              src="https://i.postimg.cc/PJC9GrMb/logout.png"
+              class="settings-icon"
+            />
+            <a href="#"
+              >Logout
+             </a>
+          </div>
+        </div>
+      </div>
     </nav>
+    
+    <!--  IMPORT CODE PHẦN NÀY -->
+<div class="main_content">
+aaaaa
+</div>
+<!--  IMPORT CODE PHẦN NÀY -->
+</div>
   </body>
+  <script >
+  var settingsmenu = document.querySelector(".settings-menu");
+  function settingsMenuToggle(){
+	    settingsmenu.classList.toggle("settings-menu-height");
+	}
+  </script>
 </html>
