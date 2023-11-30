@@ -15,7 +15,7 @@
   <div class="form">
     <form class="fogetPass-form">
 <!--       <input type="password" placeholder="password"/> -->
-      <input type="text" placeholder="email address"/>
+      <input type="email" placeholder="email address"/>
             <p class="message" style="margin-bottom:10px;"> Dfsdiofjsiof</p>
       <button>Lấy lại mật khẩu</button>
       <p class="message"> <a href="#">Đăng nhập</a></p>

@@ -17,7 +17,7 @@
       <i class="bx bx-menu" id="sidebar-open"></i>
       <h3>ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP.HCM</h3>
       <span class="nav_image" onclick="settingsMenuToggle()">
-        <img src="images/profile.jpg" alt="logo_img" />
+        <img src="https://vtv1.mediacdn.vn/zoom/640_400/2023/2/9/090223-twice-16759153857492034544526-crop-16759153913131594780654.jpg" alt="logo_img" />
       </span>
       
    <!--   setting hide -->
