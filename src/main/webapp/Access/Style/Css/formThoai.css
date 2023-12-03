@@ -1,0 +1,7 @@
+@charset "ISO-8859-1";
+.TextArea {
+    width: 400px; /* Chiều rộng mặc định */
+    height: 250px; /* Chiều cao mặc định */
+    resize: none; /* Cho phép chỉnh kích thước cả chiều rộng và chiều cao */
+    padding: 5px;
+}

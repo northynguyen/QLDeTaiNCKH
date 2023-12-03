@@ -132,8 +132,10 @@ background-color: var(--color-theme);
   justify-content: center;
   border-radius: 4px;
 }
-.container-main {
-	display: flex;
+
+.container-main{
+	    display: flex;
+
     flex-direction: column;
     width: -webkit-fill-available;
 }
@@ -255,4 +257,4 @@ CODE */
 	padding: 40px;
 	padding-top: 60px;
 	    overflow-y: scroll;
-}
+
