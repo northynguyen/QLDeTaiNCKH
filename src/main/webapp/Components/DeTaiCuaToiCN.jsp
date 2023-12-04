@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
@@ -37,7 +37,8 @@
 							<tr class="columns-title">
 								<th>Mã đề tài</th>
 								<th>Tên đề tài</th>
-								<th>Ngày nộp đề tài</th>
+								<th>Ngày đề xuất đề tài</th>
+								<th>Kinh phí</th>
 								<th>File mô tả đề tài</th>
 								<th>Thành viên</th>
 								<th>Trạng thái</th>
@@ -45,6 +46,9 @@
 
 							<tr onclick="changeBackgroundColor(this)">
 								<td>
+									<p>1</p>
+								</td>
+								<td>
 									<p>Đăng tải các bình luận</p>
 								</td>
 								<td>
@@ -54,15 +58,18 @@
 									<p>Đăng tải các bình luận</p>
 								</td>
 								<td><a href="">Download</a></td>
-								<td onclick=" toggleHideBox() ">
-									<a style="text-decoration: underline;color: blue;" data-id='${hobby.iDhobby}'>Chi tiết thành viên</a>
-								</td>
+								<td onclick=" toggleHideBox() "><a
+									style="text-decoration: underline; color: blue;"
+									data-id='${hobby.iDhobby}'>Chi tiết thành viên</a></td>
 								<td>
-									<p>Đăng tải các bình luận</p>
+									<p>Chưa duyệt</p>
 								</td>
 							</tr>
 							<tr onclick="changeBackgroundColor(this)">
 								<td>
+									<p>5</p>
+								</td>
+								<td>
 									<p>Đăng tải các bình luận</p>
 								</td>
 								<td>
@@ -72,16 +79,18 @@
 									<p>Đăng tải các bình luận</p>
 								</td>
 								<td><a href="">Download</a></td>
-									<td>
-									<a style="text-decoration: underline;     color: blue;">Chi tiết thành viên</a>
-								</td>
+								<td><a style="text-decoration: underline; color: blue;">Chi
+										tiết thành viên</a></td>
 								<td class="bg-green">
-									<p>Đăng tải các bình luận</p>
+									<p>Đã duyệt</p>
 								</td>
 							</tr>
 
 							<tr onclick="changeBackgroundColor(this)">
 								<td>
+									<p>4</p>
+								</td>
+								<td>
 									<p>Đăng tải các bình luận</p>
 								</td>
 								<td>
@@ -91,17 +100,21 @@
 									<p>Đăng tải các bình luận</p>
 								</td>
 								<td><a href="">Download</a></td>
-									<td>
-									<a style="text-decoration: underline;     color: blue;">Chi tiết thành viên</a>
-								</td>
+								<td><a style="text-decoration: underline; color: blue;">Chi
+										tiết thành viên</a></td>
 								<td>
-									<p>Đăng tải các bình luận</p>
+									<p>Chưa duyệt</p>
 								</td>
 							</tr>
 
 						</table>
 					</div>
 					<button>NỘP ĐỀ TÀI ĐÃ CHỌN</button>
+				</form>
+				<form class="login-form" id="hide-button"
+					style="display: none; padding-top: 20px"
+					action="<%=request.getContextPath()%>/DeXuatDeTai/edit?madx=${madx}">
+					<button>CHỈNH SỬA ĐỀ TÀI</button>
 				</form>
 
 				<div class="hide-list" id="hide-box" style="display: none;">
@@ -120,33 +133,28 @@
 							<ul id="list">
 								<li class="in">
 									<p>Trịnh Thu Phương</p>
-									<p>Coder</p>
-									<a>21110611</a>
-									<i  onclick="confirmDelete()" class="fa fa-trash" aria-hidden="true"></i>
+									<p>Coder</p> <a>21110611</a> <i onclick="confirmDelete()"
+									class="fa fa-trash" aria-hidden="true"></i>
 								</li>
 								<li class="in">
 									<p>Hoàng Công Thiện</p>
-											<p>Coder</p>
-									<a>21110611</a>
-									<i  onclick="confirmDelete()" class="fa fa-trash" aria-hidden="true"></i>
+									<p>Coder</p> <a>21110611</a> <i onclick="confirmDelete()"
+									class="fa fa-trash" aria-hidden="true"></i>
 								</li>
 								<li class="in">
 									<p>Nguyễn Hữu Thoại</p>
-											<p>Coder</p>
-									<a>21110611</a>
-									<i  onclick="confirmDelete()" class="fa fa-trash" aria-hidden="true"></i>
+									<p>Coder</p> <a>21110611</a> <i onclick="confirmDelete()"
+									class="fa fa-trash" aria-hidden="true"></i>
 								</li>
 								<li class="in">
 									<p>Phạm Bá Thành</p>
-											<p>Coder</p>
-									<a>21110611</a>
-									<i  onclick="confirmDelete()" class="fa fa-trash" aria-hidden="true"></i>
+									<p>Coder</p> <a>21110611</a> <i onclick="confirmDelete()"
+									class="fa fa-trash" aria-hidden="true"></i>
 								</li>
 								<li class="in">
 									<p>Trịnh Thu Phương</p>
-											<p>Coder</p>
-									<a>21110611</a>
-									<i  onclick="confirmDelete()" class="fa fa-trash" aria-hidden="true"></i>
+									<p>Coder</p> <a>21110611</a> <i onclick="confirmDelete()"
+									class="fa fa-trash" aria-hidden="true"></i>
 								</li>
 
 
@@ -157,18 +165,20 @@
 
 					</div>
 					<div class="SV" style="flex: 1;">
-					<h2>Thêm thành viên</h2>
-					<form >
-					<p>Mã số sinh viên</p><input type="text" placeholder="Mã số sinh viên" />
-					<p>Tên sinh viên</p><input type="text" placeholder="Tên sinh viên" />
-					<p>Vai trò</p>
-<select class="select" name="VaiTro">
-  <option value="Coder">Coder</option>
-  <option value="NghienCuu">Nghiên cứu</option>
-  <option value="-">Other</option>
-</select>
-					<button>THÊM</button>
-					</form>
+						<h2>Thêm thành viên</h2>
+						<form>
+							<p>Mã số sinh viên</p>
+							<input type="text" placeholder="Mã số sinh viên" />
+							<p>Tên sinh viên</p>
+							<input type="text" placeholder="Tên sinh viên" />
+							<p>Vai trò</p>
+							<select class="select" name="VaiTro">
+								<option value="Coder">Coder</option>
+								<option value="NghienCuu">Nghiên cứu</option>
+								<option value="-">Other</option>
+							</select>
+							<button>THÊM</button>
+						</form>
 					</div>
 				</div>
 				</table>
@@ -193,30 +203,43 @@
 		for (var i = 0; i < rows.length; i++) {
 			rows[i].style.backgroundColor = "";
 		}
-
 		// Đặt màu nền của hàng được nhấp vào thành màu tím nhạt
 		row.style.backgroundColor = "lavender";
-	}
-	 function confirmDelete() {
-         // Kiểm tra xem người dùng có muốn xóa không
-         var userConfirmed = confirm("Bạn có muốn xóa không?");
-         
-         // Xử lý theo quyết định của người dùng
-         if (userConfirmed) {
-             alert("Đã xóa!");
-             // Thêm mã xóa ở đây nếu cần
-         } else {
-             alert("Không xóa.");
-             // Thêm mã khi không xóa ở đây nếu cần
-         }
-     }
-		function toggleHideBox() {
-			var box = document.getElementById("hide-box");
-			if (box.style.display == "none") {
-				box.style.display = "flex";
-			} else {
-				box.style.display = "none";
-			}
+		const status =row.querySelectorAll("p")[4].textContent;
+		const madx =row.querySelectorAll("p")[0].textContent;
+		var btn = document.getElementById("hide-button");
+	 	if(status =="Chưa duyệt"){
+	 		 btn.action = '<%=request.getContextPath()%>
+	/DeXuatDeTai/edit?madx='
+					+ madx;
+			;
+			btn.style.display = "block";
+
+		} else {
+			btn.style.display = "none";
 		}
+	}
+	function confirmDelete() {
+		// Kiểm tra xem người dùng có muốn xóa không
+		var userConfirmed = confirm("Bạn có muốn xóa không?");
+
+		// Xử lý theo quyết định của người dùng
+		if (userConfirmed) {
+			alert("Đã xóa!");
+			// Thêm mã xóa ở đây nếu cần
+		} else {
+			alert("Không xóa.");
+			// Thêm mã khi không xóa ở đây nếu cần
+		}
+	}
+	function toggleHideBox() {
+		var box = document.getElementById("hide-box");
+		if (box.style.display == "none") {
+			box.style.display = "flex";
+		} else {
+			box.style.display = "none";
+		}
+
+	}
 </script>
 </html>

@@ -19,6 +19,15 @@ public class DeXuatDeTai {
 		TrangThai = trangThai;
 		GhiChu = ghiChu;
 	}
+	public DeXuatDeTai(int maDeXuatDeTai, String maChuNhiem, String tenDeTai, int kinhPhi, byte[] fileMoTaDeTai) {
+		super();
+		MaDeXuatDeTai = maDeXuatDeTai;
+		MaChuNhiem = maChuNhiem;
+		TenDeTai = tenDeTai;
+		KinhPhi = kinhPhi;
+		FileMoTaDeTai = fileMoTaDeTai;
+
+	}
 	public DeXuatDeTai() {
 		super();
 	}
