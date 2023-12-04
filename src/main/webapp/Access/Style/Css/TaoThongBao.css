@@ -7,12 +7,15 @@
 .info-content {
     padding: 10px;
     border: 2px solid;
-    width: 95%;
+    width: 100%;
     position: relative;
 }
 .infor-reciever {
-	position: absolute;
+    position: absolute;
     left: 250px;
+    background: #f2f2f2;
+    padding: 3px;
+
 }
 .container-main {
 	display: flex;
@@ -26,19 +29,30 @@ textarea {
       font-size: 20px;
 }
 .form input {
-  display: inline-block;
-  font-family: "Poppins", sans-serif;
-  outline: 0;
-  background: white;
-  width: 70%;
-  padding: 2px 2px;
-  border: 0;
-  box-sizing: border-box;
-  font-size: 18px;
-  border:1px solid black;
-  position: absolute;
+	display: inline-block;
+    font-family: "Poppins", sans-serif;
+    outline: 0;
+    width: 60%;
+    padding: 5px;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    border: 1px solid black;
+    position: absolute;
     left: 250px;
+    background: #f2f2f2;
 }
 h4 {
     padding-bottom: 10px;
+}
+.form-DeTaiCN button {
+    width: 100%;
+    font-size: 18px;
+}
+.success-message {
+	color: green;
+    font-weight: 900;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
 }

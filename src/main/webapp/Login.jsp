@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../Access/Style/Css/Root/Root.css" />
-<link rel="stylesheet" href="../Access/Style/Css/Login.css" />
+<link rel="stylesheet" href="Access/Style/Css/Root/Root.css" />
+<link rel="stylesheet" href="Access/Style/Css/Login.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
- <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+<link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -18,9 +18,25 @@
 	<%
 		ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");
 	%>
-<%-- 	<%if (account != null) {%>
-		<%response.sendRedirect(request.getContextPath() + "/Pages/Match.jsp"); %>
-	<%} %> --%>
+- 	<%if (account != null) {
+		if (account.getRole().equals("Chủ nhiệm")) {
+			//response.sendRedirect("./Components/ThongBao.jsp");
+	
+			 RequestDispatcher dispatcher = request.getRequestDispatcher("/ThongBao/show");
+			 dispatcher.forward(request, response);
+	
+		} else if (account.getRole().equals("Quản lý"))
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ThongBao/create");
+			dispatcher.forward(request, response);
+	
+		}
+		else if (account.getRole().equals("Admin")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/TTTK/create");
+			dispatcher.forward(request, response);
+		}
+}
+	 %> 
 
 	<div class="login-page">
   <div class="form">
@@ -57,5 +73,6 @@ $(document).ready(function(){
       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
     });
   });
+  
 </script>
 </html>

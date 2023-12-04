@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/main/java/Controllers/LoginController.java=UTF-8
+encoding//src/main/java/Controllers/ThongBaoController.java=UTF-8
+encoding//src/main/java/Controllers/ThongTinTaiKhoanController.java=UTF-8
+encoding//src/main/java/DAO/ThongBaoDAO.java=UTF-8
 encoding//src/main/webapp/Access/Style/Css/formP.css=UTF-8
 encoding//src/main/webapp/Access/Style/Css/formThoai.css=UTF-8
 encoding//src/main/webapp/Components/DeTaiDaDuocDangKy.jsp=UTF-8

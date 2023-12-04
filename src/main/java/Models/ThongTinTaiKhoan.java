@@ -3,7 +3,7 @@ package Models;
 import java.sql.Date;
 
 public class ThongTinTaiKhoan {
-	private int MaTaiKhoan;
+	private String MaTaiKhoan;
 	private String MatKhau;
 	private String Role;
 	private String HoTen;
@@ -12,7 +12,7 @@ public class ThongTinTaiKhoan {
 	private String SDT;
 	private String Email;
 	private String DiaChi;
-	public ThongTinTaiKhoan(int maTaiKhoan, String matKhau, String role, String hoTen, String gioiTinh, String maKhoa,
+	public ThongTinTaiKhoan(String maTaiKhoan, String matKhau, String role, String hoTen, String gioiTinh, String maKhoa,
 			String sDT, String email, String diaChi) {
 		super();
 		MaTaiKhoan = maTaiKhoan;
@@ -28,11 +28,11 @@ public class ThongTinTaiKhoan {
 	public ThongTinTaiKhoan() {
 		super();
 	}
-	public int getMaTaiKhoan() {
+	public String getMaTaiKhoan() {
 		return MaTaiKhoan;
 	}
-	public void setMaTaiKhoan(int maTaiKhoan) {
-		MaTaiKhoan = maTaiKhoan;
+	public void setMaTaiKhoan(String string) {
+		MaTaiKhoan = string;
 	}
 	public String getMatKhau() {
 		return MatKhau;
