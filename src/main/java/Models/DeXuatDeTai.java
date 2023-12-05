@@ -1,29 +1,34 @@
 package Models;
 
+import java.sql.Date;
+
 public class DeXuatDeTai {
 	private int MaDeXuatDeTai;
 	private String MaChuNhiem;
 	private String TenDeTai;
+	private Date NgayDeXuat;
 	private int KinhPhi;
 	private byte[] FileMoTaDeTai;
 	private String TrangThai;
 	private String GhiChu;
-	public DeXuatDeTai(int maDeXuatDeTai, String maChuNhiem, String tenDeTai, int kinhPhi, byte[] fileMoTaDeTai,
+	public DeXuatDeTai(int maDeXuatDeTai, String maChuNhiem, String tenDeTai,Date ngayDeXuat, int kinhPhi, byte[] fileMoTaDeTai,
 			String trangThai, String ghiChu) {
 		super();
 		MaDeXuatDeTai = maDeXuatDeTai;
 		MaChuNhiem = maChuNhiem;
 		TenDeTai = tenDeTai;
+		NgayDeXuat=ngayDeXuat;
 		KinhPhi = kinhPhi;
 		FileMoTaDeTai = fileMoTaDeTai;
 		TrangThai = trangThai;
 		GhiChu = ghiChu;
 	}
-	public DeXuatDeTai(int maDeXuatDeTai, String maChuNhiem, String tenDeTai, int kinhPhi, byte[] fileMoTaDeTai) {
+	public DeXuatDeTai(int maDeXuatDeTai, String maChuNhiem, String tenDeTai,Date ngayDeXuat, int kinhPhi, byte[] fileMoTaDeTai) {
 		super();
 		MaDeXuatDeTai = maDeXuatDeTai;
 		MaChuNhiem = maChuNhiem;
 		TenDeTai = tenDeTai;
+		NgayDeXuat=ngayDeXuat;
 		KinhPhi = kinhPhi;
 		FileMoTaDeTai = fileMoTaDeTai;
 
@@ -57,6 +62,12 @@ public class DeXuatDeTai {
 	}
 	public byte[] getFileMoTaDeTai() {
 		return FileMoTaDeTai;
+	}
+	public Date getNgayDeXuat() {
+		return NgayDeXuat;
+	}
+	public void setNgayDeXuat(Date ngayDeXuat) {
+		NgayDeXuat = ngayDeXuat;
 	}
 	public void setFileMoTaDeTai(byte[] fileMoTaDeTai) {
 		FileMoTaDeTai = fileMoTaDeTai;

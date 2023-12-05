@@ -24,27 +24,30 @@
 		<!--  IMPORT CODE PHẦN NÀY -->
 		<div class="main_content">
 			<div class="form form-DeTaiCN">
-				<form class="login-form">
-					<div class="form-title">
-						<h1>ĐỀ TÀI CỦA TÔI</h1>
-						<i class="fa fa-refresh" aria-hidden="true"></i>
-					</div>
-					<hr></hr>
+				<div class="form-title">
+					<h1>ĐỀ TÀI CỦA TÔI</h1>
+					<i class="fa fa-refresh" aria-hidden="true"></i>
+				</div>
+				<hr></hr>
+				<form class="login-form" id="chinhSuaDeXuat" name="madx"
+					method="post"
+					action="<%=request.getContextPath()%>/DeXuatDeTai/showedit?madx=${madx}">
 
 
-					<div class="table-DeTai">
-						<table id="myTable">
+					<h2>ĐỀ TÀI ĐỀ XUẤT</h2>
+					<div class="table-DeTai" id="deTaiDeXuat">
+						<table id="myTableDX">
 							<tr class="columns-title">
+								<th>Mã đơn</th>
 								<th>Mã đề tài</th>
-								<th>Tên đề tài</th>
 								<th>Ngày đề xuất đề tài</th>
 								<th>Kinh phí</th>
 								<th>File mô tả đề tài</th>
-								<th>Thành viên</th>
+								<th>Ghi Chú</th>
 								<th>Trạng thái</th>
 							</tr>
 
-							<tr onclick="changeBackgroundColor(this)">
+							<tr onclick="focusChinhSua(this)">
 								<td>
 									<p>1</p>
 								</td>
@@ -58,14 +61,101 @@
 									<p>Đăng tải các bình luận</p>
 								</td>
 								<td><a href="">Download</a></td>
-								<td onclick=" toggleHideBox() "><a
+								<td>
+									<p></p>
+								</td>
+								<td>
+									<p>Chưa duyệt</p>
+								</td>
+							</tr>
+							<tr onclick="focusChinhSua(this)">
+								<td>
+									<p>5</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td><a href="">Download</a></td>
+								<td>
+									<p>Đề tài như cưc</p>
+								</td>
+								<td class="bg-green">
+									<p>Từ chối</p>
+								</td>
+							</tr>
+
+							<tr onclick="focusChinhSua(this)">
+								<td>
+									<p>30</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td><a href="">Download</a></td>
+								<td>
+									<p></p>
+								</td>
+								<td>
+									<p>Chưa duyệt</p>
+								</td>
+							</tr>
+
+						</table>
+					</div>
+					<button type="submit">CHỈNH SỬA ĐỀ XUẤT</button>
+				</form>
+				
+				
+				<form class="login-form" id="DK" name="maDK"
+					method="post"
+					action="<%=request.getContextPath()%>/....?maDK=${maDK}">
+					<h2>ĐĂNG KÝ ĐỀ TÀI</h2>
+					<div class="table-DeTai" id="dangKy">
+						<table id="myTableDK">
+							<tr class="columns-title">
+								<th>Mã đề tài</th>
+								<th>Tên đề tài</th>
+								<th>Ngày đề xuất đề tài</th>
+								<th>Kinh phí</th>
+								<th>File mô tả đề tài</th>
+								<th>Thành viên</th>
+								<th>Trạng thái</th>
+							</tr>
+
+							<tr onclick="focus(this)">
+								<td>
+									<p>1</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td>
+									<p>Đăng tải các bình luận</p>
+								</td>
+								<td><a href="">Download</a></td>
+								<td onclick="toggleHideBox()"><a
 									style="text-decoration: underline; color: blue;"
 									data-id='${hobby.iDhobby}'>Chi tiết thành viên</a></td>
 								<td>
 									<p>Chưa duyệt</p>
 								</td>
 							</tr>
-							<tr onclick="changeBackgroundColor(this)">
+							<tr onclick="focus(this)">
 								<td>
 									<p>5</p>
 								</td>
@@ -86,9 +176,9 @@
 								</td>
 							</tr>
 
-							<tr onclick="changeBackgroundColor(this)">
+							<tr onclick="focus(this)">
 								<td>
-									<p>4</p>
+									<p>30</p>
 								</td>
 								<td>
 									<p>Đăng tải các bình luận</p>
@@ -109,13 +199,9 @@
 
 						</table>
 					</div>
-					<button>NỘP ĐỀ TÀI ĐÃ CHỌN</button>
+					<button type="submit">CHỈNH SỬA ĐỀ XUẤT</button>
 				</form>
-				<form class="login-form" id="hide-button"
-					style="display: none; padding-top: 20px"
-					action="<%=request.getContextPath()%>/DeXuatDeTai/edit?madx=${madx}">
-					<button>CHỈNH SỬA ĐỀ TÀI</button>
-				</form>
+
 
 				<div class="hide-list" id="hide-box" style="display: none;">
 					<div class="SVThamGia" style="flex: 1;">
@@ -181,7 +267,7 @@
 						</form>
 					</div>
 				</div>
-				</table>
+
 			</div>
 		</div>
 		<!--  IMPORT CODE PHẦN NÀY -->
@@ -194,9 +280,10 @@
 		settingsmenu.classList.toggle("settings-menu-height");
 	}
 
-	function changeBackgroundColor(row) {
+	function focusChinhSua(row) {
+		console.log(row);
 		// Lấy tất cả các hàng trong bảng
-		var rows = document.getElementById("myTable")
+		var rows = document.getElementById("myTableDX")
 				.getElementsByTagName("tr");
 
 		// Đặt màu nền của tất cả các hàng về mặc định (trắng)
@@ -207,17 +294,12 @@
 		row.style.backgroundColor = "lavender";
 		const status =row.querySelectorAll("p")[4].textContent;
 		const madx =row.querySelectorAll("p")[0].textContent;
-		var btn = document.getElementById("hide-button");
-	 	if(status =="Chưa duyệt"){
-	 		 btn.action = '<%=request.getContextPath()%>
-	/DeXuatDeTai/edit?madx='
-					+ madx;
-			;
-			btn.style.display = "block";
+		var btn = document.getElementById("chinhSuaDeXuat");
 
-		} else {
-			btn.style.display = "none";
-		}
+	 btn.action = '<%=request.getContextPath()%>/DeXuatDeTai/showedit?madx='+ madx;
+		btn.value = madx;
+		console.log(btn.value);
+
 	}
 	function confirmDelete() {
 		// Kiểm tra xem người dùng có muốn xóa không

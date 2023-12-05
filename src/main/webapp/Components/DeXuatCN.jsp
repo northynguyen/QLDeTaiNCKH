@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -22,42 +23,77 @@
 		<!--  IMPORT CODE PHẦN NÀY -->
 		<div class="main_content">
 			<div class="form form-DX">
-				<form class="login-form"  accept-charset="UTF-8" action="<%=request.getContextPath()%>/DeXuatDeTai/insert" enctype='multipart/form-data' method="POST">
-					<div class="form-title">
-						<h1>ĐỀ XUẤT ĐỀ TÀI</h1>
-						<i class="fa fa-refresh" aria-hidden="true"></i>
-					</div>
-					<hr></hr>
-					<table>
-						<tr>
-							<td>
-								<p>Tên đề tài</p> <input name="tenDeTai" type="text"
-								placeholder="Tên đề tài" />
-							</td>
-							<td><p>Ngày đề xuất</p> <input name="ngayDeXuat" type="date"
-								id="ngayhomnay" disabled /></td>
-						</tr>
-
-						<tr>
-							<td>
-								<p>Kinh phí</p> <input name="kinhPhi" type="number"
-								placeholder="Kinh phí VNĐ" />
-							</td>
-							<td><p>Nộp file</p> <input name="file" type="file" /></td>
-						</tr>
-						<tr>
-							<td>
-								<button>SUBMIT</button> <!-- 		<input type="submit" text="SUBMIT"/> -->
-							</td>
-  
-						</tr>
-					</table>
-
-
-				</form>
+				<c:if test="${dxedit != null}">
+					<form class="login-form" accept-charset="UTF-8"
+						action="<%=request.getContextPath()%>/DeXuatDeTai/edit"
+						enctype='multipart/form-data' method="POST">
+						<div class="form-title">
+							<h1>CHỈNH SỬA ĐỀ XUẤT</h1>
+							 <input type="text" style="display:none" name="madxdt" value="<c:out value='${dxedit.getMaDeXuatDeTai()}'/>" />
+				</c:if>
+				<c:if test="${dxedit == null}">
+					<form class="login-form" accept-charset="UTF-8"
+						action="<%=request.getContextPath()%>/DeXuatDeTai/insert"
+						enctype='multipart/form-data' method="POST">
+						<div class="form-title">
+							<h1>ĐỀ XUẤT ĐỀ TÀI</h1>
+				</c:if>
+				<i class="fa fa-refresh" aria-hidden="true"></i>
 			</div>
+			<hr></hr>
+			<table>
+				<tr>
+					<td><c:if test="${dxedit != null}">
+							<p>Tên đề tài</p> <input name="tenDeTai" type="text"
+						placeholder="Tên đề tài"  value="<c:out value='${dxedit.getTenDeTai()}'/>" />
+						</c:if> <c:if test="${dxedit == null}">
+							<p>Tên đề tài</p>
+							<input name="tenDeTai" type="text" placeholder="Tên đề tài" />
+						</c:if>
+					
+					<td><c:if test="${dxedit != null}">
+							<p>Ngày đề xuất</p> <input name="ngayDeXuat" type="date"
+						id="ngayhomnay"  value="<c:out value='${dxedit.getNgayDeXuat()}'/>" />
+						</c:if>
+						<c:if test="${dxedit == null}">
+							<p>Ngày đề xuất</p> <input name="ngayDeXuat" type="date"
+						id="ngayhomnay"  />
+						</c:if>
+					</td>
+				</tr>
+
+				<tr>
+					<td><c:if test="${dxedit != null}">
+							<p>Kinh phí</p> <input name="kinhPhi" type="number"  value="<c:out value='${dxedit.getKinhPhi()}'/>"
+						placeholder="Kinh phí VNĐ" />
+						</c:if>
+						<c:if test="${dxedit == null}">
+							<p>Kinh phí</p> <input name="kinhPhi" type="number"
+						placeholder="Kinh phí VNĐ" />
+						</c:if>
+					</td>
+					<td><c:if test="${dxedit != null}">
+							<p>Nộp file</p> <input name="file" type="file" value="<c:out value='${dxedit.getFileMoTaDeTai()}'/>"/>
+						
+						</c:if>
+						<c:if test="${dxedit == null}">
+							<p>Nộp file</p> <input name="file" type="file" />
+						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button>SUBMIT</button> <!-- 		<input type="submit" text="SUBMIT"/> -->
+					</td>
+
+				</tr>
+			</table>
+
+
+			</form>
 		</div>
-		<!--  IMPORT CODE PHẦN NÀY -->
+	</div>
+	<!--  IMPORT CODE PHẦN NÀY -->
 	</div>
 </body>
 
