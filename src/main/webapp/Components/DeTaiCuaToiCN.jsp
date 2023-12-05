@@ -134,7 +134,7 @@
 								<th>Trạng thái</th>
 							</tr>
 
-							<tr onclick="focus(this)">
+							<tr onclick="focusDangKi(this)">
 								<td>
 									<p>1</p>
 								</td>
@@ -148,14 +148,14 @@
 									<p>Đăng tải các bình luận</p>
 								</td>
 								<td><a href="">Download</a></td>
-								<td onclick="toggleHideBox()"><a
+								<td><a
 									style="text-decoration: underline; color: blue;"
 									data-id='${hobby.iDhobby}'>Chi tiết thành viên</a></td>
 								<td>
 									<p>Chưa duyệt</p>
 								</td>
 							</tr>
-							<tr onclick="focus(this)">
+							<tr onclick="focusDangKi(this)">
 								<td>
 									<p>5</p>
 								</td>
@@ -176,7 +176,7 @@
 								</td>
 							</tr>
 
-							<tr onclick="focus(this)">
+							<tr onclick="focusDangKi(this)">
 								<td>
 									<p>30</p>
 								</td>
@@ -199,7 +199,7 @@
 
 						</table>
 					</div>
-					<button type="submit">CHỈNH SỬA ĐỀ XUẤT</button>
+					<button id="btn-DK" style="display:none; " type="submit">CHỈNH SỬA ĐỀ XUẤT</button>
 				</form>
 
 
@@ -253,17 +253,16 @@
 					<div class="SV" style="flex: 1;">
 						<h2>Thêm thành viên</h2>
 						<form>
-							<p>Mã số sinh viên</p>
-							<input type="text" placeholder="Mã số sinh viên" />
-							<p>Tên sinh viên</p>
-							<input type="text" placeholder="Tên sinh viên" />
-							<p>Vai trò</p>
+							<p>Chọn sinh viên</p>
+							<a href="">Mở danh sách</a>
+							
+							<p style="padding-top:20px">Vai trò</p>
 							<select class="select" name="VaiTro">
 								<option value="Coder">Coder</option>
 								<option value="NghienCuu">Nghiên cứu</option>
 								<option value="-">Other</option>
 							</select>
-							<button>THÊM</button>
+							<button type="submit">THÊM</button>
 						</form>
 					</div>
 				</div>
@@ -281,7 +280,7 @@
 	}
 
 	function focusChinhSua(row) {
-		console.log(row);
+		console.log(row.querySelectorAll("p")[4]);
 		// Lấy tất cả các hàng trong bảng
 		var rows = document.getElementById("myTableDX")
 				.getElementsByTagName("tr");
@@ -301,6 +300,39 @@
 		console.log(btn.value);
 
 	}
+	function focusDangKi(row) {
+
+		// Lấy tất cả các hàng trong bảng
+		var rows = document.getElementById("myTableDK")
+				.getElementsByTagName("tr");
+
+		// Đặt màu nền của tất cả các hàng về mặc định (trắng)
+		for (var i = 0; i < rows.length; i++) {
+			rows[i].style.backgroundColor = "";
+		}
+		// Đặt màu nền của hàng được nhấp vào thành màu tím nhạt
+		row.style.backgroundColor = "lavender";
+		const status =row.querySelectorAll("p")[4].textContent;
+		const madx =row.querySelectorAll("p")[0].textContent;
+		var box = document.getElementById("DK");
+		var btn= document.getElementById("btn-DK");
+		var box = document.getElementById("hide-box");
+		if(status=="Đã duyệt")
+		{
+			box.action = '<%=request.getContextPath()%>/DeXuatDeTai/showedit?madx='+ madx;
+			box.value = madx;
+			console.log(btn.value);
+			btn.style.display = "block";
+			
+			box.style.display = "flex";
+		}
+		else{
+			btn.style.display = "none";
+			box.style.display = "none";
+		}
+
+
+	}
 	function confirmDelete() {
 		// Kiểm tra xem người dùng có muốn xóa không
 		var userConfirmed = confirm("Bạn có muốn xóa không?");
@@ -314,7 +346,7 @@
 			// Thêm mã khi không xóa ở đây nếu cần
 		}
 	}
-	function toggleHideBox() {
+/*  	function toggleHideBox() {
 		var box = document.getElementById("hide-box");
 		if (box.style.display == "none") {
 			box.style.display = "flex";
@@ -322,6 +354,6 @@
 			box.style.display = "none";
 		}
 
-	}
+	}  */
 </script>
 </html>
