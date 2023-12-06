@@ -2,6 +2,8 @@ package Models;
 
 import java.sql.Date;
 
+
+
 public class DeXuatDeTai {
 	private int MaDeXuatDeTai;
 	private String MaChuNhiem;

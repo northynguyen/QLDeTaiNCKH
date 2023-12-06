@@ -15,7 +15,7 @@ import Util.HandleExeption;
 import Util.JDBCUtil;
 
 public class DeXuatDeTaiDAO {
-	private static final String THEM_DE_XUAT = "INSERT INTO `nckh`.`dexuatdetai` (`MaChuNhiem`, `TenDeTai`, `NgayDeXuat`, `KinhPhi`, `FileMoTaDeTai`,`TrangThai`) VALUES (?, ?, ?, ?,?, 'chưa duyệt');\r\n"
+	private static final String THEM_DE_XUAT = "INSERT INTO `nckh`.`dexuatdetai` (`MaChuNhiem`, `TenDeTai`, `NgayDeXuat`, `KinhPhi`, `FileMoTaDeTai`,`TrangThai`) VALUES (?, ?, ?, ?,?, 'Chưa duyệt');\r\n"
 			+ "";
 	private static final String LAY_DE_XUAT_BYID = "SELECT * FROM nckh.dexuatdetai where MaDeXuatDeTai= ?;";
 	private static final String CHINH_SUA_DE_XUAT = "UPDATE `nckh`.`dexuatdetai` SET `TenDeTai` = ?, `NgayDeXuat` = ?, `KinhPhi` = ?,`FileMoTaDeTai`=?  WHERE (`MaDeXuatDeTai` = ?);\r\n"

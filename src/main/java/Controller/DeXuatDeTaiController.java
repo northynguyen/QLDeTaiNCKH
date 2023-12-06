@@ -56,7 +56,7 @@ public class DeXuatDeTaiController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getPathInfo();
-		
+
 		request.setCharacterEncoding("UTF-8");
 		try {
 			switch (action) {
@@ -70,28 +70,28 @@ public class DeXuatDeTaiController extends HttpServlet {
 				edit(request, response);
 				break;
 			default:
-				System.out.println("df" );
+				System.out.println("df");
 				break;
 			}
-		  } catch (SQLException ex) {
-	            throw new ServletException(ex);
-		  } catch (ClassNotFoundException e) {
+		} catch (SQLException ex) {
+			throw new ServletException(ex);
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 	private void insert(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException, ClassNotFoundException, ParseException 
-	{
+			throws SQLException, IOException, ServletException, ClassNotFoundException, ParseException {
 		HttpSession session = request.getSession();
 		/*
 		 * ThongTinTaiKhoan account = (ThongTinTaiKhoan)
@@ -104,54 +104,46 @@ public class DeXuatDeTaiController extends HttpServlet {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		java.sql.Date ngayDeXuat = new java.sql.Date(dateFormat.parse(date).getTime());
 
-
 		String kinhPhi = request.getParameter("kinhPhi");
 		System.out.print("hehe");
 		Part filePart = request.getPart("file");
-		if (filePart != null && filePart.getSize() > 0)
-		{
+		if (filePart != null && filePart.getSize() > 0) {
 			InputStream fileContent = filePart.getInputStream();
-	        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	        byte[] buffer = new byte[1024];
-	        int bytesRead;
-	        while ((bytesRead = fileContent.read(buffer)) != -1) {
-	            byteArrayOutputStream.write(buffer, 0, bytesRead);
-	        }
-	        byte[] fileData = byteArrayOutputStream.toByteArray();
-	        System.out.println("ImageData= " + fileData);
-	        deXuatDeTaiDAO.ThemDeXuat("1", tenDeTai, ngayDeXuat, kinhPhi,fileData);  
-	        System.out.println("is" );
-		}
-		else
-		{
-			System.out.print("nono");
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			int bytesRead;
+			while ((bytesRead = fileContent.read(buffer)) != -1) {
+				byteArrayOutputStream.write(buffer, 0, bytesRead);
 			}
+			byte[] fileData = byteArrayOutputStream.toByteArray();
+			System.out.println("ImageData= " + fileData);
+			deXuatDeTaiDAO.ThemDeXuat("1", tenDeTai, ngayDeXuat, kinhPhi, fileData);
+			System.out.println("is");
+		} else {
+			System.out.print("nono");
+		}
 
 		// deXuatDeTaiDAO.ThemDeXuat(maChuNhiem,tenDeTai,ngayDeXuat, kinhPhi);
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeTaiCuaToiCN.jsp");
-dispatcher.forward(request, response);
-		//response.sendRedirect(request.getContextPath() + "/Components/DeTaiCuaToiCN.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeTaiCuaToiCN.jsp");
+		dispatcher.forward(request, response);
+		// response.sendRedirect(request.getContextPath() +
+		// "/Components/DeTaiCuaToiCN.jsp");
 	}
+
 	private void showedit(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException, ClassNotFoundException 
-	{
-		HttpSession session = request.getSession();
-		/*
-		 * ThongTinTaiKhoan account = (ThongTinTaiKhoan)
-		 * session.getAttribute("account"); String maChuNhiem =
-		 * Integer.toString(account.getMaTaiKhoan());
-		 */
-		String madx = request.getParameter("madx");
-		DeXuatDeTai dx=deXuatDeTaiDAO.LayDeXuat_ByID(madx);
+			throws SQLException, IOException, ServletException, ClassNotFoundException {
 
-        request.setAttribute("dxedit", dx);	
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeXuatCN.jsp");
-        dispatcher.forward(request, response);
+		String madx = request.getParameter("madx");
+		DeXuatDeTai dx = deXuatDeTaiDAO.LayDeXuat_ByID(madx);
+		System.out.print(madx);
+		request.setAttribute("dxedit", dx);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeXuatCN.jsp");
+		dispatcher.forward(request, response);
 
 	}
+
 	private void edit(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException, ClassNotFoundException, ParseException 
-	{
+			throws SQLException, IOException, ServletException, ClassNotFoundException, ParseException {
 		HttpSession session = request.getSession();
 		/*
 		 * ThongTinTaiKhoan account = (ThongTinTaiKhoan)
@@ -164,26 +156,25 @@ dispatcher.forward(request, response);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		java.sql.Date ngayDeXuat = new java.sql.Date(dateFormat.parse(date).getTime());
 
-
 		String kinhPhi = request.getParameter("kinhPhi");
 		System.out.print("hehe");
 		Part filePart = request.getPart("file");
 		/*
 		 * if (filePart != null && filePart.getSize() > 0) {
 		 */
-			InputStream fileContent = filePart.getInputStream();
-	        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	        byte[] buffer = new byte[1024];
-	        int bytesRead;
-	        while ((bytesRead = fileContent.read(buffer)) != -1) {
-	            byteArrayOutputStream.write(buffer, 0, bytesRead);
-	        }
-	        byte[] fileData = byteArrayOutputStream.toByteArray();
-	        
-		boolean a= deXuatDeTaiDAO.ChinhSuaDeXuat(tenDeTai,ngayDeXuat,kinhPhi,fileData,madx);
+		InputStream fileContent = filePart.getInputStream();
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		int bytesRead;
+		while ((bytesRead = fileContent.read(buffer)) != -1) {
+			byteArrayOutputStream.write(buffer, 0, bytesRead);
+		}
+		byte[] fileData = byteArrayOutputStream.toByteArray();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeTaiCuaToiCN.jsp");
-        dispatcher.forward(request, response);
+		deXuatDeTaiDAO.ChinhSuaDeXuat(tenDeTai, ngayDeXuat, kinhPhi, fileData, madx);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeTaiCuaToiCN.jsp");
+		dispatcher.forward(request, response);
 
 	}
 

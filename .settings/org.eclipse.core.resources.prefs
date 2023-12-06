@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/java/Controller/DeXuatDeTaiController.java=UTF-8
+encoding//src/main/java/DAO/DeTaiDaDangKyDAO.java=UTF-8
 encoding//src/main/java/DAO/DeXuatDeTaiDAO.java=UTF-8
+encoding//src/main/java/DAO/ThemDeTaiDAO.java=UTF-8
 encoding//src/main/webapp/Access/Style/Css/formP.css=UTF-8
 encoding//src/main/webapp/Access/Style/Css/formThoai.css=UTF-8
 encoding//src/main/webapp/Components/DeTaiDaDuocDangKy.jsp=UTF-8
