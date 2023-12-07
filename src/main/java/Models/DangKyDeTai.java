@@ -2,6 +2,8 @@ package Models;
 
 import java.sql.Date;
 
+
+
 public class DangKyDeTai {
 	private int MaDon;
 	private int MaDeTai;
