@@ -9,8 +9,31 @@ public class DangKyDeTai {
 	private Date NgayDuyet;
 	private String MaNguoiDuyet;
 	private byte[] FileQuyetDinh;
+	private int MaThoiGian;
 	private String TrangThai;
 	private String GhiChu;
+	public DangKyDeTai(int maDon, int maDeTai, String maChuNhiem, Date ngayDuyet, String maNguoiDuyet,
+			byte[] fileQuyetDinh, int maThoiGian, String trangThai, String ghiChu) {
+		super();
+		MaDon = maDon;
+		MaDeTai = maDeTai;
+		MaChuNhiem = maChuNhiem;
+		NgayDuyet = ngayDuyet;
+		MaNguoiDuyet = maNguoiDuyet;
+		FileQuyetDinh = fileQuyetDinh;
+		MaThoiGian = maThoiGian;
+		TrangThai = trangThai;
+		GhiChu = ghiChu;
+	}
+	public DangKyDeTai(int maDeTai, String maChuNhiem, String trangThai) {
+		super();
+		MaDeTai = maDeTai;
+		MaChuNhiem = maChuNhiem;
+		TrangThai = trangThai;
+	}
+	public DangKyDeTai() {
+		super();
+	}
 	public int getMaDon() {
 		return MaDon;
 	}
@@ -47,6 +70,12 @@ public class DangKyDeTai {
 	public void setFileQuyetDinh(byte[] fileQuyetDinh) {
 		FileQuyetDinh = fileQuyetDinh;
 	}
+	public int getMaThoiGian() {
+		return MaThoiGian;
+	}
+	public void setMaThoiGian(int maThoiGian) {
+		MaThoiGian = maThoiGian;
+	}
 	public String getTrangThai() {
 		return TrangThai;
 	}
@@ -59,19 +88,6 @@ public class DangKyDeTai {
 	public void setGhiChu(String ghiChu) {
 		GhiChu = ghiChu;
 	}
-	public DangKyDeTai() {
-		super();
-	}
-	public DangKyDeTai(int maDon, int maDeTai, String maChuNhiem, Date ngayDuyet, String maNguoiDuyet,
-			byte[] fileQuyetDinh, String trangThai, String ghiChu) {
-		super();
-		MaDon = maDon;
-		MaDeTai = maDeTai;
-		MaChuNhiem = maChuNhiem;
-		NgayDuyet = ngayDuyet;
-		MaNguoiDuyet = maNguoiDuyet;
-		FileQuyetDinh = fileQuyetDinh;
-		TrangThai = trangThai;
-		GhiChu = ghiChu;
-	}
+	
+	
 }

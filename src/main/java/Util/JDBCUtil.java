@@ -14,9 +14,9 @@ public class JDBCUtil {
 
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
-			String url = "jdbc:mysql://localhost:3306/datingapp";
+			String url = "jdbc:mysql://localhost:3306/qldetainckh";
 			String username = "root";
-			String password = "trinhthuphuong";
+			String password = "1234";
 			conn = DriverManager.getConnection(url, username, password);
 
 			System.out.println("Connection Successfully");
@@ -41,9 +41,7 @@ public class JDBCUtil {
 		}
 	}
 	public static void main() {
-		System.out.println(" aaaa!");
 		Connection a= getConnection();
-		System.out.println(" cfcfcccf!");
 		
 	}
 	public static Date getSQLDate(LocalDate date) {

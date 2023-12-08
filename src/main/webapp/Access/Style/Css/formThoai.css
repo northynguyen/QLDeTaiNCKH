@@ -5,3 +5,18 @@
     resize: none; /* Cho phép chỉnh kích thước cả chiều rộng và chiều cao */
     padding: 5px;
 }
+
+.btn_disable   {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0 !important;
+    background: #ccc !important;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF !important;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}

@@ -23,6 +23,13 @@ public class DeTai {
 	public void setMaDeTai(int maDeTai) {
 		MaDeTai = maDeTai;
 	}
+	public DeTai(String tenDeTai, int kinhPhi, byte[] fileMoTaDeTai, String trangThai) {
+		super();
+		TenDeTai = tenDeTai;
+		KinhPhi = kinhPhi;
+		FileMoTaDeTai = fileMoTaDeTai;
+		TrangThai = trangThai;
+	}
 	public String getTenDeTai() {
 		return TenDeTai;
 	}
