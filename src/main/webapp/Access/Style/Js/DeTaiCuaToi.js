@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	 btn.action = '<%=request.getContextPath()%>/DeXuatDeTai/showedit?madx='+ madx;
 		btn.value = madx;
-		console.log(btn.value);
+		console.log(btn.action);
 
 	}
 	function focusDangKi(row) {

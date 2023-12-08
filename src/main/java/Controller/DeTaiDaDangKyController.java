@@ -23,6 +23,9 @@ import javax.servlet.http.Part;
 import DAO.DeTaiDaDangKyDAO;
 import DAO.DeXuatDeTaiDAO;
 import Models.DangKyDeTai;
+import Models.DeTai;
+import Models.ThanhVienThamGiaDeTai;
+import Models.ThongTinTaiKhoan;
 
 /**
  * Servlet implementation class DeTaiDaDangKyController
@@ -54,6 +57,9 @@ public class DeTaiDaDangKyController extends HttpServlet {
 			case "/view":
 				view(request, response);
 				break;
+			case "/chitiet":
+				chitiet(request, response);
+				break;
 			default:
 				System.out.println("df");
 				break;
@@ -84,6 +90,33 @@ public class DeTaiDaDangKyController extends HttpServlet {
 		  request.setAttribute("ddk", ddk);
 		  
 		  RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeTaiDaDuocDangKy.jsp");
+	       dispatcher.forward(request, response);
+	}
+
+	private void chitiet(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException, ClassNotFoundException, ParseException {
+		
+		 String maDon=request.getParameter("maDon");
+		 request.setAttribute("maDon", maDon);
+		 DangKyDeTai dkdt= deTaiDaDangKyDAO.LayDeTaiDaDK(maDon);
+		 
+		 int maDT=dkdt.getMaDeTai();
+		 String maCN=dkdt.getMaChuNhiem();
+		 int maTG=dkdt.getMaThoiGian();
+		 
+		 DeTai dt=deTaiDaDangKyDAO.LayDeTai_MaDT(maDT);
+		 request.setAttribute("dt", dt);
+		 
+		 
+		 ThongTinTaiKhoan tttk=deTaiDaDangKyDAO.LayChuNhiem_MaCN(maCN);
+		 request.setAttribute("cn", tttk);
+		 
+		 List<ThanhVienThamGiaDeTai> tv=deTaiDaDangKyDAO.LayThanhVien_MaDT_MaTG(maDT, maTG);
+		 System.out.print(tv);System.out.print(maTG);
+		 request.setAttribute("tv", tv);
+		
+		  
+		  RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/ChiTietDDK.jsp");
 	       dispatcher.forward(request, response);
 	}
 
