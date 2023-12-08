@@ -69,7 +69,7 @@
               </a>
             </li>
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath() %>/DeTai/showsubmit" class="link flex">
                 <i class="bx bx-cloud-upload"></i>
                 <span>Upload New</span>
               </a>

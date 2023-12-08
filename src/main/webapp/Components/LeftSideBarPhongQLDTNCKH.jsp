@@ -54,7 +54,7 @@
           <ul class="menu_item">
 
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath() %>/QuyetDinhDuyet.jsp" class="link flex">
                 <i class="bx bxs-magic-wand"></i>
                 <span>Duyệt đề tài</span>
               </a>

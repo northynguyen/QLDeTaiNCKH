@@ -55,7 +55,7 @@ public class LoginDAO {
 	         HandleExeption.printSQLException(exception);
 	     }
      return ListKhoa;
- }
+	}
 	
     public ThongTinTaiKhoan validate(String TaiKhoan, String password) throws ClassNotFoundException {
     	ThongTinTaiKhoan thongTinTaiKhoan = new ThongTinTaiKhoan();

@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="../Access/Style/Css/Root/Root.css" />
 <link rel="stylesheet" href="../Access/Style/Css/Login.css" />
 <link rel="stylesheet" href="../Access/Style/Css/formP.css" />
+<link rel="stylesheet" href="Access/Style/Css/LeftSideBar.css" />
+<link rel="stylesheet" href="Access/Style/Css/Root/Root.css" />
+<link rel="stylesheet" href="Access/Style/Css/Login.css" />
+<link rel="stylesheet" href="Access/Style/Css/formP.css" />
 <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -16,63 +20,60 @@
 </head>
 <body>
 
-	<jsp:include page="LeftSideBar.jsp" />
+	<jsp:include page="Components/LeftSideBarPhongQLDTNCKH.jsp" />
 	<div class="container-main">
-		<jsp:include page="NavBar.jsp" />
+		<jsp:include page="Components/NavBar.jsp" />
 		<!--  IMPORT CODE PHẦN NÀY -->
 		<div class="main_content">
 			<div class="form form-Nop">
-				<form class="login-form" action="<%=request.getContextPath()%>/DeTai/submit"
-				accept-charset="UTF-8" enctype='multipart/form-data' method="POST">
+				<form class="login-form">
 					<div class="form-title">
-						<h1>NỘP ĐỀ TÀI</h1>
+						<h1>DUYỆT ĐỀ TÀI</h1>
 						<i class="fa fa-refresh" aria-hidden="true"></i>
 					</div>
 					<hr></hr>
 
-					<h2>${detai.getTenDeTai()}</h2>
-					<div class="form-time">
-						<p>Opened: ${thoigian.getNgayMoDK()}, 00:00 AM</p>
-						<p>Due: ${thoigian.getNgayNopDeTai()}, 23:59 PM</p>
-					</div>
-
-					<hr></hr>
-					<h2>TRẠNG THÁI NỘP</h2>
+					<h2>TRẠNG THÁI ĐỀ TÀI</h2>
 					<table>
-						<tr class="bg-green">
+						<tr >
 							<td class="columns-title">
-								<p>Trạng thái nộp</p> 
+								<p>TÊN ĐỀ TÀI:</p> 
 							</td>
-							<td><p>Chưa nộp</p></td>
+							<td><p>Cách để đẹp trai</p></td>
+						</tr>
+						<tr >
+							<td class="columns-title">
+								<p>ĐỀ XUẤT BỞI:</p> 
+							</td>
+							<td><p>Hoàng Công Thiện</p></td>
 						</tr>
 
 						<tr>
 							<td class="columns-title">
-								<p>Thời gian còn lại</p> 
+								<p>KINH PHÍ</p> 
 							</td>
-							<td><p>Bài tập đã được gửi sớm 3 giờ 39 phút</p></td>
+							<td><p>10000000</p></td>
 						</tr>
-						
+						<tr >
+							<td class="columns-title">
+								<p>FILE MÔ TẢ</p> 
+							</td>
+							<td><a>Tải xuống</a></td>
+						</tr>						
 						<tr>
 							<td class="columns-title">
-								<p>Chỉnh sửa lần cuối</p> 
-							</td>
-							<td><p>Wednesday, 6 September 2023, 8:20 PM</p></td>
-						</tr>
-						<tr>
-							<td class="columns-title">
-								<p>Đăng tải các bình luận</p> 
+								<p>THÊM GHI CHÚ:</p> 
 							</td>
 							<td><input type="text" placeholder="Thêm ghi chú" /></td>
 						</tr>
 						<tr>
 							<td class="columns-title">
-								<p>Đăng tải các bình luận</p> 
+								<p>FILE QUYẾT ĐỊNH</p> 
 							</td>
 							<td> <input type="file" /></td>
 						</tr>
 					</table>
-					<button>SUBMIT </button>
+					<button>DUYỆT ĐỀ TÀI </button>
 				</form>
 			</div>
 		</div>

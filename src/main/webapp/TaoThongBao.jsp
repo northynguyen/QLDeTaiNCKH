@@ -41,10 +41,10 @@
 			<div class="form form-DeTaiCN">
 				<form action="<%=request.getContextPath()%>/ThongBao/create"
 					method="post" accept-charset="UTF-8">
-					<h2>Gửi thông báo</h2>
+					<h1>GỬI THÔNG BÁO</h1>
 
 					<div class="info-content">
-						<h4 padding-bottom-15px>
+						<h4 >
 							Chọn người nhận: <select name="reciever" id="reciever"
 								class="infor-reciever" onchange="changeLableID()">
 								<c:forEach var="thongtintaikhoan"
