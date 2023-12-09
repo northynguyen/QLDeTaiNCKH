@@ -40,11 +40,13 @@ public class JDBCUtil {
 			e.printStackTrace();
 		}
 	}
+
 	public static void main() {
-		Connection a= getConnection();
-		
+		Connection a = getConnection();
+
 	}
+
 	public static Date getSQLDate(LocalDate date) {
-        return java.sql.Date.valueOf(date);
-    }
+		return java.sql.Date.valueOf(date);
+	}
 }
