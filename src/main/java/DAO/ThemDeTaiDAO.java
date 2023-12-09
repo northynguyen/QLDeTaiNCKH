@@ -10,6 +10,7 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import com.mysql.jdbc.Blob;
 
+import Models.DeTai;
 import Models.DeXuatDeTai;
 import Util.HandleExeption;
 import Util.JDBCUtil;
@@ -18,46 +19,17 @@ public class ThemDeTaiDAO {
 	private static final String THEM_DE_TAI = "INSERT INTO `nckh`.`detai` (`TenDeTai`, `KinhPhi`, `FileMoTa`,`TrangThai`) VALUES (?,?,?,'Chưa duyệt');\r\n"
 			+ "";
 	
-	
-	  public boolean ThemDeTai(String tenDeTai,String kinhPhi,byte[] fileMoTaDeTai) throws SQLException {
-	        boolean rowUpdated;
-	        try (Connection conn = JDBCUtil.getConnection();
-	                PreparedStatement statement = conn.prepareStatement(THEM_DE_TAI);) {
-	            statement.setString(1, tenDeTai);
-	            statement.setString(2, kinhPhi);
-	            statement.setBytes(3, fileMoTaDeTai);
-	            rowUpdated = statement.executeUpdate() > 0;
-	        }
-	        return rowUpdated;
-	    } 
-		/*
-		 * public boolean ChinhSuaDeXuat(String tenDeTai,Date ngayDeXuat,String
-		 * kinhPhi,byte[] fileMoTaDeTai,String maMaDeXuatDeTai) throws SQLException {
-		 * boolean rowUpdated; try (Connection conn = JDBCUtil.getConnection();
-		 * PreparedStatement statement = conn.prepareStatement(CHINH_SUA_DE_XUAT);) {
-		 * statement.setString(1, tenDeTai); statement.setDate(2, ngayDeXuat);
-		 * statement.setString(3, kinhPhi); statement.setBytes(4, fileMoTaDeTai);
-		 * statement.setString(5, maMaDeXuatDeTai); rowUpdated =
-		 * statement.executeUpdate() > 0; } return rowUpdated; } public DeXuatDeTai
-		 * LayDeXuat_ByID(String maMaDeXuatDeTai) throws SQLException { DeXuatDeTai dx =
-		 * null; try (Connection conn = JDBCUtil.getConnection(); PreparedStatement
-		 * statement = conn.prepareStatement(LAY_DE_XUAT_BYID);) {
-		 * statement.setString(1, maMaDeXuatDeTai);
-		 * 
-		 * ResultSet rs = statement.executeQuery();
-		 * 
-		 * 
-		 * while (rs.next()) { int MaDeXuatDeTai =rs.getInt(1); String
-		 * MaChuNhiem=rs.getString(2); String TenDeTai=rs.getString(3); Date
-		 * ngayDeXuat=rs.getDate(4); int KinhPhi=rs.getInt(5); byte[]
-		 * FileMoTaDeTai=rs.getBytes(6); String TrangThai=rs.getString(7); String
-		 * GhiChu=rs.getString(8);
-		 * 
-		 * 
-		 * dx=new DeXuatDeTai(MaDeXuatDeTai,
-		 * MaChuNhiem,TenDeTai,ngayDeXuat,KinhPhi,FileMoTaDeTai);
-		 * 
-		 * } } return dx; }
-		 */
-	  
+
+	public boolean ThemDeTai(String tenDeTai, String kinhPhi, byte[] fileMoTaDeTai) throws SQLException {
+		boolean rowUpdated;
+		try (Connection conn = JDBCUtil.getConnection();
+				PreparedStatement statement = conn.prepareStatement(THEM_DE_TAI);) {
+			statement.setString(1, tenDeTai);
+			statement.setString(2, kinhPhi);
+			statement.setBytes(3, fileMoTaDeTai);
+			rowUpdated = statement.executeUpdate() > 0;
+		}
+		return rowUpdated;
+	}
+
 }
