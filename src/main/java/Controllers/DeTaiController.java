@@ -3,6 +3,8 @@ package Controllers;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.servlet.http.Part;
 import javax.servlet.RequestDispatcher;
@@ -16,10 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.DeTaiDAO;
+import DAO.LoginDAO;
 import DAO.ThoiGianNCKHDAO;
 import DAO.ThongBaoDAO;
 import Models.DangKyDeTai;
 import Models.DeTai;
+import Models.DeXuatDeTai;
 import Models.NopDeTai;
 import Models.ThoiGianNCKH;
 import Models.ThongTinTaiKhoan;
@@ -52,6 +56,14 @@ public class DeTaiController extends HttpServlet {
 			break;
 		case "/submit":
 			NopDeTai(request, response);
+			break;
+		case "/showquyetdinhduyet":
+			try {
+				ShowQuyetDinhDuyet(request, response);
+			} catch (ClassNotFoundException | IOException | ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case "/quyetdinhduyet":
 			QuyetDinhDuyet(request, response);
@@ -132,28 +144,41 @@ public class DeTaiController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/NopDeTaiCN.jsp");
 		dispatcher.forward(request, response);				
 	}
+	public void ShowQuyetDinhDuyet (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ClassNotFoundException {
+		LoginDAO loginDAO = new LoginDAO();
+		String MaDon = request.getParameter("MaDon");
+		MaDon = "";
+		String MaDeXuatDeTai = request.getParameter("MaDeXuatDeTai");
+		MaDeXuatDeTai = "1";
+		if (!MaDon.equals("")){
+			DangKyDeTai dangkydetai = detaiDAO.LayDangKyDeTaiBangMa(Integer.parseInt(MaDon));		
+			DeTai detai = detaiDAO.LayDeTaiBangMa(dangkydetai.getMaDeTai());
+			ThongTinTaiKhoan thongtintaikhoan = loginDAO.KiemTraTaiKhoan(dangkydetai.getMaChuNhiem());
+			request.setAttribute("dangkydetai", dangkydetai);
+			request.setAttribute("thongtintaikhoan", thongtintaikhoan);
+			request.setAttribute("detai", detai);
+		}
+		else {
+			DeXuatDeTai dexuatdetai = detaiDAO.LayDeXuatDeTaiBangMa(Integer.parseInt(MaDeXuatDeTai));
+			ThongTinTaiKhoan thongtintaikhoan = loginDAO.KiemTraTaiKhoan(dexuatdetai.getMaChuNhiem());
+			request.setAttribute("thongtintaikhoan", thongtintaikhoan);
+			request.setAttribute("dexuatdetai", dexuatdetai);
+		}			
+			
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/QuyetDinhDuyet.jsp");
+		dispatcher.forward(request, response);					
+	}
 	public void QuyetDinhDuyet (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");				
-		String MaDon = request.getParameter("MaDon");
-		MaDon = "2";		
-		DangKyDeTai dangkydetai = detaiDAO.LayDangKyDeTaiBangMa(Integer.parseInt(MaDon));
-		request.setAttribute("dangkydetai", dangkydetai);
-		String MaDeTaistr = request.getParameter("MaDeTai");
-		System.out.print(MaDeTaistr);
-		int MaDeTai =Integer.parseInt(MaDeTaistr);
-		int MaThoiGian = Integer.parseInt(request.getParameter("MaThoiGian"));
-		String MaNopDeTaistr = request.getParameter("MaNopDeTai");
-		int MaNopDeTai = -1;
-		if (!MaNopDeTaistr.equals(""))
-		{
-			MaNopDeTai  = Integer.parseInt(MaNopDeTaistr);
-		}
-		String Ghichu = request.getParameter("ghichu");
-		String TrangThai = request.getParameter("TrangThai");
-		String MaNguoiNop = account.getMaTaiKhoan();
+		ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");	
+		String TenThongBao;
+		String TenDeTai;
+		String LoaiDuyet = request.getParameter("LoaiDuyet");
+		String MaNguoiDuyet = account.getMaTaiKhoan();
+		String GhiChu = request.getParameter("ghichu");
 		Part filePart = request.getPart("file");
-		byte[] FileBaoCao = null;
+		String MaChuNhiem = request.getParameter("MaChuNhiem");
+		byte[] FileQuyetDinh = null;
 		if (filePart != null && filePart.getSize() > 0)
 		{
 			InputStream fileContent = filePart.getInputStream();
@@ -163,23 +188,39 @@ public class DeTaiController extends HttpServlet {
 	        while ((bytesRead = fileContent.read(buffer)) != -1) {
 	            byteArrayOutputStream.write(buffer, 0, bytesRead);
 	        }
-	        FileBaoCao = byteArrayOutputStream.toByteArray();
+	        FileQuyetDinh = byteArrayOutputStream.toByteArray();
 		}
-		if (TrangThai.equals("Đã nộp"))
-		{
-			if (FileBaoCao == null) {
-				detaiDAO.CapNhatNopDeTaiKhongCoFile(MaNopDeTai, Ghichu);
-			}
-			else {
-				detaiDAO.CapNhatNopDeTai(MaNopDeTai, FileBaoCao, Ghichu);
-			}
+		if (LoaiDuyet.equals("DangKy")) {
+			String MaDon = request.getParameter("madon");
+			detaiDAO.DuyetDeTaiDangKy(FileQuyetDinh, MaNguoiDuyet, GhiChu, MaDon);
+			TenThongBao = "Thông báo duyệt đề tài đăng ký";
+			TenDeTai = request.getParameter("TenDeTai");
 		}
 		else {
-			detaiDAO.NopDeTai(MaDeTai, MaNguoiNop, FileBaoCao, MaThoiGian, Ghichu, TrangThai);
+			ThoiGianNCKH thoigian = thoigianNCKHDAO.LayThoiGianHienTai();
+			int MaThoiGian = thoigian.getMaThoiGianNCKH();
+			String MaDeXuatDeTai = request.getParameter("madexuat");			
+			DeXuatDeTai dexuatdetai = detaiDAO.LayDeXuatDeTaiBangMa(Integer.parseInt(MaDeXuatDeTai));
+			TenDeTai = dexuatdetai.getTenDeTai();
+			int KinhPhi = dexuatdetai.getKinhPhi();
+			byte[] FileMoTaDeTai = dexuatdetai.getFileMoTaDeTai();
+			TenThongBao = "Thông báo duyệt đề tài đề xuất";
+			try {
+				detaiDAO.DuyetDeTaiDeXuat(MaThoiGian, MaDeXuatDeTai, FileQuyetDinh, MaNguoiDuyet, MaChuNhiem, GhiChu, TenDeTai, KinhPhi, FileMoTaDeTai);
+			} catch (SQLException e) {
+				System.out.print("Lỗi mất r");
+				e.printStackTrace();
+			}			
 		}
-				
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/DeTai/showsubmit");
+		ThongBaoDAO thongbaoDAO = new ThongBaoDAO();
+		java.util.Date utilDate = new java.util.Date();
+        Date NgayThongBao = new Date(utilDate.getTime());
+        String NoiDung ="Đề tài: " + TenDeTai +" đã được duyệt "
+        		+ "Ghi chú: " + GhiChu; 
+		thongbaoDAO.TaoThongBao(TenThongBao, NgayThongBao, MaChuNhiem, MaNguoiDuyet, NoiDung);
+					
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/TaoThongBao.jsp");
 		dispatcher.forward(request, response);				
-	}
+	}	
 
 }

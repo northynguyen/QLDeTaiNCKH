@@ -1,15 +1,18 @@
 package DAO;
 import java.time.LocalTime;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import Models.DangKyDeTai;
 import Models.DeTai;
+import Models.DeXuatDeTai;
 import Models.Khoa;
 import Models.NopDeTai;
 import Util.HandleExeption;
@@ -24,12 +27,19 @@ public class DeTaiDAO {
 	private static final String CAP_NHAT_NOP_DE_TAI_KHONG_CO_FILE = "UPDATE `qldetainckh`.`nopdetai` \r\n"
 			+ "SET `ThoiGianNop` = ?, `GhiChu` = N? \r\n"
 			+ "WHERE (`MaNopDeTai` = ?);";
-	private static final String DUYET_DE_TAI = "SELECT * FROM qldetainckh.dangkydetai where MaDon = ?";
+	private static final String DUYET_DE_TAI_DANG_KY = "update qldetainckh.dangkydetai\r\n"
+			+ "set NgayDuyet =?, MaNguoiDuyet =?, FileQuyetDinh =?, TrangThai = N?, GhiChu = N?\r\n"
+			+ "where MaDon = ?";
+	private static final String DUYET_DE_TAI_DE_XUAT = "INSERT INTO `qldetainckh`.`dangkydetai` \r\n"
+			+ "(`MaDeTai`, `MaChuNhiem`, `NgayDuyet`, `MaNguoiDuyet`, `FileQuyetDinh`, `MaThoiGian`, `TrangThai`, `GhiChu`) \r\n"
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+	private static final String CAP_NHAT_TRANG_THAI_DE_XUAT = "UPDATE `qldetainckh`.`dexuatdetai` SET `TrangThai` = 'Đã duyệt', `GhiChu` = ? WHERE (`MaDeXuatDeTai` = ?);";
+	private static final String LAY_DE_XUAT_DE_TAI_BANG_MA = "SELECT * FROM qldetainckh.dexuatdetai where MaDeXuatDeTai = ?";
 	private static final String LAY_DANG_KY_DE_TAI_BANG_MA = "SELECT * FROM qldetainckh.dangkydetai where MaDon = ?";
 	private static final String LAY_NOP_DE_TAI_BANG_MA_VA_THOI_GIAN = "SELECT * FROM qldetainckh.nopdetai\r\n"
 			+ "where MaDeTai =? and MaThoiGian = ?;";
 	private static final String LAY_DE_TAI_BANG_MA = "SELECT * FROM qldetainckh.detai where MaDeTai = ?";
-	
+	private static final String THEM_DE_TAI = "INSERT INTO `qldetainckh`.`detai` (`TenDeTai`, `KinhPhi`, `FileMoTa`,`TrangThai`) VALUES (N?,?,?,N?);\r\n";
 	public void NopDeTai(int MaDeTai, String MaNguoiNop, byte[] FileBaoCao, int MaThoiGian, String GhiChu, String TrangThai) {
 		try (Connection connection = JDBCUtil.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(NOP_DE_TAI);) {
@@ -145,4 +155,103 @@ public class DeTaiDAO {
  	     }
       return detai;
      }
+	
+	public DeXuatDeTai LayDeXuatDeTaiBangMa(int MaDeXuatDeTai) {
+		DeXuatDeTai dexuatdetai = new DeXuatDeTai();        
+	    try (Connection connection = JDBCUtil.getConnection();
+		     PreparedStatement preparedStatement = connection.prepareStatement(LAY_DE_XUAT_DE_TAI_BANG_MA);) {
+	    	 preparedStatement.setInt(1, MaDeXuatDeTai);
+		     ResultSet rs = preparedStatement.executeQuery();
+		
+		     while (rs.next()) {               		    	 
+		    	 dexuatdetai.setMaDeXuatDeTai(rs.getInt(1));
+		    	 dexuatdetai.setMaChuNhiem(rs.getString(2));
+		    	 dexuatdetai.setTenDeTai(rs.getString(3));
+		    	 dexuatdetai.setNgayDeXuat(rs.getDate(4));
+		    	 dexuatdetai.setKinhPhi(rs.getInt(5));
+		    	 dexuatdetai.setFileMoTaDeTai(rs.getBytes(6));
+		    	 dexuatdetai.setTrangThai(rs.getString(7));
+		    	 dexuatdetai.setGhiChu(rs.getString(8));
+		     }
+	     } catch (SQLException exception) {
+	         HandleExeption.printSQLException(exception);
+	     }
+     return dexuatdetai;
+	} 
+	 public boolean ThemDeTaiDeXuat(String tenDeTai,String kinhPhi,byte[] fileMoTaDeTai) throws SQLException {
+	        boolean rowUpdated;
+	        try (Connection conn = JDBCUtil.getConnection();
+	                PreparedStatement statement = conn.prepareStatement(THEM_DE_TAI);) {
+	            statement.setString(1, tenDeTai);
+	            statement.setString(2, kinhPhi);
+	            statement.setBytes(3, fileMoTaDeTai);
+	            statement.setString(4, "Đã đăng ký");
+	            rowUpdated = statement.executeUpdate() > 0;
+	        }
+	        return rowUpdated;
+	    }
+	 public void DuyetDeTaiDangKy(byte[] FileQuyetDinh, String MaNguoiDuyet, String GhiChu, String MaDon ) {
+			try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(DUYET_DE_TAI_DANG_KY);) {
+				  
+				java.util.Date utilDate = new java.util.Date();
+		        Date NgayDuyet = new Date(utilDate.getTime());
+		        preparedStatement.setDate(1, NgayDuyet);	 
+		        preparedStatement.setString(2, MaNguoiDuyet);	 
+		        preparedStatement.setBytes(3, FileQuyetDinh);
+		        preparedStatement.setString(4, "Đã duyệt");	 
+		        preparedStatement.setString(5, GhiChu);
+		        preparedStatement.setString(6, MaDon);
+				preparedStatement.executeUpdate();
+				
+		     } catch (SQLException exception) {
+		         HandleExeption.printSQLException(exception);
+		     }
+	}
+	 public void DuyetDeTaiDeXuat(int MaThoiGian, String MaDeXuatDeTai, byte[] FileQuyetDinh, String MaNguoiDuyet, String MaChuNhiem, String GhiChu, String tenDeTai, int kinhPhi,byte[] fileMoTaDeTai) throws SQLException {
+		 // Cap nhat trang thai de xuat
+		 try (Connection conn = JDBCUtil.getConnection();
+	            PreparedStatement statement = conn.prepareStatement(CAP_NHAT_TRANG_THAI_DE_XUAT);) {
+			 statement.setString(1, GhiChu);   
+			 statement.setString(2, MaDeXuatDeTai);
+	         statement.executeUpdate();	  
+	            
+		 } catch (SQLException exception) {
+	         HandleExeption.printSQLException(exception);
+	     }
+		 // Them de xuat vao bang de tai va lay ma de tai
+		 int MaDeTai = -1;
+         try (Connection conn = JDBCUtil.getConnection();
+                PreparedStatement statement = conn.prepareStatement(THEM_DE_TAI, Statement.RETURN_GENERATED_KEYS);) {
+            statement.setString(1, tenDeTai);
+            statement.setInt(2, kinhPhi);
+            statement.setBytes(3, fileMoTaDeTai);
+            statement.setString(4, "Đã đăng ký");
+            statement.executeUpdate();
+            
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    MaDeTai = generatedKeys.getInt(1);               
+                }
+            }
+         }
+		 // them de tai de xuat vao bang dang ky de tai voi trang thai la da duyet
+		 try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(DUYET_DE_TAI_DE_XUAT);) {
+				  
+				java.util.Date utilDate = new java.util.Date();
+		        Date NgayDuyet = new Date(utilDate.getTime());
+		        preparedStatement.setInt(1, MaDeTai);	 
+		        preparedStatement.setString(2, MaChuNhiem);	 
+		        preparedStatement.setDate(3, NgayDuyet);	
+		        preparedStatement.setString(4, MaNguoiDuyet);	 
+		        preparedStatement.setBytes(5, FileQuyetDinh);
+		        preparedStatement.setInt(6, MaThoiGian);	 
+		        preparedStatement.setString(7, "Đã duyệt");
+		        preparedStatement.setString(8, GhiChu);
+				preparedStatement.executeUpdate();	     
+		     } catch (SQLException exception) {
+		         HandleExeption.printSQLException(exception);
+		     }
+		}
 }
