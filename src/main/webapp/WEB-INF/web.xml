@@ -1,8 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>QLDeTaiNCKH</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+	<display-name>QLDeTaiNCKH</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
 
-  
 
-    
+
+
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>DeXuatDeTaiController</servlet-name>
+		<servlet-class>Controller.DeXuatDeTaiController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeXuatDeTaiController</servlet-name>
+		<url-pattern>/DeXuatDeTai/*</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>ThemDeTaiController</servlet-name>
+		<servlet-class>Controller.ThemDeTaiController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ThemDeTaiController</servlet-name>
+		<url-pattern>/ThemDeTai/*</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>DeTaiDaDangKyController</servlet-name>
+		<servlet-class>Controller.DeTaiDaDangKyController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeTaiDaDangKyController</servlet-name>
+		<url-pattern>/DeTaiDaDangKy/*</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>HandleDownLoad</servlet-name>
+		<servlet-class>Controller.HandleDownLoad</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HandleDownLoad</servlet-name>
+		<url-pattern>/download/*</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>DangKyDeTaiController</servlet-name>
+		<servlet-class>Controllers.DangKyDeTaiController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DangKyDeTaiController</servlet-name>
+		<url-pattern>/dangkydetai/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>QuanLyDeTaiController</servlet-name>
+		<servlet-class>Controllers.QuanLyDeTaiController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QuanLyDeTaiController</servlet-name>
+		<url-pattern>/quanlydetai/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DuyetDeTaiController</servlet-name>
+		<servlet-class>Controllers.DuyetDeTaiController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DuyetDeTaiController</servlet-name>
+		<url-pattern>/duyetdetai/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DuyetDeXuatController</servlet-name>
+		<servlet-class>Controllers.DuyetDeXuatController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DuyetDeXuatController</servlet-name>
+		<url-pattern>/duyetdexuat/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DeTaiCuaToiController</servlet-name>
+		<servlet-class>Controllers.DeTaiCuaToiController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeTaiCuaToiController</servlet-name>
+		<url-pattern>/detaicuatoi/*</url-pattern>
+	</servlet-mapping>
 </web-app>

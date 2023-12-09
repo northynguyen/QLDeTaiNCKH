@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/main/java/Controllers/DangKyDeTaiController.java=UTF-8
+encoding//src/main/java/DAO/DangKyDeTaiDAO.java=UTF-8
+encoding//src/main/java/DAO/DuyetDeTaiDAO.java=UTF-8
+encoding//src/main/java/DAO/DuyetDeXuatDAO.java=UTF-8
 encoding//src/main/java/Controllers/DeTaiController.java=UTF-8
 encoding//src/main/java/Controllers/LoginController.java=UTF-8
 encoding//src/main/java/Controllers/ThongBaoController.java=UTF-8

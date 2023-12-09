@@ -17,6 +17,11 @@ public class ThoiGianNCKH {
 	public ThoiGianNCKH() {
 		super();
 	}
+	
+	public ThoiGianNCKH(int maThoiGianNCKH) {
+		super();
+		MaThoiGianNCKH = maThoiGianNCKH;
+	}
 	public int getMaThoiGianNCKH() {
 		return MaThoiGianNCKH;
 	}

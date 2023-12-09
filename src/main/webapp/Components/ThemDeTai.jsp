@@ -21,7 +21,7 @@
 		<!--  IMPORT CODE PHẦN NÀY -->
 		<div class="main_content">
 			<div class="form form-DX">
-				<form class="login-form">
+				<form class="login-form" action="<%=request.getContextPath()%>/ThemDeTai/insert" enctype='multipart/form-data' method="POST">
 					<div class="form-title">
 					<h1>THÊM ĐỀ TÀI</h1>
 				<i class="fa fa-refresh" aria-hidden="true"></i>
@@ -29,12 +29,12 @@
 					<hr></hr>
 					<table>
 							<tr>
-								<p>Tên đề tài</p> <input type="text" placeholder="Tên đề tài" />
+								<p>Tên đề tài</p> <input name="tenDeTai" type="text" placeholder="Tên đề tài" />
 							</tr>
 							<tr>
-								<p>Kinh phí</p> <input type="number" placeholder="Kinh phí VNĐ" />
+								<p>Kinh phí</p> <input name="kinhPhi" type="number" placeholder="Kinh phí VNĐ" />
 							</tr>
-							<tr><p>File mô tả</p> <input type="file" /></tr>
+							<tr><p>File mô tả</p> <input name="file" type="file" /></tr>
 						<tr>
 							<td>
 								<button>THÊM ĐỀ TÀI </button>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -42,55 +43,26 @@
 								<th>Trạng thái</th>
 							</tr>
 
-							<tr>
-								<td>
-									<p>Đề tài 1</p>
-								</td>
-								<td>
-									<p>Tên đề tài 1</p>
-								</td>
-								<td>
-									<p>1000000</p>
-								</td>
-								<td><a href="">Download</a></td>
-								<td>
+							<c:forEach var="DeTai" items="${listDeTai}">
+								<tr onclick="changeBackgroundColor(this)">
 
-									<p>Trạng thái</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Đề tài 1</p>
-								</td>
-								<td>
-									<p>Tên đề tài 1</p>
-								</td>
-								<td>
-									<p>1000000</p>
-								</td>
-								<td><a href="">Download</a></td>
-								<td>
+									<td><p>
+											<c:out value="${DeTai.getMaDeTai()}" />
+										</p></td>
+									<td><p>
+											<c:out value="${DeTai.getTenDeTai()}" />
+										</p></td>
+									<td><p>
+											<c:out value="${DeTai.getKinhPhi()}" />
+										</p></td>
+									<td><a href=""> Download</a></td>
+									<td><p>
+											<c:out value="${DeTai.getTrangThai()}" />
+										</p></td>
+								</tr>
+							</c:forEach>
 
-									<p>Trạng thái</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Đề tài 1</p>
-								</td>
-								<td>
-									<p>Tên đề tài 1</p>
-								</td>
-								<td>
-									<p>1000000</p>
-								</td>
-								<td><a href="">Download</a></td>
-								<td>
 
-									<p>Trạng thái</p>
-								</td>
-							</tr>
-						
 						</table>
 					</div>
 					<button>THÊM ĐỀ TÀI</button>
