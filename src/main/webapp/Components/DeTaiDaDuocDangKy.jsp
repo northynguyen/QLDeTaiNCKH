@@ -41,7 +41,8 @@
 								<th>Mã đề tài</th>
 								<th>Mã chủ nhiệm</th>
 								<th>Mã người duyệt</th>
-								<th>File quyết định</th>		
+								<th>File quyết định</th>	
+								<th>Mã thời gian</th>	
 								<th>Ghi chú</th>
 								<th>Trạng thái</th>	
 							</tr>
@@ -63,6 +64,9 @@
 								<td >
 						
 									<a href="<%=request.getContextPath()%>/download/fileQuyetDinh?maDon=${line.getMaDon()}" >Download</a>
+								</td>
+								<td>
+									<p>${line.getMaThoiGian()}</p>
 								</td>
 								<td>
 									<p>${line.getGhiChu()}</p>
@@ -124,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		const madx =row.querySelectorAll("p")[0].textContent;
 		var btn = document.getElementById("daDK");
 
-	  	btn.action = '<%=request.getContextPath()%>/download?maDon='+ madx;
+	  	btn.action = '<%=request.getContextPath()%>/DeTaiDaDangKy/chitiet?maDon='+ madx;
 		btn.value = madx;
 		console.log(btn.value); 
 

@@ -43,6 +43,7 @@ function focusChinhSua(row) {
 
 	btn.action = '<%=request.getContextPath()%>/DeXuatDeTai/showedit?madx=' + madx;
 	btn.value = madx;
+	console.log(btn.action);
 	console.log(btn.value);
 
 }

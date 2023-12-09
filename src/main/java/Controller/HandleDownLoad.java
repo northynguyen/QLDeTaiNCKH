@@ -23,6 +23,7 @@ import javax.servlet.http.Part;
 import DAO.DeTaiDaDangKyDAO;
 import DAO.DeXuatDeTaiDAO;
 import Models.DangKyDeTai;
+import Models.DeTai;
 import Models.DeXuatDeTai;
 
 /**
@@ -32,7 +33,8 @@ import Models.DeXuatDeTai;
 @MultipartConfig
 public class HandleDownLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DeTaiDaDangKyDAO deTaiDaDangKyDAO ;
+	private DeTaiDaDangKyDAO deTaiDaDangKyDAO;
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,12 +43,12 @@ public class HandleDownLoad extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		deTaiDaDangKyDAO = new DeTaiDaDangKyDAO();
 
 	}
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -57,6 +59,9 @@ public class HandleDownLoad extends HttpServlet {
 			switch (action) {
 			case "/fileQuyetDinh":
 				FileQuyetDinh(request, response);
+				break;
+			case "/fileMoTa":
+				FileMoTa(request, response);
 				break;
 			default:
 				System.out.println("df");
@@ -73,14 +78,14 @@ public class HandleDownLoad extends HttpServlet {
 		}
 	}
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 	private void FileQuyetDinh(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException, ClassNotFoundException {
-		
+
 		response.setContentType("application/octet-stream");
 		String maDon = request.getParameter("maDon");
 		System.out.print(maDon);
@@ -93,7 +98,39 @@ public class HandleDownLoad extends HttpServlet {
 
 		byte[] fileData = ddk.getFileQuyetDinh();
 
-		String fileName = "QuyetDinh_MaDon"+maDon +".doc"; 
+		String fileName = "QuyetDinh_MaDon" + maDon + ".doc";
+		response.setContentType("application/msword");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+		response.setContentLength(fileData.length);
+		InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(fileData));
+
+		OutputStream outStream = response.getOutputStream();
+		byte[] buffer = new byte[4096];
+		int bytesRead = -1;
+		while ((bytesRead = inputStream.read(buffer)) != -1) {
+			outStream.write(buffer, 0, bytesRead);
+		}
+		inputStream.close();
+		outStream.close();
+
+	}
+
+	private void FileMoTa(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException, ClassNotFoundException {
+
+		response.setContentType("application/octet-stream");
+		int maDT = Integer.parseInt(request.getParameter("maDT"));
+		System.out.print(maDT);
+		DeTai dt = null;
+		try {
+			dt = deTaiDaDangKyDAO.LayDeTai_MaDT(maDT);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		byte[] fileData = dt.getFileMoTaDeTai();
+
+		String fileName = "MoTa_MaDeTai" + maDT + ".doc";
 		response.setContentType("application/msword");
 		response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
 		response.setContentLength(fileData.length);
