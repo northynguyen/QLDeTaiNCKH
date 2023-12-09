@@ -27,7 +27,7 @@
             <img src="https://vtv1.mediacdn.vn/zoom/640_400/2023/2/9/090223-twice-16759153857492034544526-crop-16759153913131594780654.jpg" alt="logo_img" />
           </span>
           <div class="data_text">
-            <span class="name">David Oliva</span>
+            <span class="name">Phòng QLĐTNCKH</span>
             <span class="email">david@gmail.com</span>
           </div>
         </div>
@@ -40,36 +40,33 @@
             <li class="item">
               <a href="#" class="link flex">
                 <i class="bx bx-home-alt"></i>
-                <span>Overview</span>
+                <span>Trang chủ</span>
               </a>
             </li>
             <li class="item">
               <a href="#" class="link flex">
                 <i class="bx bx-grid-alt"></i>
-                <span>All Projects</span>
+                <span>Quản lý đề tài</span>
               </a>
             </li>
           </ul>
 
           <ul class="menu_item">
-            <div class="menu_title flex">
-              <span class="title">Editor</span>
-              <span class="line"></span>
-            </div>
+
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath() %>/DeTai/showquyetdinhduyet" class="link flex">
                 <i class="bx bxs-magic-wand"></i>
-                <span>Magic Build</span>
+                <span>Duyệt đề tài</span>
               </a>
             </li>
             <li class="item">
               <a href="#" class="link flex">
                 <i class="bx bx-folder"></i>
-                <span>New Projects</span>
+                <span>Gửi thông báo</span>
               </a>
             </li>
             <li class="item">
-              <a href="<%=request.getContextPath() %>/DeTai/showsubmit" class="link flex">
+              <a href="#" class="link flex">
                 <i class="bx bx-cloud-upload"></i>
                 <span>Upload New</span>
               </a>
