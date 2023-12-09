@@ -1,8 +1,12 @@
 package Models;
 
+import java.util.Date;
+
 public class DeXuatDeTai {
 	private int MaDeXuatDeTai;
+	private Date NgayDeXuat;
 	private String MaChuNhiem;
+	
 	private String TenDeTai;
 	private int KinhPhi;
 	private byte[] FileMoTaDeTai;
@@ -21,6 +25,23 @@ public class DeXuatDeTai {
 	}
 	public DeXuatDeTai() {
 		super();
+	}
+	public DeXuatDeTai(int maDeXuatDeTai,  String tenDeTai, Date ngayDeXuat, int kinhPhi, byte[] fileMoTaDeTai,
+			String trangThai, String ghiChu) {
+		super();
+		MaDeXuatDeTai = maDeXuatDeTai;
+		NgayDeXuat = ngayDeXuat;
+		TenDeTai = tenDeTai;
+		KinhPhi = kinhPhi;
+		FileMoTaDeTai = fileMoTaDeTai;
+		TrangThai = trangThai;
+		GhiChu = ghiChu;
+	}
+	public Date getNgayDeXuat() {
+		return NgayDeXuat;
+	}
+	public void setNgayDeXuat(Date ngayDeXuat) {
+		NgayDeXuat = ngayDeXuat;
 	}
 	public int getMaDeXuatDeTai() {
 		return MaDeXuatDeTai;

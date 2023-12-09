@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.DuyetDeTaiDAO;
 import Models.DeTai;
-import Models.DuyetDeTai;
+import Models.Duyet;
+
 
 @WebServlet("/duyetdetai")
 public class DuyetDeTaiController extends HttpServlet {
@@ -44,7 +45,7 @@ public class DuyetDeTaiController extends HttpServlet {
 
 				break;
 			case "/xoa":
-
+				khongDuyet(request, response);
 				break;
 			default:
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/DuyetDeTai.jsp");
@@ -63,9 +64,17 @@ public class DuyetDeTaiController extends HttpServlet {
 
 	private void showDuyetDeTai(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		List<DuyetDeTai> listDuyet = new ArrayList<>();
+		List<Duyet> listDuyet = new ArrayList<>();
 		listDuyet = duyetdetaiDAO.selectAllDeTaiDuyet();
 		request.setAttribute("listDuyet", listDuyet);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/DuyetDeTai.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void khongDuyet(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, ServletException, IOException {
+		int maDon = Integer.parseInt(request.getParameter("MaDon"));
+		String LyDo= request.getParameter("GhiChu");
+		duyetdetaiDAO.TuChoi(maDon, LyDo);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/DuyetDeTai.jsp");
 		dispatcher.forward(request, response);
 	}

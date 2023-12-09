@@ -1,18 +1,12 @@
 package Models;
 
-public class DuyetDeTai {
+public class Duyet {
+	private int MaDon;
 	private String TenDeTai;
 	private String TenChuNhiem;
 	private int KinhPhi;
 	private byte[] FileMoTaDeTai;
-	public DuyetDeTai(String tenDeTai, String tenChuNhiem, int kinhPhi, byte[] fileMoTaDeTai) {
-		super();
-		TenDeTai = tenDeTai;
-		TenChuNhiem = tenChuNhiem;
-		KinhPhi = kinhPhi;
-		FileMoTaDeTai = fileMoTaDeTai;
-	}
-	public DuyetDeTai() {
+	public Duyet() {
 		super();
 	}
 	public String getTenDeTai() {
@@ -37,6 +31,20 @@ public class DuyetDeTai {
 		return FileMoTaDeTai;
 	}
 	public void setFileMoTaDeTai(byte[] fileMoTaDeTai) {
+		FileMoTaDeTai = fileMoTaDeTai;
+	}
+	public int getMaDon() {
+		return MaDon;
+	}
+	public void setMaDon(int maDon) {
+		MaDon = maDon;
+	}
+	public Duyet(int maDon, String tenDeTai, String tenChuNhiem, int kinhPhi, byte[] fileMoTaDeTai) {
+		super();
+		MaDon = maDon;
+		TenDeTai = tenDeTai;
+		TenChuNhiem = tenChuNhiem;
+		KinhPhi = kinhPhi;
 		FileMoTaDeTai = fileMoTaDeTai;
 	}
 

@@ -10,10 +10,12 @@
 <link rel="stylesheet" href="Access/Style/Css/Root/Root.css" />
 <link rel="stylesheet" href="Access/Style/Css/Login.css" />
 <link rel="stylesheet" href="Access/Style/Css/formP.css" />
+<link rel="stylesheet" href="Access/Style/Css/formThoai.css" />
 <link rel="stylesheet" href="../Access/Style/Css/LeftSideBar.css" />
 <link rel="stylesheet" href="../Access/Style/Css/Root/Root.css" />
 <link rel="stylesheet" href="../Access/Style/Css/Login.css" />
 <link rel="stylesheet" href="../Access/Style/Css/formP.css" />
+<link rel="stylesheet" href="../Access/Style/Css/formThoai.css" />
 <!-- Boxicons CSS -->
 <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
 	rel="stylesheet" />
@@ -42,6 +44,7 @@
 					<div class="table-DeTai">
 						<table id="myTable">
 							<tr class="columns-title">
+								<th>Mã Đơn </th>
 								<th>Tên đề tài</th>
 								<th>Chủ Nhiệm</th>
 								<th>Kinh phí dự kiến</th>
@@ -50,7 +53,10 @@
 							</tr>
 							<c:forEach var="Duyet" items="${listDuyet}">
 								<tr onclick="changeBackgroundColor(this)">
-									<input  id="madetaiInput" type="hidden" name="madetai">
+								 
+									<td><p>
+											<c:out value="${Duyet.getMaDon()}" />
+										</p></td>
 									<td><p>
 											<c:out value="${Duyet.getTenDeTai()}" />
 										</p></td>
@@ -69,10 +75,21 @@
 							</c:forEach>
 						</table>
 					</div>
-
-					<button>DUYỆT</button>
-					<button>KHÔNG DUYỆT</button>
+					
 				</form>
+				<button disabled class="btn_disable"  id="btn_duyet">DUYỆT</button>
+				<button onclick=" toggleHideBox('Không Duyệt');" disabled class="btn_disable" id="btn_xoa">KHÔNG DUYỆT</button>
+				<div class="hide-list" id="hide-box" style="display: none;">
+					<div class="SV" style="flex: 1;">
+						<h2>LÝ DO KHÔNG DUYỆT</h2>
+						<form action="<%=request.getContextPath()%>/duyetdetai/xoa"
+				accept-charset="UTF-8" method="POST">
+							<input id="maDonInput" type="hidden" name ="MaDon">
+							<textarea name="GhiChu" class="TextArea" placeholder="Lý do"></textarea><br><br>
+							<button>GỬI</button>
+						</form>
+					</div>
+				</div>
 			</div>
 			<!--  IMPORT CODE PHẦN NÀY -->
 		</div>
@@ -88,8 +105,9 @@
 		var rows = document.getElementById("myTable")
 				.getElementsByTagName("tr");
 		var select= document.getElementById("chon");
-		var madetai = row.cells[0].innerText;
-		document.getElementById("madetaiInput").value = madetai;
+		var maDon = row.cells[0].innerText;
+		document.getElementById("maDonInput").value = maDon
+		console.log(maDon);
 		// Đặt màu nền của tất cả các hàng về mặc định (trắng)
 		for (var i = 0; i < rows.length; i++) {
 			rows[i].style.backgroundColor = "";
@@ -105,9 +123,38 @@
 		  }
 		  var radio = row.querySelector("input[type='radio']");
 		  radio.checked = true;
+		  removedisableButton();
 	}
 	function settingsMenuToggle() {
 		settingsmenu.classList.toggle("settings-menu-height");
+	}
+	function toggleHideBox() {
+		var box = document.getElementById("hide-box");
+		if (box.style.display == "none") {
+			box.style.display = "flex";
+		} else {
+			box.style.display = "none";
+		}
+	}
+	function removedisableButton()
+	{
+		var sua = document.getElementById("btn_duyet");
+		sua.disabled = false;
+		sua.classList.remove('btn_disable');
+		
+		var xoa = document.getElementById("btn_xoa");
+		xoa.disabled = false;
+		xoa.classList.remove('btn_disable');
+	}
+	function disableButton()
+	{
+		var sua = document.getElementById("btn_duyet");
+		sua.disabled = true;
+		sua.classList.add('btn_disable');
+		
+		var xoa = document.getElementById("btn_xoa");
+		xoa.disabled = true;
+		xoa.classList.add('btn_disable');
 	}
 </script>
 </html>

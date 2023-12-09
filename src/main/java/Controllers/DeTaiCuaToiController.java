@@ -13,42 +13,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DuyetDeTaiDAO;
 import DAO.DuyetDeXuatDAO;
+import Models.DeXuatDeTai;
 import Models.Duyet;
 
-@WebServlet("/duyetdexuat")
-public class DuyetDeXuatController extends HttpServlet {
+@WebServlet("/detaicuatoi")
+public class DeTaiCuaToiController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DuyetDeXuatDAO duyetdexuatDAO;
+    private DuyetDeXuatDAO dexuatCNDAO;   
 
-    public DuyetDeXuatController() {
+    public DeTaiCuaToiController() {
         super();
-        duyetdexuatDAO = new DuyetDeXuatDAO();
+        
     }
 
 
 	public void init(ServletConfig config) throws ServletException {
+		dexuatCNDAO = new DuyetDeXuatDAO();
 	}
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getPathInfo();
-
 		request.setCharacterEncoding("UTF-8");
 		try {
 			switch (action) {
 			case "/new":
-				showDuyetDeXuat(request, response);
+				showDeXuat_CN(request, response);
 				break;
-			case "/dangky":
-
-				break;
-			case "/xoa":
-				khongDuyet(request, response);
+			case "/new2":
+				showCNDangKy(request, response);
 				break;
 			default:
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/DuyetDeXuat.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/DeTaiCuaToiCN.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
@@ -56,25 +53,25 @@ public class DuyetDeXuatController extends HttpServlet {
 			throw new ServletException(ex);
 		}
 	}
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		doGet(request, response);
 	}
-	private void showDuyetDeXuat(HttpServletRequest request, HttpServletResponse response)
+	private void showDeXuat_CN(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		List<Duyet> listDuyet = new ArrayList<>();
-		listDuyet = duyetdexuatDAO.selectAllDeTaiDuyet();
-		request.setAttribute("listDuyet", listDuyet);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/DuyetDeXuat.jsp");
+		List<DeXuatDeTai> list = new ArrayList<>();
+		list = dexuatCNDAO.selectAllDeTaiCN("3");
+		request.setAttribute("listDeXuat", list);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/DeTaiCuaToiCN.jsp");
 		dispatcher.forward(request, response);
 	}
-	private void khongDuyet(HttpServletRequest request, HttpServletResponse response)
+	private void showCNDangKy(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		int maDon = Integer.parseInt(request.getParameter("MaDon"));
-		String LyDo= request.getParameter("GhiChu");
-		duyetdexuatDAO.TuChoi(maDon, LyDo);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/DuyetDeXuat.jsp");
+		List<DeXuatDeTai> list = new ArrayList<>();
+		list = dexuatCNDAO.selectAllDeTaiCN("3");
+		request.setAttribute("listCNDangKy", list);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/DeTaiCuaToiCN.jsp");
 		dispatcher.forward(request, response);
 	}
 }

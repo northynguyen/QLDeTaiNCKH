@@ -25,12 +25,15 @@ public class DangKyDeTai {
 		TrangThai = trangThai;
 		GhiChu = ghiChu;
 	}
-	public DangKyDeTai(int maDeTai, String maChuNhiem, String trangThai) {
+
+	public DangKyDeTai(int maDeTai, String maChuNhiem, int maThoiGian, String trangThai) {
 		super();
 		MaDeTai = maDeTai;
 		MaChuNhiem = maChuNhiem;
+		MaThoiGian = maThoiGian;
 		TrangThai = trangThai;
 	}
+
 	public DangKyDeTai() {
 		super();
 	}

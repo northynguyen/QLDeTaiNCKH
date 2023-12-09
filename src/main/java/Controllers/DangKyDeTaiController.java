@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,14 @@ public class DangKyDeTaiController extends HttpServlet {
 	private DeTaiDAO detaiDAO;
 	private ThoiGianNCKHDAO thoigianNCKHDAO;
 	private DangKyDeTaiDAO dangkydetaiDAO;
+	private ThoiGianNCKH tgNCKH;
 	
 	public void init(ServletConfig config) throws ServletException {
 		detaiDAO= new DeTaiDAO();
 		thoigianNCKHDAO= new ThoiGianNCKHDAO();
 		dangkydetaiDAO = new DangKyDeTaiDAO();
+		tgNCKH  = new ThoiGianNCKH();
+		tgNCKH = thoigianNCKHDAO.LayThoiGian();
 	}
 
 	
@@ -66,7 +70,8 @@ public class DangKyDeTaiController extends HttpServlet {
 	private void showDeTai(HttpServletRequest request, HttpServletResponse response)
 		    throws SQLException, ServletException, IOException {
 		List <DeTai> listDeTai = new ArrayList<>(); 
-		if (thoigianNCKHDAO.LayThoiGian()!=null) {
+		
+		if (tgNCKH!=null) {
 			listDeTai = detaiDAO.selectAllDeTai();	
         }
 		request.setAttribute("listDeTai",listDeTai);
@@ -76,7 +81,7 @@ public class DangKyDeTaiController extends HttpServlet {
 	private void dkDeTai(HttpServletRequest request, HttpServletResponse response)
 		    throws SQLException, ServletException, IOException {
 		int madetai = Integer.parseInt(request.getParameter("madetai"));
-		DangKyDeTai dkdt=new DangKyDeTai(madetai,"1","Chưa duyệt");
+		DangKyDeTai dkdt=new DangKyDeTai(madetai,"1",tgNCKH.getMaThoiGianNCKH(),"Chưa duyệt");
 		dangkydetaiDAO.dkDeTai(dkdt);
 		response.sendRedirect("new");
 	}

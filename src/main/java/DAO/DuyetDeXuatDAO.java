@@ -8,39 +8,35 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Models.DeTai;
 import Models.DeXuatDeTai;
 import Models.Duyet;
 import Util.HandleExeption;
 import Util.JDBCUtil;
 
-public class DuyetDeTaiDAO {
-	private static final String Select_DDT_SQL = "SELECT dangkydetai.MaDon, detai.TenDeTai, thongtintaikhoan.HoTen AS TenChuNhiem, detai.KinhPhi, detai.FileMoTa\r\n"
-			+ "FROM detai\r\n"
-			+ "JOIN dangkydetai ON detai.MaDeTai = dangkydetai.MaDeTai\r\n"
-			+ "JOIN thongtintaikhoan ON dangkydetai.MaChuNhiem = thongtintaikhoan.MaTK\r\n"
-			+ "WHERE dangkydetai.TrangThai = 'Chưa duyệt';";
-	private static final String TuChoi_DTT ="UPDATE qldetainckh.dangkydetai SET TrangThai = ?, GhiChu = ? WHERE (MaDon = ?);";
-	private static final String ShowDKDeTai_CN = "SELECT dangkydetai.MaDeTai, detai.TenDeTai, dangkydetai.NgayDuyet, detai.KinhPhi, detai.FileMoTa, dangkydetai.TrangThai\r\n"
-			+ "FROM dangkydetai\r\n"
-			+ "JOIN detai ON dangkydetai.MaDeTai = detai.MaDeTai\r\n"
-			+ "Where dangkydetai.MaChuNhiem = ?;";
+public class DuyetDeXuatDAO {
+	private static final String Select_DDX_SQL =  "SELECT dexuatdetai.MaDeXuatDeTai , thongtintaikhoan.HoTen, dexuatdetai.TenDeTai,  dexuatdetai.KinhPhi, dexuatdetai.FileMoTaDeTai, dexuatdetai.TrangThai \r\n"
+			+ "FROM dexuatdetai\r\n"
+			+ "JOIN thongtintaikhoan ON dexuatdetai.MaChuNhiem = thongtintaikhoan.MaTK\r\n"
+			+ "WHERE dexuatdetai.TrangThai = 'Chưa duyệt';";
+	private static final String TuChoi_DTT ="UPDATE qldetainckh.dexuatdetai SET TrangThai = ?, GhiChu = ? WHERE (MaDeXuatDeTai = ?);";
+	private static final String DeXuatFromCN_ID="SELECT MaDeXuatDeTai, TenDeTai, NgayDeXuat, KinhPhi, FileMoTaDeTai, GhiChu, TrangThai FROM qldetainckh.dexuatdetai\r\n"
+			+ "where MaChuNhiem = ?;";
 	public List <Duyet> selectAllDeTaiDuyet()
 	{
 		List <Duyet> duyet= new ArrayList < > ();
 		try  {
         	Connection connection = JDBCUtil.getConnection();
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(Select_DDT_SQL);
+            PreparedStatement preparedStatement = connection.prepareStatement(Select_DDX_SQL);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
-            	int maDon = rs.getInt("MaDon");
+            	int maDon = rs.getInt("MaDeXuatDeTai");
             	String tenDeTai = rs.getString("TenDeTai");
-                String tenChuNhiem = rs.getString("TenChuNhiem");
+                String tenChuNhiem = rs.getString("HoTen");
                 int kinhPhi = rs.getInt("KinhPhi");
-                byte[] fileMoTa = rs.getBytes("FileMoTa");
+                byte[] fileMoTa = rs.getBytes("FileMoTaDeTai");
                 duyet.add(new Duyet(maDon, tenDeTai,tenChuNhiem, kinhPhi, fileMoTa));
             }
             connection.close();
@@ -49,7 +45,7 @@ public class DuyetDeTaiDAO {
         }
 		return duyet;
 	}
-	public boolean TuChoi(int maDon, String lyDo)
+	public boolean TuChoi(int maDeXuat, String lyDo)
 	{
 		boolean rowUpdate=false;
 		try {
@@ -57,7 +53,7 @@ public class DuyetDeTaiDAO {
         	PreparedStatement preparedStatement = connection.prepareStatement(TuChoi_DTT);
         	preparedStatement.setString(1, "Từ chối");
         	preparedStatement.setString(2, lyDo);
-            preparedStatement.setInt(3, maDon);
+            preparedStatement.setInt(3, maDeXuat);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -71,19 +67,21 @@ public class DuyetDeTaiDAO {
 		try  {
         	Connection connection = JDBCUtil.getConnection();
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(ShowDKDeTai_CN);
+            PreparedStatement preparedStatement = connection.prepareStatement(DeXuatFromCN_ID);
             preparedStatement.setString(1, MaChuNhiem);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
-            	int maDeTai = rs.getInt("MaDeTai");
+            	int maDon = rs.getInt("MaDeXuatDeTai");
             	String tenDeTai = rs.getString("TenDeTai");
-                Date ngayduyet = rs.getDate("NgayDuyet");
+                Date ngaydexuat = rs.getDate("NgayDeXuat");
                 int kinhPhi = rs.getInt("KinhPhi");
-                byte[] fileMoTa = rs.getBytes("FileMoTa");
+                byte[] fileMoTa = rs.getBytes("FileMoTaDeTai");
+                String ghichu= rs.getString("GhiChu");
                 String trangthai =  rs.getString("TrangThai");
-                dexuat_ID.add(new DeXuatDeTai(maDeTai, tenDeTai,ngayduyet, kinhPhi, fileMoTa,trangthai,""));
+                dexuat_ID.add(new DeXuatDeTai(maDon, tenDeTai,ngaydexuat, kinhPhi, fileMoTa,ghichu,trangthai));
+                System.out.println(maDon);
             }
             connection.close();
         } catch (SQLException exception) {

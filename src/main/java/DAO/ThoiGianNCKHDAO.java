@@ -41,8 +41,9 @@ public class ThoiGianNCKHDAO {
 	        Date NgayHienTai = new Date(curDay.getTime());
 			while (rs.next()) {    
 				 if (NgayHienTai.after(rs.getDate(2)) && NgayHienTai.before(rs.getDate(3))) {
-					 ThoiGianNCKH thoiGian = new ThoiGianNCKH();
+					 ThoiGianNCKH thoiGian = new ThoiGianNCKH(rs.getInt(1));
 					 return thoiGian;
+
 				 }
 		     }
 	     } catch (SQLException exception) {
