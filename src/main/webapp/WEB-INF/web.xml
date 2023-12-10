@@ -60,7 +60,7 @@
 
   <servlet>
         <servlet-name>DangKyDeTaiController</servlet-name>
-        <servlet-class>Controllerss.DangKyDeTaiController</servlet-class>
+        <servlet-class>Controllers.DangKyDeTaiController</servlet-class>
      </servlet>
      <servlet-mapping>
         <servlet-name>DangKyDeTaiController</servlet-name>
@@ -68,7 +68,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>QuanLyDeTaiController</servlet-name>
-        <servlet-class>Controllerss.QuanLyDeTaiController</servlet-class>
+        <servlet-class>Controllers.QuanLyDeTaiController</servlet-class>
      </servlet>
      <servlet-mapping>
         <servlet-name>QuanLyDeTaiController</servlet-name>
@@ -76,7 +76,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>DuyetDeTaiController</servlet-name>
-        <servlet-class>Controllerss.DuyetDeTaiController</servlet-class>
+        <servlet-class>Controllers.DuyetDeTaiController</servlet-class>
      </servlet>
      <servlet-mapping>
         <servlet-name>DuyetDeTaiController</servlet-name>
@@ -84,7 +84,7 @@
     </servlet-mapping>
         <servlet>
         <servlet-name>DuyetDeXuatController</servlet-name>
-        <servlet-class>Controllerss.DuyetDeXuatController</servlet-class>
+        <servlet-class>Controllers.DuyetDeXuatController</servlet-class>
      </servlet>
      <servlet-mapping>
         <servlet-name>DuyetDeXuatController</servlet-name>
@@ -93,7 +93,7 @@
     
         <servlet>
         <servlet-name>DeTaiCuaToiController</servlet-name>
-        <servlet-class>Controllerss.DeTaiCuaToiController</servlet-class>
+        <servlet-class>Controllers.DeTaiCuaToiController</servlet-class>
      </servlet>
      <servlet-mapping>
         <servlet-name>DeTaiCuaToiController</servlet-name>
