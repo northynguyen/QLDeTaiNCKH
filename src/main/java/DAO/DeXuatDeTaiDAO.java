@@ -67,7 +67,7 @@ public class DeXuatDeTaiDAO {
 	            	String GhiChu=rs.getString(8);
 	            	
 	            	
-	                dx=new DeXuatDeTai(MaDeXuatDeTai, MaChuNhiem,TenDeTai,ngayDeXuat,KinhPhi,FileMoTaDeTai);
+	                dx=new DeXuatDeTai(MaDeXuatDeTai, MaChuNhiem, TenDeTai,KinhPhi,FileMoTaDeTai, ngayDeXuat);
 	                
 	            }
 	        }

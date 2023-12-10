@@ -1,4 +1,4 @@
-package Controller;
+package Controllers;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
