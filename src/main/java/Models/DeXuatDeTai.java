@@ -22,6 +22,17 @@ public class DeXuatDeTai {
 		FileMoTaDeTai = fileMoTaDeTai;
 		NgayDeXuat = ngayDeXuat;
 	}
+	public DeXuatDeTai(int maDeXuatDeTai,  String tenDeTai, Date ngayDeXuat, int kinhPhi, byte[] fileMoTaDeTai,
+			String trangThai, String ghiChu) {
+		super();
+		MaDeXuatDeTai = maDeXuatDeTai;
+		NgayDeXuat = ngayDeXuat;
+		TenDeTai = tenDeTai;
+		KinhPhi = kinhPhi;
+		FileMoTaDeTai = fileMoTaDeTai;
+		TrangThai = trangThai;
+		GhiChu = ghiChu;
+	}
 	public DeXuatDeTai(int maDeXuatDeTai, String maChuNhiem, String tenDeTai, int kinhPhi, byte[] fileMoTaDeTai,
 			String trangThai, String ghiChu, Date ngayDeXuat) {
 		super();

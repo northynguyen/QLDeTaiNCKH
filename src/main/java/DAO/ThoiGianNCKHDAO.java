@@ -179,5 +179,23 @@ public class ThoiGianNCKHDAO {
         }
         return rowUpdate;
 	}
+	public ThoiGianNCKH LayThoiGian() {
+		try (Connection connection = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(LAY_THOI_GIAN);) {
+			ResultSet rs = preparedStatement.executeQuery();
+			java.util.Date curDay = new java.util.Date();
+	        Date NgayHienTai = new Date(curDay.getTime());
+			while (rs.next()) {    
+				 if (NgayHienTai.after(rs.getDate(2)) && NgayHienTai.before(rs.getDate(3))) {
+					 ThoiGianNCKH thoiGian = new ThoiGianNCKH(rs.getInt(1));
+					 return thoiGian;
+
+				 }
+		     }
+	     } catch (SQLException exception) {
+	         HandleExeption.printSQLException(exception);
+	     }
+		return null;
+	}
 	
 }
