@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import DAO.LoginDAO;
 import Models.Khoa;
+import Models.ThongTinSinhVien;
 import Models.ThongTinTaiKhoan;
 
 
@@ -39,6 +40,7 @@ public class ThongTinTaiKhoanController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+		
 
 		default:
 			System.out.println("df" );
@@ -69,14 +71,19 @@ public class ThongTinTaiKhoanController extends HttpServlet {
 		List <Khoa> ListKhoa = loginDAO.LayKhoa();
 		request.setAttribute("ListKhoa", ListKhoa);
 		request.removeAttribute("errSignUp");
+		request.removeAttribute("EmailErr");
 		request.removeAttribute("SignUpSucsses");
 		if (MaKhoa != null)
 		{	
 			ThongTinTaiKhoan acc = new ThongTinTaiKhoan();
 			acc = loginDAO.KiemTraTaiKhoan(MaTK);
+			ThongTinTaiKhoan emalTaiKhoan = new ThongTinTaiKhoan();
+			emalTaiKhoan = loginDAO.KiemTraEmail(Email);
 			if (acc != null) {
 				request.setAttribute("SignUpErr", "Tên tài khoản đã tồn tại. Vui lòng thử lại!");
-			} else {
+			}else if (emalTaiKhoan != null) {
+				request.setAttribute("EmailErr", "Email đã tồn tại, hãy kiểm tra lại!!!");
+			}else {
 				request.setAttribute("SignUpSucsses", "Đăng ký thành công!!!");
 				loginDAO.TaoTaiKhoan(MaTK, MatKhau, Role, HoTen, GioiTinh, MaKhoa, SDT, Email, DiaChi);
 			}			
