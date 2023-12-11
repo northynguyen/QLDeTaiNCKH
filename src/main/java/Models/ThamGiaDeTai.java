@@ -4,6 +4,7 @@ public class ThamGiaDeTai {
 	private int MaThamGiaDeTai;
 	private int MaDeTai;
 	private String MSSV;
+	private String TenSinhVien;
 	private String VaiTro;
 	private int MaThoiGianNCKH;
 	public ThamGiaDeTai(int maThamGiaDeTai, int maDeTai, String mSSV, String vaiTro, int maThoiGianNCKH) {
@@ -17,8 +18,33 @@ public class ThamGiaDeTai {
 	public ThamGiaDeTai() {
 		super();
 	}
+	
+	public ThamGiaDeTai(int maDeTai, String mSSV, String vaiTro, int maThoiGianNCKH) {
+		super();
+		MaDeTai = maDeTai;
+		MSSV = mSSV;
+		VaiTro = vaiTro;
+		MaThoiGianNCKH = maThoiGianNCKH;
+	}
+	public ThamGiaDeTai(String mSSV, String tenSinhVien) {
+		super();
+		MSSV = mSSV;
+		TenSinhVien = tenSinhVien;
+	}
+	public ThamGiaDeTai(String mSSV, String tenSinhVien, String vaiTro) {
+		super();
+		MSSV = mSSV;
+		TenSinhVien = tenSinhVien;
+		VaiTro = vaiTro;
+	}
 	public int getMaThamGiaDeTai() {
 		return MaThamGiaDeTai;
+	}
+	public String getTenSinhVien() {
+		return TenSinhVien;
+	}
+	public void setTenSinhVien(String tenSinhVien) {
+		TenSinhVien = tenSinhVien;
 	}
 	public void setMaThamGiaDeTai(int maThamGiaDeTai) {
 		MaThamGiaDeTai = maThamGiaDeTai;

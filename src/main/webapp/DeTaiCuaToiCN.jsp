@@ -29,8 +29,8 @@
 	<jsp:include page="LeftSideBar.jsp" />
 	<div class="container-main">
 		<jsp:include page="NavBar.jsp" />
-		<a href="<%=request.getContextPath()%>/detaicuatoi/new"> Nhan di</a>
-		<a href="<%=request.getContextPath()%>/detaicuatoi/new2"> Nhan di a</a>
+		<a href="<%=request.getContextPath()%>/detaicuatoi/new"> Nhan di</a> <a
+			href="<%=request.getContextPath()%>/detaicuatoi/new2"> Nhan di a</a>
 		<div class="main_content">
 			<div class="form form-DeTaiCN">
 				<div class="form-title">
@@ -95,25 +95,6 @@
 								<th>Thành viên</th>
 								<th>Trạng thái</th>
 							</tr>
-							<tr onclick="focusDangKi(this)">
-								<td>
-									<p>5</p>
-								</td>
-								<td>
-									<p>Đăng tải các bình luận</p>
-								</td>
-								<td>
-									<p>Đăng tải các bình luận</p>
-								</td>
-								<td>
-									<p>Đăng tải các bình luận</p>
-								</td>
-								<td><a href="">Download</a></td>
-								<td><a style="text-decoration: underline; color: blue;">Chi
-										tiết thành viên</a></td>
-								<td class="bg-green">
-									<p>Đã duyệt</p>
-								</td>
 							</tr>
 							<c:forEach var="Duyet" items="${listCNDangKy}">
 								<tr onclick="focusDangKi(this)">
@@ -130,10 +111,12 @@
 											<c:out value="${Duyet.getKinhPhi()}" />
 										</p></td>
 									<td><a href=""> Download</a></td>
-									<td><a style="text-decoration: underline; color: blue;">Chi
-										tiết thành viên</a></td>
+									<td><a
+										href="<%=request.getContextPath()%>/detaicuatoi/chitiet?madetai=${Duyet.getMaDeXuatDeTai()}"
+										style="text-decoration: underline; color: blue;">Chi tiết
+											thành viên</a></td>
 									<td><p>
-											<c:out value="${Duyet.getGhiChu()}" />
+											<c:out value="${Duyet.getTrangThai()}" />
 										</p></td>
 							</c:forEach>
 						</table>
