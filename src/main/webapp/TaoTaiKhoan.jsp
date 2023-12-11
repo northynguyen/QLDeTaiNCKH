@@ -26,13 +26,14 @@
 	<%
 	String SignUpErr = (String) request.getAttribute("SignUpErr");
 	String SignUpSucsses = (String) request.getAttribute("SignUpSucsses");
+	String EmailErr = (String) request.getAttribute("EmailErr");
 	%>
 	<%
 	ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");
 	%>
 	<%if (account == null) {response.sendRedirect(request.getContextPath() + "/Login.jsp");} %>
 
-	<jsp:include page="Components/LeftSideBar.jsp" />
+	<jsp:include page="Components/LeftSideBarAdmin.jsp" />
 	<div class="container-main">
 		<jsp:include page="Components/NavBar.jsp" />
 		<!--  IMPORT CODE PHẦN NÀY -->
@@ -57,11 +58,11 @@
 							<td>
 								<p>
 									Tên tài khoản: <input name="MaTK" class="input-account"
-										type="text" placeholder="Tên tài khoản" required />
+										type="text" placeholder="Tên tài khoản" required onclick = "hideErr()"/>
 								</p> <%
  if (SignUpErr != null) {
  %>
-								<div class="error-message"><%=SignUpErr%></div> <%
+								<div id = "err" class="error-message"><%=SignUpErr%></div> <%
  }
  %>
 							</td>
@@ -117,9 +118,14 @@
 						<tr>
 							<td>
 								<p>
-									Email: <input name="email" class="input-infor" type="text"
-										placeholder="Địa chỉ Email" required />
-								</p>
+									Email: <input name="email" class="input-infor" type="email"
+										placeholder="Địa chỉ Email" required onclick = "hideErr()"/>
+								</p><%
+								if (EmailErr != null) {
+ %>
+								<div id = "err" class="error-message"><%=EmailErr%></div> <%
+ }
+ %>
 							<td />
 
 						</tr>
@@ -175,6 +181,11 @@
 			document.getElementById("msg").innerHTML = "";
 			return true;
 		}
+	}
+	function hideErr() {
+		var err = document.getElementById("err")
+		if (err != null)
+			err.style.display="none";		
 	}
 </script>
 </html>

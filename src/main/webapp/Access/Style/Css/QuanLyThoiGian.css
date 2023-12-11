@@ -1,0 +1,69 @@
+.form button {
+    margin-top: 30px;
+    width: 32%;
+}
+.form-DX p, .form-DX h1 {
+    padding-top: 20px;
+    margin-left: 5% !important;
+}
+select.input-select {
+    position: initial;
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    padding: 8px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+
+}
+input.input-infor {
+    width: 50%px;
+    padding: 8px;
+    font-size: 20px;
+    position: initial;
+    margin-top: 10px;
+	display: block;
+}
+.submit {
+	width: 50% !important;
+	margin-left: 25% !important;
+}
+.show {
+	display: block !important;
+}
+.form-DX th {
+    border: 1px solid #a8a8a8;
+    text-align: left;
+    padding: 8px;
+}
+.form-DX hr {
+    margin: 10px 0;
+}
+ #myTable th:nth-child(1),
+ #myTable td:nth-child(1) {
+     width: 25%; /* Độ rộng của cột 1 */
+ }
+
+ #myTable th:nth-child(2),
+ #myTable td:nth-child(2) {
+     width: 25%; /* Độ rộng của cột 2 */
+ }
+
+ #myTable th:nth-child(3),
+ #myTable td:nth-child(3) {
+     width: 25%; /* Độ rộng của cột 3 */
+ }
+
+ #myTable th:nth-child(4),
+ #myTable td:nth-child(4) {
+     width: 25%; /* Độ rộng của cột 4 */
+ }
+ .form-DX p, .form-DX h1 {
+    padding-top: 20px;
+    margin-left: 5% !important;
+    font-size: 15px;
+    font-weight: 400 !important;
+}
