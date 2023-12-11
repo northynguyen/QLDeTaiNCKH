@@ -9,6 +9,7 @@
     <!-- Boxicons CSS -->
     <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <script src="../Access/Style/Js/LeftSideBar.js" defer></script>
+        <script src="Access/Style/Js/LeftSideBar.js" defer></script>
   </head>
 <body>
  <nav class="sidebar locked">
