@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<jsp:include page="LeftSideBar.jsp" />
+	<jsp:include page="LeftSideBarPhongQLDTNCKH.jsp" />
 	<div class="container-main">
 		<jsp:include page="NavBar.jsp" />
 		<!--  IMPORT CODE PHẦN NÀY -->

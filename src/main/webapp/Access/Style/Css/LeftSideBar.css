@@ -243,9 +243,12 @@ body {
 	color: #1876f2;
 	text-decoration: none;
 }
+.settings-menu-inner{
+    padding: 20px;
+    position: relative;
+    z-index: 100;
+    background-color: aliceblue;
 
-.settings-menu-inner {
-	padding: 20px;
 }
 
 .settings-menu hr {

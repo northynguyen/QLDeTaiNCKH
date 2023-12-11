@@ -1,9 +1,9 @@
 package Models;
 
 public class Khoa {
-	private int MaKhoa;
+	private String MaKhoa;
 	private String TenKhoa;
-	public Khoa(int maKhoa, String tenKhoa) {
+	public Khoa(String maKhoa, String tenKhoa) {
 		super();
 		MaKhoa = maKhoa;
 		TenKhoa = tenKhoa;
@@ -11,11 +11,11 @@ public class Khoa {
 	public Khoa() {
 		super();
 	}
-	public int getMaKhoa() {
+	public String getMaKhoa() {
 		return MaKhoa;
 	}
-	public void setMaKhoa(int maKhoa) {
-		MaKhoa = maKhoa;
+	public void setMaKhoa(String string) {
+		MaKhoa = string;
 	}
 	public String getTenKhoa() {
 		return TenKhoa;

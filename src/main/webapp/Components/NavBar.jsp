@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="Models.ThongTinTaiKhoan"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,7 +13,9 @@
     <script src="../Access/Style/Js/LeftSideBar.js" defer></script>
   </head>
 <body>
-
+	<%
+		ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");
+	%>
  <!-- Navbar -->
     <nav class="navbar flex">
       <i class="bx bx-menu" id="sidebar-open"></i>
@@ -29,7 +33,7 @@
           <div class="user-profile">
             <img src="https://i.postimg.cc/cHg22LhR/profile-pic.png" />
             <div style="    padding-left: 10px;">
-              <p>Huynh Hong Khanh</p>
+              <p><%=account.getHoTen() %></p>
               <a href="./InforLogin">See your profile</a>
             </div>
           </div>
@@ -40,7 +44,7 @@
               src="https://i.postimg.cc/PJC9GrMb/logout.png"
               class="settings-icon"
             />
-            <a href="#"
+            <a href="<%=request.getContextPath()%>/Logout"
               >Logout
              </a>
           </div>

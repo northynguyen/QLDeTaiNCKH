@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8 "
     pageEncoding="UTF-8"%>
-
+<%@page import="Models.ThongTinTaiKhoan"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -11,6 +11,17 @@
  <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
 <body>
+
+	<%
+		String err_login = (String) request.getAttribute("errMsg");
+	%>
+	<%
+		ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");
+	%>
+<%-- 	<%if (account != null) {%>
+		<%response.sendRedirect(request.getContextPath() + "/Pages/Match.jsp"); %>
+	<%} %> --%>
+
 	<div class="login-page">
   <div class="form">
     <form class="fogetPass-form">
@@ -21,13 +32,19 @@
       <p class="message"> <a href="#">Đăng nhập</a></p>
     </form> 
 
-    <form class="login-form">  
+    <form class="login-form" action="<%=request.getContextPath()%>/Login" method = "post" accept-charset="UTF-8">  
      <h1>ĐĂNG KÍ ĐỀ TÀI KHOA HỌC </h1>
     <h5>TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP.HỒ CHÍ MINH</h5>
-      <input type="text" placeholder="Tài khoản"/>
-      <input type="password" placeholder="Mật khẩu"/>
+      <input name = "username" type="text" placeholder="Tài khoản" required/>
+      <input name = "password" type="password" placeholder="Mật khẩu" required/>
+      
+    <% if (err_login != null) { %>
+			  <div style="color: red"><%=err_login %></div>
+	<% } %>
       <button>Đăng nhập</button>
       <p class="message">Quên mật khẩu? <a href="#">Lấy lại mật khẩu</a></p>
+      
+
     </form>
   </div>
 </div>
