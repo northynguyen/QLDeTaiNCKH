@@ -1,0 +1,20 @@
+#drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px;
+}
+
+#drop-area.highlight {
+    border-color: #007BFF;
+}
+
+#file-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#file-list li {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,9 @@
+.info-content {
+    padding: 10px;
+    border: 2px solid;
+    width: 100%;
+}
+.frame-content {
+    width: 100%;
+    display:none;
+}

@@ -1,0 +1,53 @@
+input.input-infor {
+	width: 300px;
+    padding: 8px;
+    margin-top: -5px;
+    font-size: 20px;
+    position: absolute;
+    left: 200px;
+}
+select.input-select {
+	font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 300px;
+    border: 0;
+	padding: 8px;
+    margin-top: -5px;
+    box-sizing: border-box;
+    font-size: 20px;
+    position: absolute;
+    left: 200px;
+    font-size: 20px;
+}
+select.input-select-role {
+	font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 300px;
+    border: 0;
+	padding: 8px;
+    margin-top: -5px;
+    box-sizing: border-box;
+    font-size: 20px;
+    position: absolute;
+     right: 50px;
+    font-size: 20px;
+}
+.form-DX p, .form-DX h1 {
+    padding-top: 20px;
+}
+
+.form button {
+	margin-top: 30px;
+	
+}
+input.input-account {
+    width: 300px;
+    padding: 8px;
+    margin-top: -5px;
+    font-size: 20px;
+    position: absolute;
+    right: 50px;
+}
+

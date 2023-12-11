@@ -1,0 +1,44 @@
+.IdLable {
+    background-color: white ;
+    border: black 1px solid ;
+    width: 90px ;
+    display: inline-block;
+}
+.info-content {
+    padding: 10px;
+    border: 2px solid;
+    width: 95%;
+    position: relative;
+}
+.infor-reciever {
+	position: absolute;
+    left: 250px;
+}
+.container-main {
+	display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+}
+textarea {
+      width: 100%;
+      height: 300px;
+      padding: 10px;
+      font-size: 20px;
+}
+.form input {
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  outline: 0;
+  background: white;
+  width: 70%;
+  padding: 2px 2px;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  border:1px solid black;
+  position: absolute;
+    left: 250px;
+}
+h4 {
+    padding-bottom: 10px;
+}
