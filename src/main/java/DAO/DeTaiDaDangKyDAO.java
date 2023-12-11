@@ -107,7 +107,7 @@ private static final String THANH_VIEN_NC_BY_MADTMATG = "SELECT  B.HoTen , A.Vai
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int MaTaiKhoan = rs.getInt(1);
+				String MaTaiKhoan = rs.getString(1);
 				String MatKhau = rs.getString(2);
 				String Role = rs.getString(3);
 				String HoTen = rs.getString(4);
@@ -152,4 +152,5 @@ private static final String THANH_VIEN_NC_BY_MADTMATG = "SELECT  B.HoTen , A.Vai
 		}
 		return ddk;
 	}
+	
 }
