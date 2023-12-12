@@ -31,96 +31,48 @@
 		<div class="main_content">
 			<div class="form form-DeTaiCN">
 				<div class="form-title">
-					<h1>ĐỀ TÀI CỦA TÔI</h1>
+					<h1>NGHIỆM THU</h1>
 					<i class="fa fa-refresh" aria-hidden="true"></i>
 				</div>
 				<hr></hr>
-				<form class="login-form" id="chinhSuaDeXuat" name="madx"
-					method="post">
-					<h2>ĐỀ TÀI ĐỀ XUẤT</h2>
-					<div class="table-DeTai" id="deTaiDeXuat">
-						<table id="myTableDX">
-							<tr class="columns-title">
-								<th>Mã đơn</th>
-								<th>Tên đề tài</th>
-								<th>Ngày đề xuất đề tài</th>
-								<th>Kinh phí</th>
-								<th>File mô tả đề tài</th>
-								<th>Ghi Chú</th>
-								<th>Trạng thái</th>
-							</tr>
-
-							<c:forEach var="DeXuat" items="${list}">
-								<tr onclick="focusChinhSua(this)">
-									<td><p>
-											<c:out value="${DeXuat.getMaDeXuatDeTai()}" />
-										</p></td>
-									<td><p>
-											<c:out value="${DeXuat.getTenDeTai()}" />
-										</p></td>
-									<td><p>
-											<input style="display: none" name="maDT"
-												value="${DeXuat.getMaDeXuatDeTai()}">
-											<c:out value="${DeXuat.getNgayDeXuat()}" />
-										</p></td>
-									<td><p>
-											<c:out value="${DeXuat.getKinhPhi()}" />
-										</p></td>
-
-									<td><a
-										href="<%=request.getContextPath()%>/download/fileMoTaDeXuat?maDT=${DeXuat.getMaDeXuatDeTai()}">Download</a></td>
-									<td><p>
-											<c:out value="${DeXuat.getTrangThai()}" />
-										</p></td>
-									<td><p>
-											<c:out value="${DeXuat.getGhiChu()}" />
-										</p></td>
-							</c:forEach>
-
-						</table>
-					</div>
-					<button type="submit">CHỈNH SỬA ĐỀ XUẤT</button>
-				</form>
-
 
 				<form class="login-form" id="DK" name="maDK" method="post"
-					action="<%=request.getContextPath()%>/DeTai/showsubmit"">
-					<h2>ĐĂNG KÝ ĐỀ TÀI</h2>
+					action="<%=request.getContextPath()%>/NghiemThu/showSubmit">
+					<h2>CÁC FILE ĐÃ NỘP</h2>
 					<div class="table-DeTai" id="dangKy">
-						<table id="myTableDK">
+						<table id="myTableDX">
 							<tr class="columns-title">
-								<th>Mã đơn</th>
+								<th>Mã nộp đề tài</th>
 								<th>Mã đề tài</th>
-								<th>Tên đề tài</th>
-								<th>Ngày duyệt đề xuất</th>
-								<th>Kinh phí</th>
-								<th>File mô tả đề tài</th>
-								<th>Thành viên</th>
+								<th>Mã người nộp</th>
+								<th>File báo cáo</th>
+								<th>Thời gian nộp</th>
+								<th>Mã đợt NCKH</th>
+								<th>Ghi chú</th>
 								<th>Trạng thái</th>
 							</tr>
-							<c:forEach var="Duyet" items="${listCNDangKy}">
+							<c:forEach var="Duyet" items="${listNop}">
 								<tr onclick="focusDangKy123(this)">
 									<td><p>
-											<c:out value="${Duyet.getMaDon()}" />
+											<c:out value="${Duyet.getMaNopDeTai()}" />
 										</p></td>
 									<td><p>
 											<c:out value="${Duyet.getMaDeTai()}" />
 										</p></td>
 									<td><p>
-											<c:out value="${Duyet.getTenDeTai()}" />
-										</p></td>
-									<td><p>
-											<c:out value="${Duyet.getNgayduyet()}" />
-										</p></td>
-									<td><p>
-											<c:out value="${Duyet.getKinhPhi()}" />
+											<c:out value="${Duyet.getMaNguoiNop()}" />
 										</p></td>
 									<td><a
 										href="<%=request.getContextPath()%>/download/fileMoTa?maDT=${Duyet.getMaDeTai()}">Download</a></td>
-									<td><a
-										href="<%=request.getContextPath()%>/detaicuatoi/chitiet?madetai=${Duyet.getMaDeTai()}"
-										style="text-decoration: underline; color: blue;">Chi tiết
-											thành viên</a></td>
+									<td><p>
+											<c:out value="${Duyet.getThoiGianNop()}" />
+										</p></td>
+									<td><p>
+											<c:out value="${Duyet.getMaThoiGian()}" />
+										</p></td>
+									<td><p>
+											<c:out value="${Duyet.getGhiChu()}" />
+										</p></td>
 									<td><p>
 											<c:out value="${Duyet.getTrangThai()}" />
 										</p></td>
@@ -128,9 +80,8 @@
 							</c:forEach>
 						</table>
 					</div>
-					<input type="text" id="madon" name="MaDon" style="display: none">
-					<button id="btn-DK" style="display: none" type="submit">NỘP
-						ĐỀ TÀI</button>
+					<input type="text" id="madon" name="MaDon" style="display: none" value="2">
+					<button id="btn-DK" type="submit">NGHIỆM THU</button>
 				</form>
 			</div>
 
@@ -142,7 +93,7 @@
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
-	    var form = document.getElementById('chinhSuaDeXuat');
+	    var form = document.getElementById('DK');
 	    form.addEventListener('submit', function (event) {
 	        // Lấy tất cả các hàng (tr) trong bảng
 	        var rows = document.querySelectorAll('#myTableDX tr');
@@ -178,35 +129,14 @@
 	}
 
 
-	function focusChinhSua(row) {
-	    var rows = document.querySelectorAll('#myTableDX tr');
-	    rows.forEach(function (r) {
-	        r.classList.remove('selected');
-	    });
-
-	    // Chọn hàng được click
-	    row.classList.add('selected');
+	function focusDangKy123(row) {
+		 var rows = document.querySelectorAll('#myTableDX tr');
+		    rows.forEach(function (r) {
+		        r.classList.remove('selected');
+		    });
+		    row.classList.add('selected');
 		// Lấy tất cả các hàng trong bảng
 		var rows = document.getElementById("myTableDX")
-				.getElementsByTagName("tr");
-
-		// Đặt màu nền của tất cả các hàng về mặc định (trắng)
-		for (var i = 0; i < rows.length; i++) {
-			rows[i].style.backgroundColor = "";
-			// Đặt màu nền của hàng được nhấp vào thành màu tím nhạt
-			row.style.backgroundColor = "lavender";
-			const status =row.querySelectorAll("p")[4].textContent;
-			const madx =row.querySelectorAll("p")[0].textContent;
-			var btn = document.getElementById("chinhSuaDeXuat");
-	
-		 	btn.action = '<%=request.getContextPath()%>/DeXuatDeTai/showedit?madx='+ madx;
-			btn.value = madx;
-			console.log(btn.action);
-		}
-	}
-	function focusDangKy123(row) {
-		// Lấy tất cả các hàng trong bảng
-		var rows = document.getElementById("myTableDK")
 			.getElementsByTagName("tr");
 
 		// Đặt màu nền của tất cả các hàng về mặc định (trắng)
@@ -218,15 +148,8 @@
 		const status = row.cells[7].innerText;
 		const madx = row.cells[0].innerText;
 		document.getElementById("madon").value = madx;
-		var btn = document.getElementById("btn-DK");
-		var box = document.getElementById("hide-box");
-		console.log(status);
-		if (status == "Đã duyệt") {		
-			btn.style.display = "block";
-		}
-		else {
-			btn.style.display = "none";
-		}
+		console.log(document.getElementById("madon").value );
+		
 	}
 </script>
 </html>

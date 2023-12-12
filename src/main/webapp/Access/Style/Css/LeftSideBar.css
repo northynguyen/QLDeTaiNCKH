@@ -182,7 +182,7 @@ body {
 	padding: 10px 20px;
 	justify-content: space-between;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-	background: var(- -color-theme);
+	background: var(--color-theme);
 	color: white;
 }
 
