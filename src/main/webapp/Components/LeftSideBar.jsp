@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />   
     <link rel="stylesheet" href="../Access/Style/Css/LeftSideBar.css" />
     <link rel="stylesheet" href="../Access/Style/Css/Root/Root.css" />
+    <link rel="stylesheet" href="Access/Style/Css/LeftSideBar.css" />
+    <link rel="stylesheet" href="Access/Style/Css/Root/Root.css" />
     <!-- Boxicons CSS -->
     <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <script src="../Access/Style/Js/LeftSideBar.js" defer></script>
@@ -38,38 +40,34 @@
               <span class="line"></span>
             </div>
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath()%>/ThongBao/show" class="link flex">
                 <i class="bx bx-home-alt"></i>
-                <span>Overview</span>
+                <span>Thông báo</span>
               </a>
             </li>
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath()%>/dangkydetai/new" class="link flex">
                 <i class="bx bx-grid-alt"></i>
-                <span>All Projects</span>
+                <span>Đăng ký đề tài</span>
               </a>
             </li>
           </ul>
 
           <ul class="menu_item">
-            <div class="menu_title flex">
-              <span class="title">Editor</span>
-              <span class="line"></span>
-            </div>
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath()%>/DeXuatCN.jsp" class="link flex">
                 <i class="bx bxs-magic-wand"></i>
-                <span>Magic Build</span>
+                <span>Đề xuất đề đề tài</span>
               </a>
             </li>
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath()%>/detaicuatoi/new" class="link flex">
                 <i class="bx bx-folder"></i>
-                <span>New Projects</span>
+                <span>Đề tài của tôi</span>
               </a>
             </li>
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath() %>/DeTai/showsubmit" class="link flex">
                 <i class="bx bx-cloud-upload"></i>
                 <span>Upload New</span>
               </a>

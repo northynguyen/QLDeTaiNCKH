@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.DuyetDeTaiDAO;
 import DAO.DuyetDeXuatDAO;
@@ -19,9 +20,11 @@ import DAO.ThamGiaDeTaiDAO;
 import DAO.ThoiGianNCKHDAO;
 import Models.DeXuatDeTai;
 import Models.Duyet;
+import Models.LayDK_CN;
 import Models.ThamGiaDeTai;
 import Models.ThoiGianNCKH;
 import Models.ThongTinSinhVien;
+import Models.ThongTinTaiKhoan;
 
 @WebServlet("/detaicuatoi")
 public class DeTaiCuaToiController extends HttpServlet {
@@ -77,12 +80,14 @@ public class DeTaiCuaToiController extends HttpServlet {
 	}
 	private void showDeXuat_CN(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
+		HttpSession session = request.getSession();
+		ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");
 		List<DeXuatDeTai> list = new ArrayList<>();
-		list = dexuatCNDAO.selectAllDeTaiCN("3");
+		list = dexuatCNDAO.selectAllDeTaiCN(account.getMaTaiKhoan());
 		request.setAttribute("listDeXuat", list);
 		
-		List<DeXuatDeTai> list1 = new ArrayList<>();
-		list1 = detaiCNDAO.selectAllDeTaiCN("3");
+		List<LayDK_CN> list1 = new ArrayList<>();
+		list1 = detaiCNDAO.selectAllDeTaiCN(account.getMaTaiKhoan());
 		request.setAttribute("listCNDangKy", list1);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/DeTaiCuaToiCN.jsp");
 		dispatcher.forward(request, response);
@@ -122,4 +127,3 @@ public class DeTaiCuaToiController extends HttpServlet {
 		 dispatcher.forward(request, response);
 	}
 }
-

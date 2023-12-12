@@ -11,6 +11,7 @@ import java.util.List;
 import Models.DeTai;
 import Models.DeXuatDeTai;
 import Models.Duyet;
+import Models.LayDK_CN;
 import Util.HandleExeption;
 import Util.JDBCUtil;
 
@@ -25,6 +26,10 @@ public class DuyetDeTaiDAO {
 			+ "FROM dangkydetai\r\n"
 			+ "JOIN detai ON dangkydetai.MaDeTai = detai.MaDeTai\r\n"
 			+ "Where dangkydetai.MaChuNhiem = ?;";
+	private static final String LAYDKDETAI_CN ="SELECT dangkydetai.MaDon, dangkydetai.MaDeTai, detai.TenDeTai, dangkydetai.NgayDuyet, detai.KinhPhi, detai.FileMoTa, dangkydetai.TrangThai\r\n"
+			+ "FROM dangkydetai\r\n"
+			+ "JOIN detai ON dangkydetai.MaDeTai = detai.MaDeTai\r\n"
+			+ "WHERE dangkydetai.MaChuNhiem = ?;";
 	public List <Duyet> selectAllDeTaiDuyet()
 	{
 		List <Duyet> duyet= new ArrayList < > ();
@@ -65,25 +70,26 @@ public class DuyetDeTaiDAO {
         }
         return rowUpdate;
 	}
-	public List <DeXuatDeTai> selectAllDeTaiCN(String MaChuNhiem)
+	public List <LayDK_CN> selectAllDeTaiCN(String MaChuNhiem)
 	{
-		List <DeXuatDeTai> dexuat_ID= new ArrayList < > ();
+		List <LayDK_CN> dexuat_ID= new ArrayList < > ();
 		try  {
         	Connection connection = JDBCUtil.getConnection();
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(ShowDKDeTai_CN);
+            PreparedStatement preparedStatement = connection.prepareStatement(LAYDKDETAI_CN);
             preparedStatement.setString(1, MaChuNhiem);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
+            	int maDon = rs.getInt("MaDon");
             	int maDeTai = rs.getInt("MaDeTai");
             	String tenDeTai = rs.getString("TenDeTai");
                 Date ngayduyet = rs.getDate("NgayDuyet");
                 int kinhPhi = rs.getInt("KinhPhi");
                 byte[] fileMoTa = rs.getBytes("FileMoTa");
                 String trangthai =  rs.getString("TrangThai");
-                dexuat_ID.add(new DeXuatDeTai(maDeTai, tenDeTai,ngayduyet, kinhPhi, fileMoTa,trangthai,""));
+                dexuat_ID.add(new LayDK_CN(maDon,maDeTai, tenDeTai,ngayduyet, kinhPhi, fileMoTa,trangthai));
             }
             connection.close();
         } catch (SQLException exception) {

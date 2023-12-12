@@ -23,12 +23,10 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-	<jsp:include page="LeftSideBar.jsp" />
+	<jsp:include page="Components/LeftSideBar.jsp" />
 	<div class="container-main">
-		<jsp:include page="NavBar.jsp" />
+		<jsp:include page="Components/NavBar.jsp" />
 		<!--  IMPORT CODE PHẦN NÀY -->
-		<a href="<%=request.getContextPath()%>/dangkydetai/new"> Nhan
-			di</a>
 		<div class="main_content">
 			<div class="form form-DeTaiCN">
 				<form class="login-form" action="<%=request.getContextPath()%>/dangkydetai/dangky"

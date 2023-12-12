@@ -25,9 +25,9 @@
 </head>
 <body>
 
-	<jsp:include page="LeftSideBar.jsp" />
+	<jsp:include page="Components/LeftSideBar.jsp" />
 	<div class="container-main">
-		<jsp:include page="NavBar.jsp" />
+		<jsp:include page="Components/NavBar.jsp" />
 		<div class="main_content">
 			<div class="form form-DeTaiCN">
 				<div class="form-title"></div>

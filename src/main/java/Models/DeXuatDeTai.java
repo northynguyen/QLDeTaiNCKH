@@ -1,30 +1,26 @@
 package Models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class DeXuatDeTai {
 	private int MaDeXuatDeTai;
-	private Date NgayDeXuat;
 	private String MaChuNhiem;
-	
 	private String TenDeTai;
 	private int KinhPhi;
 	private byte[] FileMoTaDeTai;
 	private String TrangThai;
 	private String GhiChu;
+	private Date NgayDeXuat;
+
 	public DeXuatDeTai(int maDeXuatDeTai, String maChuNhiem, String tenDeTai, int kinhPhi, byte[] fileMoTaDeTai,
-			String trangThai, String ghiChu) {
+			Date ngayDeXuat) {
 		super();
 		MaDeXuatDeTai = maDeXuatDeTai;
 		MaChuNhiem = maChuNhiem;
 		TenDeTai = tenDeTai;
 		KinhPhi = kinhPhi;
 		FileMoTaDeTai = fileMoTaDeTai;
-		TrangThai = trangThai;
-		GhiChu = ghiChu;
-	}
-	public DeXuatDeTai() {
-		super();
+		NgayDeXuat = ngayDeXuat;
 	}
 	public DeXuatDeTai(int maDeXuatDeTai,  String tenDeTai, Date ngayDeXuat, int kinhPhi, byte[] fileMoTaDeTai,
 			String trangThai, String ghiChu) {
@@ -37,11 +33,20 @@ public class DeXuatDeTai {
 		TrangThai = trangThai;
 		GhiChu = ghiChu;
 	}
-	public Date getNgayDeXuat() {
-		return NgayDeXuat;
-	}
-	public void setNgayDeXuat(Date ngayDeXuat) {
+	public DeXuatDeTai(int maDeXuatDeTai, String maChuNhiem, String tenDeTai, int kinhPhi, byte[] fileMoTaDeTai,
+			String trangThai, String ghiChu, Date ngayDeXuat) {
+		super();
+		MaDeXuatDeTai = maDeXuatDeTai;
+		MaChuNhiem = maChuNhiem;
+		TenDeTai = tenDeTai;
+		KinhPhi = kinhPhi;
+		FileMoTaDeTai = fileMoTaDeTai;
+		TrangThai = trangThai;
+		GhiChu = ghiChu;
 		NgayDeXuat = ngayDeXuat;
+	}
+	public DeXuatDeTai() {
+		super();
 	}
 	public int getMaDeXuatDeTai() {
 		return MaDeXuatDeTai;
@@ -85,6 +90,11 @@ public class DeXuatDeTai {
 	public void setGhiChu(String ghiChu) {
 		GhiChu = ghiChu;
 	}
-	
-	
+	public Date getNgayDeXuat() {
+		return NgayDeXuat;
+	}
+	public void setNgayDeXuat(Date ngayDeXuat) {
+		NgayDeXuat = ngayDeXuat;
+	}
+
 }

@@ -22,28 +22,21 @@
 		<!--  IMPORT CODE PHẦN NÀY -->
 		<div class="main_content">
 			<div class="form form-Nop">
-				<form class="login-form">
+				<form class="login-form" action="<%=request.getContextPath()%>/DeTai/submit"
+				accept-charset="UTF-8" enctype='multipart/form-data' method="POST">
 					<div class="form-title">
 						<h1>NỘP ĐỀ TÀI</h1>
 						<i class="fa fa-refresh" aria-hidden="true"></i>
 					</div>
 					<hr></hr>
 
-					<h2>CÁCH ĐỂ ĐẸP TRAI</h2>
+					<h2>${detai.getTenDeTai()}</h2>
 					<div class="form-time">
-						<p>Opened: Thursday, 31 August 2023, 12:00 AM</p>
-						<p>Due: Thursday, 7 September 2023, 12:00 AM</p>
+						<p>Opened: ${thoigian.getNgayMoDK()}, 00:00 AM</p>
+						<p>Due: ${thoigian.getNgayNopDeTai()}, 23:59 PM</p>
 					</div>
 
 					<hr></hr>
-					<p>Mô tả:SV làm theo các hướng dẫn và yêu cầu trong file đính
-						kèm. Cần nộp: STT_Ho_Dem_Ten_Lab1.ipynb và
-						STT_Ho_Dem_Ten_Lab1.html STT (số thứ tự): SV xem ở DSSV ở mục
-						General Information Ho_Dem_Ten (họ đệm tên): viết không dấu, chữ
-						cái đầu viết hoa, mỗi từ cách nhau bằng dấu gạch dưới (_). Hạn
-						chót: đến hết ngày 6/9/2023</p>
-
-					</p>
 					<h2>TRẠNG THÁI NỘP</h2>
 					<table>
 						<tr class="bg-green">
