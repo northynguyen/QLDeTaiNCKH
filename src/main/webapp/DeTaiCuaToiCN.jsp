@@ -118,7 +118,7 @@
 									<td><a
 										href="<%=request.getContextPath()%>/download/fileMoTa?maDT=${Duyet.getMaDeTai()}">Download</a></td>
 									<td><a
-										href="<%=request.getContextPath()%>/detaicuatoi/chitiet?madetai=${Duyet.getMaDeTai()}"
+										href="<%=request.getContextPath()%>/detaicuatoi/chitiet?madetai=${Duyet.getMaDeTai()}&madon=${Duyet.getMaDon()}"
 										style="text-decoration: underline; color: blue;">Chi tiết
 											thành viên</a></td>
 									<td><p>
@@ -131,6 +131,50 @@
 					<input type="text" id="madon" name="MaDon" style="display: none">
 					<button id="btn-DK" style="display: none" type="submit">NỘP
 						ĐỀ TÀI</button>
+				</form>
+				
+				<form class="login-form" id="DK" name="maDK" method="post">
+					<h2>ĐỀ TÀI ĐÃ NGHIỆM THU</h2>
+					<div class="table-DeTai" id="dangKy">
+						<table id="myTableDK">
+							<tr class="columns-title">
+								<th>Mã nộp</th>
+								<th>Mã đề tài</th>
+								<th>Điểm số</th>
+								<th>Ngày nghiệm thu</th>
+								<th>Mã thời gian</th>
+								<th>File báo cáo</th>
+								<th>Hồ sơ liên quan</th>
+								<th>Ghi chú</th>
+							</tr>
+							<c:forEach var="nop" items="${nopnghiemthu}">
+								<tr onclick="focusDangKy123(this)">
+									<td><p>
+											<c:out value="${nop.getMaNopDeTai()}" />
+										</p></td>
+									<td><p>
+											<c:out value="${nop.getMaDeTai()}" />
+										</p></td>
+									<td><p>
+											<c:out value="${nop.getDiemSo()}" />
+										</p></td>
+									<td><p>
+											<c:out value="${nop.getNgayNghiemThu()}" />
+										</p></td>
+									<td><p>
+											<c:out value="${nop.getMaThoiGian()}" />
+										</p></td>
+									<td><a
+										href="<%=request.getContextPath()%>/download/fileBaoCao?maDT=${nop.getMaNghiemThu()}">Download</a></td>
+									<td><a
+										href="<%=request.getContextPath()%>/download/fileHoSo?maDT=${nop.getMaNghiemThu()}">Download</a></td>
+									<td><p>
+											<c:out value="${nop.getGhiChu()}" />
+										</p></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
 				</form>
 			</div>
 

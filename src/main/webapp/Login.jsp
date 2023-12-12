@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="Access/Style/Css/Root/Root.css" />
 <link rel="stylesheet" href="Access/Style/Css/Login.css" />
+<link rel="stylesheet" href="../Access/Style/Css/Root/Root.css" />
+<link rel="stylesheet" href=".//Access/Style/Css/Login.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
@@ -40,10 +42,10 @@
 
 	<div class="login-page">
   <div class="form">
-    <form class="fogetPass-form">
-<!--       <input type="password" placeholder="password"/> -->
-      <input type="email" placeholder="email address"/>
-            <p class="message" style="margin-bottom:10px;"> Dfsdiofjsiof</p>
+    <form class="fogetPass-form" action="<%=request.getContextPath()%>/send-email" method = "post" accept-charset="UTF-8">
+
+       <input type="email" placeholder="Nhập email của bạn" id="email" name="recipient"/>
+            <p class="message" style="margin-bottom:10px;" ><%=request.getAttribute("Message")%></p>
       <button>Lấy lại mật khẩu</button>
       <p class="message"> <a href="#">Đăng nhập</a></p>
     </form> 

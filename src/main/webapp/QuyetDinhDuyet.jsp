@@ -82,7 +82,7 @@
 							<td class="columns-title">
 								<p>File quyết định</p> 
 							</td>
-							<td> <input name ="file" type="file" /></td>
+							<td> <input name ="file" type="file" accept=".docx, .doc"/></td>
 						</tr>
 					</table>
 			</c:if>

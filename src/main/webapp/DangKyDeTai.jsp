@@ -23,6 +23,9 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<%
+	String err = (String) request.getAttribute("err");
+%>
 	<jsp:include page="Components/LeftSideBar.jsp" />
 	<div class="container-main">
 		<jsp:include page="Components/NavBar.jsp" />
@@ -36,7 +39,12 @@
 						<i class="fa fa-refresh" aria-hidden="true"></i>
 					</div>
 					<hr></hr>
-
+<%
+ if (err != null) {
+ %>
+									<div class="error-message"><%=err%></div> <%
+ }
+ %>
 					<div class="table-DeTai">
 						<table id="myTable">
 							<tr class="columns-title">

@@ -23,18 +23,24 @@ public class ThamGiaDeTaiDAO {
 			+ "FROM thongtinsinhvien\r\n"
 			+ "LEFT JOIN thamgiadetai ON thongtinsinhvien.MSSV = thamgiadetai.MSSV\r\n"
 			+ "WHERE thamgiadetai.MSSV IS NULL OR thamgiadetai.MaThoiGian <> ? ;";
+	private static final String maThoiGianTgdt ="Select MaThoiGian from dangkydetai where MaDon = ?";
 	private static final String ThemThamGiaDeTai="INSERT INTO qldetainckh.thamgiadetai (MaDeTai, MSSV, VaiTro, MaThoiGian) VALUES (?,?,?,?);";
-	public List <ThamGiaDeTai> ThamGiaDeTai_MaDeTai(int madetai)
+	public List <ThamGiaDeTai> ThamGiaDeTai_MaDeTai(int madetai, int madon)
 	{
 		List <ThamGiaDeTai> tgdt = new ArrayList<>();
 		    try {
 		    	Connection connection = JDBCUtil.getConnection(); 
-		    	ThoiGianNCKHDAO tgDAO= new ThoiGianNCKHDAO();
-		    	ThoiGianNCKH tg = new ThoiGianNCKH();
-		    	tg = tgDAO.LayThoiGian();
+		    	PreparedStatement preparedStatement1 = connection.prepareStatement(maThoiGianTgdt);
+		    	preparedStatement1.setInt(1, madon);
+		    	ResultSet rs1 = preparedStatement1.executeQuery();
+		    	int matg = -1;
+		    	while (rs1.next()) {
+	            	matg = rs1.getInt(1);
+	            }
+		    	
 		    	PreparedStatement preparedStatement = connection.prepareStatement(thamgiadetai);
 		        preparedStatement.setInt(1, madetai);
-		        preparedStatement.setInt(2, tg.getMaThoiGianNCKH());
+		        preparedStatement.setInt(2, matg);
 		        ResultSet rs = preparedStatement.executeQuery();
 		        while (rs.next()) {
 	            	String MSSV = rs.getString("MSSV");

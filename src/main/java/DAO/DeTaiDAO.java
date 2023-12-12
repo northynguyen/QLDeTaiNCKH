@@ -16,6 +16,7 @@ import Models.DeTai;
 import Models.DeXuatDeTai;
 import Models.Khoa;
 import Models.NopDeTai;
+import Models.NopNghiemThu;
 import Util.HandleExeption;
 import Util.JDBCUtil;
 
@@ -42,12 +43,17 @@ public class DeTaiDAO {
 	private static final String LAY_DE_TAI_BANG_MA = "SELECT * FROM qldetainckh.detai where MaDeTai = ?";
 	private static final String THEM_DE_TAI = "INSERT INTO `qldetainckh`.`detai` (`TenDeTai`, `KinhPhi`, `FileMoTa`,`TrangThai`) VALUES (N?,?,?,N?);\r\n";
 	private static final String SELECT_ALL_DETAIs = "select * from qldetainckh.detai where TrangThai = N'Trống'";
+	private static final String SELECT_ALL_DETAIs1 = "select * from qldetainckh.detai";
 	private static final String INSERT_DETAI_SQL = "INSERT INTO qldetainckh.detai"
 			+ "  (TenDeTai,KinhPhi, FileMoTa, TrangThai) VALUES " +
 			" (?, ?, ?,?);";
 	private static final String DELETE_DETAI_SQL = "delete from qldetainckh.detai where MaDeTai = ?;";
 	private static final String UPDATE_DETAI_SQL = "update qldetainckh.detai set TenDeTai= ?, KinhPhi =?,FileMoTa = ?,TrangThai=? where MaDeTai = ?;";
-
+	private static final String LAY_NGHIEM_THU_THEO_CHU_NHIEM = "SELECT nopdetai.MaNopDeTai, MaDeTai, FileBaoCao, MaThoiGian, "
+			+ "MaNghiemThu, NgayNghiemThu, HoSoLienQuan, DiemSo, nghiemthu.GhiChu\r\n"
+			+ "FROM nopdetai inner join nghiemthu \r\n"
+			+ "on nopdetai.MaNopDeTai = nghiemthu.MaNopDeTai\r\n"
+			+ "where nopdetai.MaNguoiNop = ?";
 	public void NopDeTai(int MaDeTai, String MaNguoiNop, byte[] FileBaoCao, int MaThoiGian, String GhiChu,
 			String TrangThai) {
 		try (Connection connection = JDBCUtil.getConnection();
@@ -98,7 +104,34 @@ public class DeTaiDAO {
 			HandleExeption.printSQLException(exception);
 		}
 	}
+	
+	public List<NopNghiemThu> LayNopNghiemThu(String MaChuNhiem) {
+		List<NopNghiemThu> listnopnghiemthu = new ArrayList<>();
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(LAY_NGHIEM_THU_THEO_CHU_NHIEM);) {
+			preparedStatement.setString(1, MaChuNhiem);
+			System.out.print(preparedStatement);
+			ResultSet rs = preparedStatement.executeQuery();
 
+			while (rs.next()) {
+				NopNghiemThu nopnghiemthu = new NopNghiemThu();
+				nopnghiemthu.setMaNopDeTai(rs.getInt(1));
+				nopnghiemthu.setMaDeTai(rs.getInt(2));
+				nopnghiemthu.setFileBaoCao(rs.getBytes(3));
+				nopnghiemthu.setMaThoiGian(rs.getInt(4));
+				nopnghiemthu.setMaNghiemThu(rs.getInt(5));
+				nopnghiemthu.setNgayNghiemThu(rs.getDate(6));
+				nopnghiemthu.setHoSoLienQuan(rs.getBytes(7));
+				nopnghiemthu.setDiemSo(rs.getInt(8));
+				nopnghiemthu.setGhiChu(rs.getString(9));
+				listnopnghiemthu.add(nopnghiemthu);
+			}
+		} catch (SQLException exception) {
+			HandleExeption.printSQLException(exception);
+		}
+		return listnopnghiemthu;
+	}
+	
 	public DangKyDeTai LayDangKyDeTaiBangMa(int MaDon) {
 		DangKyDeTai dangkydetai = new DangKyDeTai();
 		try (Connection connection = JDBCUtil.getConnection();
@@ -323,6 +356,30 @@ public class DeTaiDAO {
 		}
 		return DeTais;
 	}
+	public List<DeTai> selectAllDeTai1() {
+		List<DeTai> DeTais = new ArrayList<>();
+		try {
+			Connection connection = JDBCUtil.getConnection();
+			// Step 2:Create a statement using connection object
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_DETAIs1);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				int maDeTai = rs.getInt("MaDeTai");
+				String tenDeTai = rs.getString("TenDeTai");
+				int kinhPhi = rs.getInt("KinhPhi");
+				byte[] fileMoTa = rs.getBytes("FileMoTa");
+				String trangThai = rs.getString("TrangThai");
+				DeTais.add(new DeTai(maDeTai, tenDeTai, kinhPhi, fileMoTa, trangThai));
+			}
+			connection.close();
+		} catch (SQLException exception) {
+			HandleExeption.printSQLException(exception);
+		}
+		return DeTais;
+	}
+	
 	public void themDeTai(DeTai detai) throws SQLException {
 		// try-with-resource statement will auto close the connection.
 		try {

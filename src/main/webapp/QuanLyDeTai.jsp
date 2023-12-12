@@ -51,6 +51,8 @@
 
 							<c:forEach var="DeTai" items="${listDeTai}">
 								<tr onclick="changeBackgroundColor(this)">
+								<input style="display: none" name="maDT"
+												value="${DeTai.getMaDeTai()}">
 									<td><p>
 											<c:out value="${DeTai.getMaDeTai()}" />
 										</p></td>
@@ -60,7 +62,8 @@
 									<td><p>
 											<c:out value="${DeTai.getKinhPhi()}" />
 										</p></td>
-									<td><a href=""> Download</a></td>
+									<td><a
+										href="<%=request.getContextPath()%>/download/fileMoTa?maDT=${DeTai.getMaDeTai()}">Download</a></td>
 									<td><p>
 											<c:out value="${DeTai.getTrangThai()}" />
 										</p></td>

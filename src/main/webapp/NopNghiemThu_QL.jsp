@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html lang="en">
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -26,60 +28,78 @@
 		<!--  IMPORT CODE PHẦN NÀY -->
 		<div class="main_content">
 			<div class="form form-Nop">
-				<form class="login-form" action="<%=request.getContextPath()%>/DeTai/submit"
-				method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+				<form class="login-form"
+					action="<%=request.getContextPath()%>/NghiemThu/submit"
+					method="post" accept-charset="UTF-8" enctype="multipart/form-data">
 					<div class="form-title">
-						<h1>NỘP ĐỀ TÀI</h1>
+						<h1>THỰC HIỆN NGHIỆM THU</h1>
 						<i class="fa fa-refresh" aria-hidden="true"></i>
 					</div>
 					<hr></hr>
 
 					<h2>${detai.getTenDeTai()}</h2>
-					
+
 					<div class="form-time">
 						<p>Opened: ${thoigian.getNgayMoDK()}, 00:00 AM</p>
 						<p>Due: ${thoigian.getNgayNopDeTai()}, 23:59 PM</p>
 					</div>
 
 					<hr></hr>
-					<h2>TRẠNG THÁI NỘP</h2>
+					<h2>TRẠNG THÁI THỰC HIỆN</h2>
 					<table>
-						<tr id = "mauTrangThai">
+						<tr id="mauTrangThai">
 							<td class="columns-title">
-								<p>Trạng thái nộp</p> 
+								<p>Trạng thái nộp</p>
 							</td>
-							<td><p id ="TrangThai"   >${TrangThai}</p>
-							<input style="display: none" type = "text" name = "TrangThai" value = "${TrangThai}">
-							</td>
-							
+							<td><p id="TrangThai">${nopDeTai.getTrangThai()}</p></td>
+
 						</tr>
-					
-						
+
 						<tr>
 							<td class="columns-title">
-								<p>Chỉnh sửa lần cuối</p> 
+								<p>Mã người Nghiệm Thu</p>
 							</td>
-							<td><p>${nopdetai.getThoiGianNop()}</p></td>
+							<td><p>${nghiemthu.getMaNguoiNghiemThu()}</p></td>
 						</tr>
 						<tr>
 							<td class="columns-title">
-								<p>Đăng tải các bình luận</p> 
+								<p>Chỉnh sửa lần cuối</p>
 							</td>
-							<td><input name = "ghichu" type="text" value="${nopdetai.getGhiChu()}" placeholder="Thêm ghi chú" /></td>
+							<td><p>${nghiemthu.getNgayNghiemThu()}</p></td>
 						</tr>
 						<tr>
 							<td class="columns-title">
-								<p>File Báo cáo</p> 
+								<p>Đăng tải các bình luận</p>
 							</td>
-							<td> <input name ="file" type="file" accept=".docx, .doc"/></td>
+							<td><input name="binhluan" type="text"
+								value="${nghiemthu.getGhiChu()}" placeholder="Thêm ghi chú" /></td>
+						</tr>
+						<tr>
+							<td class="columns-title">
+								<p>Điểm số</p>
+							</td>
+							<td><input name="diem" type="text"
+								value="${nghiemthu.getDiemSo()}" placeholder="Thêm ghi chú" /></td>
+						</tr>
+						<tr>
+							<td class="columns-title">
+								<p>File Báo cáo</p>
+							</td>
+							<td><input name="file" type="file"
+								value="${nghiemthu.getTaiLieuNghiemThu()}" /></td>
 						</tr>
 					</table>
-					<input style="display: none" type = "text" name="MaDon" value = "${dangkydetai.getMaDon()}" > 
-					<input style="display: none" type = "text" name="MaDeTai" value = "${detai.getMaDeTai()}" > 
-					<input style="display: none" type = "text" name="MaThoiGian" value = "${dangkydetai.getMaThoiGian()}" > 
-					<input style="display: none" type = "text"  name="MaNopDeTai" value = "${nopdetai.getMaNopDeTai()}"> 
-					<button id="submit" type="submit" >NỘP BÀI</button>
+					
+					<input style="display: none" name="MaNghiemThu" value="${nghiemthu.getMaNghiemThu()}"/> 
+					<input style="display: none"  name="MaNopDeTai" value="${nopDeTai.getMaNopDeTai()}"/> 
+					<input style="display: none"  name="NgayNghiemThu" value="${nghiemthu.getMaNguoiNghiemThu()}"/> 
+					<input style="display: none"  name="MaNguoiNghiemThu" value="${nghiemthu.getNgayNghiemThu()}"/>
+					<input style="display: none"  name="TrangThai" value="${nopDeTai.getTrangThai()}"/>
+
+					<button id="submit" type="submit">NỘP BÀI</button>
 				</form>
+
+
 			</div>
 		</div>
 		<!--  IMPORT CODE PHẦN NÀY -->
@@ -92,14 +112,14 @@
 		settingsmenu.classList.toggle("settings-menu-height");
 	}
 	var TrangThai = document.getElementById("TrangThai").innerText;
-	var MauTrangThai = document.getElementById("mauTrangThai");	
-	if (TrangThai == "Đã nộp")
-	{
+	console.log(TrangThai);
+	var MauTrangThai = document.getElementById("mauTrangThai");
+	if (TrangThai == "Đã nghiệm thu") {
 		document.getElementById("submit").innerText = "SỬA";
 		MauTrangThai.classList.add("bg-green")
+	} else {
+		document.getElementById("submit").innerText = "SUBMIT";
+
 	}
-	else
-		document.getElementById("submit").innerText = "NỘP BÀI";
-	
 </script>
 </html>

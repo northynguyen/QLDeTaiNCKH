@@ -66,7 +66,7 @@ public class QuanLyDeTaiController extends HttpServlet {
 
 	private void showDeTai(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		List<DeTai> listDeTai = detaiDAO.selectAllDeTai();
+		List<DeTai> listDeTai = detaiDAO.selectAllDeTai1();
 		request.setAttribute("listDeTai", listDeTai);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/QuanLyDeTai.jsp");
 		dispatcher.forward(request, response);

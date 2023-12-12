@@ -31,8 +31,8 @@
 		<!--  IMPORT CODE PHẦN NÀY -->
 		<div class="main_content">
 			<div class="form form-DeTaiCN">
-				<form class="login-form" action=""
-				accept-charset="UTF-8" method="POST">
+				<form class="login-form" action="" accept-charset="UTF-8"
+					method="POST" action="<%=request.getContextPath()%>/download/fileMoTaDeXuat">
 					<div class="form-title">
 						<h1>DUYỆT ĐỀ XUẤT</h1>
 						<i class="fa fa-refresh" aria-hidden="true"></i>
@@ -42,7 +42,7 @@
 					<div class="table-DeTai">
 						<table id="myTable">
 							<tr class="columns-title">
-								<th>Mã đề xuất </th>
+								<th>Mã đề xuất</th>
 								<th>Tên đề xuất</th>
 								<th>Chủ Nhiệm</th>
 								<th>Kinh phí dự kiến</th>
@@ -51,7 +51,8 @@
 							</tr>
 							<c:forEach var="Duyet" items="${listDuyet}">
 								<tr onclick="changeBackgroundColor(this)">
-								 
+								<input style="display: none" name="maDT"
+												value="${Duyet.getMaDon()}">
 									<td><p>
 											<c:out value="${Duyet.getMaDon()}" />
 										</p></td>
@@ -64,32 +65,35 @@
 									<td><p>
 											<c:out value="${Duyet.getKinhPhi()}" />
 										</p></td>
-									<td><a href=""> Download</a></td>
+									<td><a
+										href="<%=request.getContextPath()%>/download/fileMoTaDeXuat?maDT=${Duyet.getMaDon()}">Download</a></td>
 
-									<td>
-											<input type="radio" name="chon">
-										</td>
+									<td><input type="radio" name="chon"></td>
 								</tr>
 							</c:forEach>
 						</table>
 					</div>
-					
+
 				</form>
-				<form action="<%=request.getContextPath()%>//DeTai/showquyetdinhduyet"
-				accept-charset="UTF-8" method="POST">
-					<input id="madexuat" type="hidden" name ="MaDeXuatDeTai1">
-					<button disabled class="btn_disable"  id="btn_duyet">DUYỆT</button>
+				<form
+					action="<%=request.getContextPath()%>//DeTai/showquyetdinhduyet"
+					accept-charset="UTF-8" method="POST">
+					<input id="madexuat" type="hidden" name="MaDeXuatDeTai1">
+					<button disabled class="btn_disable" id="btn_duyet">DUYỆT</button>
 				</form>
-				
-				<button onclick=" toggleHideBox('Không Duyệt');" disabled class="btn_disable" id="btn_xoa">KHÔNG DUYỆT</button>
+
+				<button onclick=" toggleHideBox('Không Duyệt');" disabled
+					class="btn_disable" id="btn_xoa">KHÔNG DUYỆT</button>
 				<div class="hide-list" id="hide-box" style="display: none;">
 					<div class="SV" style="flex: 1;">
 						<h2>LÝ DO KHÔNG DUYỆT</h2>
 						<form action="<%=request.getContextPath()%>/duyetdexuat/xoa"
-				accept-charset="UTF-8" method="POST">
-							<input id="maDonInput" type="hidden" name ="MaDon">
-							<input id="TenDeTai" type="hidden" name ="TenDeTai">
-							<textarea name="GhiChu" class="TextArea" placeholder="Lý do"></textarea><br><br>
+							accept-charset="UTF-8" method="POST">
+							<input id="maDonInput" type="hidden" name="MaDon"> <input
+								id="TenDeTai" type="hidden" name="TenDeTai">
+							<textarea name="GhiChu" class="TextArea" placeholder="Lý do"></textarea>
+							<br>
+							<br>
 							<button>GỬI</button>
 						</form>
 					</div>
@@ -108,7 +112,7 @@
 		// Lấy tất cả các hàng trong bảng
 		var rows = document.getElementById("myTable")
 				.getElementsByTagName("tr");
-		var select= document.getElementById("chon");
+		var select = document.getElementById("chon");
 		var maDon = row.cells[0].innerText;
 		document.getElementById("maDonInput").value = maDon
 		console.log(maDon);
@@ -120,16 +124,16 @@
 		// Đặt màu nền của hàng được nhấp vào thành màu tím nhạt
 		row.style.backgroundColor = "lavender";
 		var radioButtons = row.getElementsByTagName("input");
-		  for (var i = 0; i < radioButtons.length; i++) {
-		    if (radioButtons[i].type === "radio") {
-		      radioButtons[i].checked = false;
-		    }
-		  }
-		  var radio = row.querySelector("input[type='radio']");
-		  radio.checked = true;
-		  removedisableButton();
-		  document.getElementById("madexuat").value = maDon;
-		  document.getElementById("TenDeTai").value = row.cells[1].innerText;
+		for (var i = 0; i < radioButtons.length; i++) {
+			if (radioButtons[i].type === "radio") {
+				radioButtons[i].checked = false;
+			}
+		}
+		var radio = row.querySelector("input[type='radio']");
+		radio.checked = true;
+		removedisableButton();
+		document.getElementById("madexuat").value = maDon;
+		document.getElementById("TenDeTai").value = row.cells[1].innerText;	
 	}
 	function settingsMenuToggle() {
 		settingsmenu.classList.toggle("settings-menu-height");
@@ -142,22 +146,20 @@
 			box.style.display = "none";
 		}
 	}
-	function removedisableButton()
-	{
+	function removedisableButton() {
 		var sua = document.getElementById("btn_duyet");
 		sua.disabled = false;
 		sua.classList.remove('btn_disable');
-		
+
 		var xoa = document.getElementById("btn_xoa");
 		xoa.disabled = false;
 		xoa.classList.remove('btn_disable');
 	}
-	function disableButton()
-	{
+	function disableButton() {
 		var sua = document.getElementById("btn_duyet");
 		sua.disabled = true;
 		sua.classList.add('btn_disable');
-		
+
 		var xoa = document.getElementById("btn_xoa");
 		xoa.disabled = true;
 		xoa.classList.add('btn_disable');

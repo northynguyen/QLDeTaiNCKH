@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@page import="Models.ThongTinTaiKhoan"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,10 +14,13 @@
      <script src="Access/Style/Js/LeftSideBar.js" defer></script>
   </head>
 <body>
+<%
+	ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");
+	%>
  <nav class="sidebar locked">
       <div class="logo_items flex">
         <span class="nav_image">
-          <img src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t1.15752-9/398212517_358697683311773_2464055266940039865_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8cd0a2&_nc_eui2=AeHT2VizBNsGjxQTes0CWJXNlkwAk13JIdKWTACTXckh0sCBsXKyq9nTcnIr1xXccWohGCcqfhgWgI6pD9rJcm-B&_nc_ohc=cTnh5a_Hsu4AX8y7L8o&_nc_ht=scontent.fsgn5-8.fna&oh=03_AdS70Aux-3uIGVnHKEpzvKIbas3Yeh7r9HGXoxFM3z33tQ&oe=658A97A7" alt="logo_img" />
+          <img src="https://images.squarespace-cdn.com/content/v1/5930dc9237c5817c00b10842/1557980730821-E0BL40VN22LDSYKQH91O/images.png" alt="logo_img" />
         </span>
         <span class="logo_name">HCMUTE</span>
         <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
@@ -28,8 +33,8 @@
             <img src="https://vtv1.mediacdn.vn/zoom/640_400/2023/2/9/090223-twice-16759153857492034544526-crop-16759153913131594780654.jpg" alt="logo_img" />
           </span>
           <div class="data_text">
-            <span class="name">Admin</span>
-            <span class="email">david@gmail.com</span>
+            <span class="name"><%=account.getHoTen()%></span>
+            <span class="email">ADMIN</span>
           </div>
         </div>
         <div class="menu_items">
@@ -45,9 +50,9 @@
               </a>
             </li>
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath() %>/QuanLyDongMoDK.jsp" class="link flex">
                 <i class="bx bx-grid-alt"></i>
-                <span>Quản lý đề tài</span>
+                <span>Quản lý đóng mở</span>
               </a>
             </li>
           </ul>
@@ -55,9 +60,9 @@
           <ul class="menu_item">
 
             <li class="item">
-              <a href="<%=request.getContextPath() %>/DeTai/showquyetdinhduyet" class="link flex">
+              <a href="<%=request.getContextPath() %>/TaoTaiKhoan.jsp" class="link flex">
                 <i class="bx bxs-magic-wand"></i>
-                <span>Quản lý tài khoản</span>
+                <span>Tạo tài khoản</span>
               </a>
             </li>
             <li class="item">

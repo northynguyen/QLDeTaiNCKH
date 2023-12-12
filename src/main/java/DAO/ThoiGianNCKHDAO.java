@@ -27,6 +27,11 @@ public class ThoiGianNCKHDAO {
 	private static final String SUA_THOI_GIAN  = "UPDATE `qldetainckh`.`thoigiannckh` "
 			+ "SET `NgayMoDK` = ?, `NgayKetThucDK` = ?, `NgayNopDeTai` = ? "
 			+ "WHERE (`MaThoiGianNCKH` = ?);";
+	private static final String CAP_NHAT_TRANG_THAI_DE_TAI  = "UPDATE qldetainckh.detai\r\n"
+			+ "	SET TrangThai = N?\r\n"
+			+ "	WHERE MaDeTai > 0";
+	
+	
 	public ThoiGianNCKH LayThoiGianDK(int MaThoiGian) {
 		ThoiGianNCKH thoigian = new ThoiGianNCKH();
 		try (Connection connection = JDBCUtil.getConnection();
@@ -64,6 +69,50 @@ public class ThoiGianNCKHDAO {
 			HandleExeption.printSQLException(exception);
 		}
 		return thoigian;
+	}
+	public boolean CapNhatTrangThaiDeTai(String TrangThai) {
+		boolean rowUpdate=false;
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(CAP_NHAT_TRANG_THAI_DE_TAI);) {
+			preparedStatement.setString(1, TrangThai);
+			rowUpdate = preparedStatement.executeUpdate() > 0;
+		} catch (SQLException exception) {
+			HandleExeption.printSQLException(exception);
+		}
+		return rowUpdate;
+	}
+	public boolean SoSanhNgayMo() {
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(LAY_THOI_GIAN);) {
+			ResultSet rs = preparedStatement.executeQuery();
+			java.util.Date curDay = new java.util.Date();
+			Date NgayHienTai = new Date(curDay.getTime());
+			while (rs.next()) {
+				if (NgayHienTai.after(rs.getDate(2)) && NgayHienTai.before(rs.getDate(3))) {
+					return true;
+				}
+			}
+		} catch (SQLException exception) {
+			HandleExeption.printSQLException(exception);
+		}
+		return false;
+	}
+	public boolean SoSanhNgayDong() {
+		boolean check = true;
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(LAY_THOI_GIAN);) {
+			ResultSet rs = preparedStatement.executeQuery();
+			java.util.Date curDay = new java.util.Date();
+			Date NgayHienTai = new Date(curDay.getTime());
+			while (rs.next()) {
+				if (NgayHienTai.after(rs.getDate(2)) && NgayHienTai.before(rs.getDate(3))) {
+					check = false;
+				}
+			}
+		} catch (SQLException exception) {
+			HandleExeption.printSQLException(exception);
+		}
+		return check;
 	}
 	
 	public List<ThoiGianNCKH> LayToanBoThoiGian() {

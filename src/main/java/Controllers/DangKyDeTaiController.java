@@ -70,10 +70,14 @@ public class DangKyDeTaiController extends HttpServlet {
 	private void showDeTai(HttpServletRequest request, HttpServletResponse response)
 		    throws SQLException, ServletException, IOException {
 		List <DeTai> listDeTai = new ArrayList<>(); 
-		
-		if (tgNCKH!=null) {
-			listDeTai = detaiDAO.selectAllDeTai();	
+		request.removeAttribute("err");
+		if (tgNCKH != null) {
+			listDeTai = detaiDAO.selectAllDeTai();			
         }
+		else
+		{
+			request.setAttribute("err", "Chưa tới thời gian đăng ký, hãy quay lại sau!!");
+		}
 		request.setAttribute("listDeTai",listDeTai);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/DangKyDeTai.jsp");
         dispatcher.forward(request, response);

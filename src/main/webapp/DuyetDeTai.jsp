@@ -51,7 +51,8 @@
 							</tr>
 							<c:forEach var="Duyet" items="${listDuyet}">
 								<tr onclick="changeBackgroundColor(this)">
-								 
+								 <input style="display: none" name="maDT"
+												value="${Duyet.getMaDon()}">
 									<td><p>
 											<c:out value="${Duyet.getMaDon()}" />
 										</p></td>
@@ -64,7 +65,8 @@
 									<td><p>
 											<c:out value="${Duyet.getKinhPhi()}" />
 										</p></td>
-									<td><a href=""> Download</a></td>
+									<td><a
+										href="<%=request.getContextPath()%>/download/fileMoTaDangKy?maDT=${Duyet.getMaDon()}">Download</a></td>
 
 									<td>
 											<input type="radio" name="chon">

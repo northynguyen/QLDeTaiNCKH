@@ -10,11 +10,27 @@
 		<welcome-file>default.jsp</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 
-
-
-
 	</welcome-file-list>
 
+    <context-param>
+        <param-name>host</param-name>
+        <param-value>smtp.gmail.com</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>port</param-name>
+        <param-value>587</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>thoai102pro@gmail.com</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>pass</param-name>
+        <param-value>mkjp tacn vlee woot</param-value>
+    </context-param>
 	<servlet>
 		<servlet-name>DeXuatDeTaiController</servlet-name>
 		<servlet-class>Controllers.DeXuatDeTaiController</servlet-class>
@@ -97,6 +113,22 @@
 		<servlet-name>DeTaiCuaToiController</servlet-name>
 		<url-pattern>/detaicuatoi/*</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>DoiMatKhauController</servlet-name>
+		<servlet-class>Controllers.DoiMatKhauController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DoiMatKhauController</servlet-name>
+		<url-pattern>/doimatkhau/*</url-pattern>
+	</servlet-mapping>
+			<servlet>
+		<servlet-name>EmailController</servlet-name>
+		<servlet-class>Controllers.EmailController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmailController</servlet-name>
+		<url-pattern>/send-email/*</url-pattern>
+	</servlet-mapping>
 	<servlet>
         <servlet-name>ThongTinSinhVienController</servlet-name>
         <servlet-class>Controllers.ThongTinSinhVienController</servlet-class>
@@ -107,4 +139,12 @@
 	        <file-size-threshold>1048576</file-size-threshold>
 	    </multipart-config>
     </servlet>
+    <servlet>
+		<servlet-name>NghiemThuController</servlet-name>
+		<servlet-class>Controllers.NghiemThuController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NghiemThuController</servlet-name>
+		<url-pattern>/NghiemThu/*</url-pattern>
+	</servlet-mapping>
 </web-app>
