@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import DAO.DeTaiDAO;
 import DAO.DeTaiDaDangKyDAO;
 import DAO.DeXuatDeTaiDAO;
 import Models.DangKyDeTai;
@@ -63,10 +64,14 @@ public class HandleDownLoad extends HttpServlet {
 			case "/fileMoTa":
 				FileMoTa(request, response);
 				break;
+			case "/fileMoTaDeXuat":
+				FileMoTaDeXuat(request, response);
+				break;
 			default:
 				System.out.println("df");
 				break;
 			}
+			
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
 		} catch (ClassNotFoundException e) {
@@ -120,6 +125,7 @@ public class HandleDownLoad extends HttpServlet {
 
 		response.setContentType("application/octet-stream");
 		int maDT = Integer.parseInt(request.getParameter("maDT"));
+		System.out.print("jeje");
 		System.out.print(maDT);
 		DeTai dt = null;
 		try {
@@ -144,7 +150,33 @@ public class HandleDownLoad extends HttpServlet {
 		}
 		inputStream.close();
 		outStream.close();
+	}
+	private void FileMoTaDeXuat(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException, ClassNotFoundException {
+		DeTaiDAO detaiDAO = new DeTaiDAO();
+		response.setContentType("application/octet-stream");
+		int maDT = Integer.parseInt(request.getParameter("maDT"));
+		System.out.print("jeje");
+		System.out.print(maDT);
+		DeXuatDeTai dt = null;
+		dt = detaiDAO.LayDeXuatDeTaiBangMa(maDT);
 
+		byte[] fileData = dt.getFileMoTaDeTai();
+
+		String fileName = "MoTa_MaDeXuatDeTai" + maDT + ".doc";
+		response.setContentType("application/msword");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+		response.setContentLength(fileData.length);
+		InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(fileData));
+
+		OutputStream outStream = response.getOutputStream();
+		byte[] buffer = new byte[4096];
+		int bytesRead = -1;
+		while ((bytesRead = inputStream.read(buffer)) != -1) {
+			outStream.write(buffer, 0, bytesRead);
+		}
+		inputStream.close();
+		outStream.close();
 	}
 
 }

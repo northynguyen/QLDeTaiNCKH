@@ -93,6 +93,7 @@ public class DeXuatDeTaiController extends HttpServlet {
 	private void insert(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException, ClassNotFoundException, ParseException {
 		HttpSession session = request.getSession();
+		ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");
 		/*
 		 * ThongTinTaiKhoan account = (ThongTinTaiKhoan)
 		 * session.getAttribute("account"); String maChuNhiem =
@@ -117,14 +118,14 @@ public class DeXuatDeTaiController extends HttpServlet {
 			}
 			byte[] fileData = byteArrayOutputStream.toByteArray();
 			System.out.println("ImageData= " + fileData);
-			deXuatDeTaiDAO.ThemDeXuat("1", tenDeTai, ngayDeXuat, kinhPhi, fileData);
+			deXuatDeTaiDAO.ThemDeXuat(account.getMaTaiKhoan(), tenDeTai, ngayDeXuat, kinhPhi, fileData);
 			System.out.println("is");
 		} else {
 			System.out.print("nono");
 		}
 
 		// deXuatDeTaiDAO.ThemDeXuat(maChuNhiem,tenDeTai,ngayDeXuat, kinhPhi);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeTaiCuaToiCN.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/detaicuatoi/new");
 		dispatcher.forward(request, response);
 		// response.sendRedirect(request.getContextPath() +
 		// "/Components/DeTaiCuaToiCN.jsp");
@@ -137,7 +138,7 @@ public class DeXuatDeTaiController extends HttpServlet {
 		DeXuatDeTai dx = deXuatDeTaiDAO.LayDeXuat_ByID(madx);
 		System.out.print(madx);
 		request.setAttribute("dxedit", dx);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeXuatCN.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/DeXuatCN.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -173,7 +174,7 @@ public class DeXuatDeTaiController extends HttpServlet {
 
 		deXuatDeTaiDAO.ChinhSuaDeXuat(tenDeTai, ngayDeXuat, kinhPhi, fileData, madx);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Components/DeTaiCuaToiCN.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/DeTaiCuaToiCN.jsp");
 		dispatcher.forward(request, response);
 
 	}

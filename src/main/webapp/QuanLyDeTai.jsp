@@ -25,11 +25,10 @@
 </head>
 <body>
 
-	<jsp:include page="LeftSideBar.jsp" />
+	<jsp:include page="Components/LeftSideBarPhongQLDTNCKH.jsp" />
 	<div class="container-main">
-		<jsp:include page="NavBar.jsp" />
+		<jsp:include page="Components/NavBar.jsp" />
 		<!--  IMPORT CODE PHẦN NÀY -->
-		<a href="<%=request.getContextPath()%>/quanlydetai/new"> Nhan di</a>
 		<div class="main_content">
 			<div class="form form-DeTaiCN">
 				<form class="login-form">

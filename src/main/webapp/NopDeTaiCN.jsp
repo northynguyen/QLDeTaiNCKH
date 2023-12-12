@@ -20,7 +20,7 @@
 </head>
 <body>
 
-	<jsp:include page="Components/LeftSideBar.jsp" />
+	<jsp:include page="Components/LeftSideBarPhongQLDTNCKH.jsp" />
 	<div class="container-main">
 		<jsp:include page="Components/NavBar.jsp" />
 		<!--  IMPORT CODE PHẦN NÀY -->
@@ -74,6 +74,7 @@
 							<td> <input name ="file" type="file" /></td>
 						</tr>
 					</table>
+					<input style="display: none" type = "text" name="MaDon" value = "${dangkydetai.getMaDon()}" > 
 					<input style="display: none" type = "text" name="MaDeTai" value = "${detai.getMaDeTai()}" > 
 					<input style="display: none" type = "text" name="MaThoiGian" value = "${dangkydetai.getMaThoiGian()}" > 
 					<input style="display: none" type = "text"  name="MaNopDeTai" value = "${nopdetai.getMaNopDeTai()}"> 

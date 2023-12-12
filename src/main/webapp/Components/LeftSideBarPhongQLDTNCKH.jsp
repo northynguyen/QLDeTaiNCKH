@@ -44,7 +44,7 @@
               </a>
             </li>
             <li class="item">
-              <a href="#" class="link flex">
+              <a href="<%=request.getContextPath() %>/quanlydetai/new" class="link flex">
                 <i class="bx bx-grid-alt"></i>
                 <span>Quản lý đề tài</span>
               </a>
@@ -54,9 +54,15 @@
           <ul class="menu_item">
 
             <li class="item">
-              <a href="<%=request.getContextPath() %>/DeTai/showquyetdinhduyet" class="link flex">
+              <a href="<%=request.getContextPath()%>/duyetdetai/new" class="link flex">
                 <i class="bx bxs-magic-wand"></i>
                 <span>Duyệt đề tài</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="<%=request.getContextPath()%>/duyetdexuat/new" class="link flex">
+                <i class="bx bxs-magic-wand"></i>
+                <span>Duyệt đề xuất</span>
               </a>
             </li>
             <li class="item">

@@ -25,12 +25,10 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-	<jsp:include page="LeftSideBar.jsp" />
+	<jsp:include page="Components/LeftSideBarPhongQLDTNCKH.jsp" />
 	<div class="container-main">
-		<jsp:include page="NavBar.jsp" />
+		<jsp:include page="Components/NavBar.jsp" />
 		<!--  IMPORT CODE PHẦN NÀY -->
-		<a href="<%=request.getContextPath()%>/duyetdexuat/new"> Nhan
-			di</a>
 		<div class="main_content">
 			<div class="form form-DeTaiCN">
 				<form class="login-form" action=""
@@ -77,7 +75,12 @@
 					</div>
 					
 				</form>
-				<button disabled class="btn_disable"  id="btn_duyet">DUYỆT</button>
+				<form action="<%=request.getContextPath()%>//DeTai/showquyetdinhduyet"
+				accept-charset="UTF-8" method="POST">
+					<input id="madexuat" type="hidden" name ="MaDeXuatDeTai1">
+					<button disabled class="btn_disable"  id="btn_duyet">DUYỆT</button>
+				</form>
+				
 				<button onclick=" toggleHideBox('Không Duyệt');" disabled class="btn_disable" id="btn_xoa">KHÔNG DUYỆT</button>
 				<div class="hide-list" id="hide-box" style="display: none;">
 					<div class="SV" style="flex: 1;">
@@ -85,6 +88,7 @@
 						<form action="<%=request.getContextPath()%>/duyetdexuat/xoa"
 				accept-charset="UTF-8" method="POST">
 							<input id="maDonInput" type="hidden" name ="MaDon">
+							<input id="TenDeTai" type="hidden" name ="TenDeTai">
 							<textarea name="GhiChu" class="TextArea" placeholder="Lý do"></textarea><br><br>
 							<button>GỬI</button>
 						</form>
@@ -124,6 +128,8 @@
 		  var radio = row.querySelector("input[type='radio']");
 		  radio.checked = true;
 		  removedisableButton();
+		  document.getElementById("madexuat").value = maDon;
+		  document.getElementById("TenDeTai").value = row.cells[1].innerText;
 	}
 	function settingsMenuToggle() {
 		settingsmenu.classList.toggle("settings-menu-height");

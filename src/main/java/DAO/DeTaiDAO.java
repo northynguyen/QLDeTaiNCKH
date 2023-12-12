@@ -41,7 +41,7 @@ public class DeTaiDAO {
 			+ "where MaDeTai =? and MaThoiGian = ?;";
 	private static final String LAY_DE_TAI_BANG_MA = "SELECT * FROM qldetainckh.detai where MaDeTai = ?";
 	private static final String THEM_DE_TAI = "INSERT INTO `qldetainckh`.`detai` (`TenDeTai`, `KinhPhi`, `FileMoTa`,`TrangThai`) VALUES (N?,?,?,N?);\r\n";
-	private static final String SELECT_ALL_DETAIs = "select * from qldetainckh.detai";
+	private static final String SELECT_ALL_DETAIs = "select * from qldetainckh.detai where TrangThai = N'Trống'";
 	private static final String INSERT_DETAI_SQL = "INSERT INTO qldetainckh.detai"
 			+ "  (TenDeTai,KinhPhi, FileMoTa, TrangThai) VALUES " +
 			" (?, ?, ?,?);";
@@ -323,7 +323,6 @@ public class DeTaiDAO {
 		}
 		return DeTais;
 	}
-
 	public void themDeTai(DeTai detai) throws SQLException {
 		// try-with-resource statement will auto close the connection.
 		try {

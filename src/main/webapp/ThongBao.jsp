@@ -6,7 +6,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />   
-    
+       <link rel="stylesheet" href="../Access/Style/Css/Root/Root.css" />    
+     <link rel="stylesheet" href="../Access/Style/Css/Login.css" />
+     <link rel="stylesheet" href="../Access/Style/Css/formP.css" />
+     <link rel="stylesheet" href="../Access/Style/Css/ThongBao.css" />
+     <link rel="stylesheet" href="../Access/Style/Css/LeftSideBar.css" /> 
     <link rel="stylesheet" href="Access/Style/Css/Root/Root.css" />    
      <link rel="stylesheet" href="Access/Style/Css/Login.css" />
      <link rel="stylesheet" href="Access/Style/Css/formP.css" />

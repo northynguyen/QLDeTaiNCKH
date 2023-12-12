@@ -63,7 +63,7 @@ body {
 
 #lock-icon, #sidebar-close {
 	padding: 10px;
-	color: var(- -color-theme);
+	color: var(--color-theme);
 	font-size: 25px;
 	cursor: pointer;
 	margin-left: -4px;
@@ -133,7 +133,7 @@ body {
 
 .link:hover {
 	color: #fff;
-	background-color: var(- -color-theme);
+	background-color: var(--color-theme);
 }
 
 .link span {
@@ -218,7 +218,7 @@ body {
 	position: absolute;
 	width: 90%;
 	max-width: 350px;
-	background: var(- -box-ava);
+	background: var(--box-ava);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 	border-radius: 4px;
 	overflow: hidden;

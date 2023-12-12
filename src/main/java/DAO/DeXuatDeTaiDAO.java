@@ -15,10 +15,10 @@ import Util.HandleExeption;
 import Util.JDBCUtil;
 
 public class DeXuatDeTaiDAO {
-	private static final String THEM_DE_XUAT = "INSERT INTO `nckh`.`dexuatdetai` (`MaChuNhiem`, `TenDeTai`, `NgayDeXuat`, `KinhPhi`, `FileMoTaDeTai`,`TrangThai`) VALUES (?, ?, ?, ?,?, 'Chưa duyệt');\r\n"
+	private static final String THEM_DE_XUAT = "INSERT INTO `qldetainckh`.`dexuatdetai` (`MaChuNhiem`, `TenDeTai`, `NgayDeXuat`, `KinhPhi`, `FileMoTaDeTai`,`TrangThai`) VALUES (?, ?, ?, ?,?, 'Chưa duyệt');\r\n"
 			+ "";
-	private static final String LAY_DE_XUAT_BYID = "SELECT * FROM nckh.dexuatdetai where MaDeXuatDeTai= ?;";
-	private static final String CHINH_SUA_DE_XUAT = "UPDATE `nckh`.`dexuatdetai` SET `TenDeTai` = ?, `NgayDeXuat` = ?, `KinhPhi` = ?,`FileMoTaDeTai`=?  WHERE (`MaDeXuatDeTai` = ?);\r\n"
+	private static final String LAY_DE_XUAT_BYID = "SELECT * FROM qldetainckh.dexuatdetai where MaDeXuatDeTai= ?;";
+	private static final String CHINH_SUA_DE_XUAT = "UPDATE `qldetainckh`.`dexuatdetai` SET `TenDeTai` = ?, `NgayDeXuat` = ?, `KinhPhi` = ?,`FileMoTaDeTai`=?  WHERE (`MaDeXuatDeTai` = ?);\r\n"
 			+ "";
 
 	  public boolean ThemDeXuat(String maChuNhiem, String tenDeTai,Date ngayDeXuat,String kinhPhi,byte[] fileMoTaDeTai) throws SQLException {

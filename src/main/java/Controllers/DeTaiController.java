@@ -153,7 +153,7 @@ public class DeTaiController extends HttpServlet {
 	}	
 	public void ShowNopDeTai (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String MaDon = request.getParameter("MaDon");
-		MaDon = "2";		
+		//MaDon = "2";		
 		DangKyDeTai dangkydetai = detaiDAO.LayDangKyDeTaiBangMa(Integer.parseInt(MaDon));		
 		DeTai detai = detaiDAO.LayDeTaiBangMa(dangkydetai.getMaDeTai());	
 		ThoiGianNCKH thoigian = thoigianNCKHDAO.LayThoiGianDK(dangkydetai.getMaThoiGian());
@@ -173,11 +173,9 @@ public class DeTaiController extends HttpServlet {
 	}
 	public void ShowQuyetDinhDuyet (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ClassNotFoundException {
 		LoginDAO loginDAO = new LoginDAO();
-		String MaDon = request.getParameter("MaDon");
-		MaDon = "";
-		String MaDeXuatDeTai = request.getParameter("MaDeXuatDeTai");
-		MaDeXuatDeTai = "1";
-		if (!MaDon.equals("")){
+		String MaDon = request.getParameter("MaDon1");
+		String MaDeXuatDeTai = request.getParameter("MaDeXuatDeTai1");
+		if (MaDon != null){
 			DangKyDeTai dangkydetai = detaiDAO.LayDangKyDeTaiBangMa(Integer.parseInt(MaDon));		
 			DeTai detai = detaiDAO.LayDeTaiBangMa(dangkydetai.getMaDeTai());
 			ThongTinTaiKhoan thongtintaikhoan = loginDAO.KiemTraTaiKhoan(dangkydetai.getMaChuNhiem());

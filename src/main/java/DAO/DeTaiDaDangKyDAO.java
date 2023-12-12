@@ -17,13 +17,13 @@ import Util.HandleExeption;
 import Util.JDBCUtil;
 
 public class DeTaiDaDangKyDAO {
-	private static final String DE_TAI_DA_DK = "SELECT * FROM nckh.dangkydetai where TrangThai='Đã duyệt';\r\n" + "";
-	private static final String DE_TAI_BY_MADT = "SELECT * FROM nckh.detai WHERE MaDeTai=?";
-	private static final String CHU_NHIEM_BY_MACN = "SELECT * FROM nckh.thongtintaikhoan WHERE Role='Chủ nhiệm' and MaTK=?";
-private static final String THANH_VIEN_NC_BY_MADTMATG = "SELECT  B.HoTen , A.VaiTro,A.MSSV FROM nckh.thamgiadetai A inner JOIN nckh.thongtinsinhvien B on A.MSSV=B.MSSV \r\n"
+	private static final String DE_TAI_DA_DK = "SELECT * FROM qldetainckh.dangkydetai where TrangThai='Đã duyệt';\r\n" + "";
+	private static final String DE_TAI_BY_MADT = "SELECT * FROM qldetainckh.detai WHERE MaDeTai=?";
+	private static final String CHU_NHIEM_BY_MACN = "SELECT * FROM qldetainckh.thongtintaikhoan WHERE Role='Chủ nhiệm' and MaTK=?";
+private static final String THANH_VIEN_NC_BY_MADTMATG = "SELECT  B.HoTen , A.VaiTro,A.MSSV FROM qldetainckh.thamgiadetai A inner JOIN qldetainckh.thongtinsinhvien B on A.MSSV=B.MSSV \r\n"
 		+ "where MaDeTai=? and MaThoiGian=?";
 
-	private static final String DE_TAI_DA_DK_BY_MADON = "SELECT * FROM nckh.dangkydetai where TrangThai='Đã duyệt' and MaDon=?;\r\n"
+	private static final String DE_TAI_DA_DK_BY_MADON = "SELECT * FROM qldetainckh.dangkydetai where TrangThai='Đã duyệt' and MaDon=?;\r\n"
 			+ "";
 
 	public List<DangKyDeTai> XemDeTaiDaDK() throws SQLException {
