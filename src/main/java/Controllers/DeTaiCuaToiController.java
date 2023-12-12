@@ -77,8 +77,7 @@ public class DeTaiCuaToiController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doGet(request, response);
+				doGet(request, response);
 	}
 	private void showDeXuat_CN(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
@@ -113,6 +112,7 @@ public class DeTaiCuaToiController extends HttpServlet {
 		request.setAttribute("thamgiadetai", list1);
 		request.setAttribute("svtrong", listSVTrong);
 		request.setAttribute("madetai", madetai);
+		request.setAttribute("madon", madon);
 		dispatcher.forward(request, response);
 	}
 
@@ -120,20 +120,21 @@ public class DeTaiCuaToiController extends HttpServlet {
 			throws SQLException, ServletException, IOException {
 		 String mssv = request.getParameter("mssv");		 
 		 int madetai = Integer.parseInt(request.getParameter("madetai"));	
-		 int madon = Integer.parseInt(request.getParameter("madon"));
-		 String vaitro = request.getParameter("VaiTro");
-		 System.out.print(madetai);
+		String vaitro = request.getParameter("VaiTro");				 
 		 tg=nckhDAO.LayThoiGian();
 		 ThamGiaDeTai tgdt= new ThamGiaDeTai(madetai,mssv,vaitro,tg.getMaThoiGianNCKH());
-		 tgdtDAO.ThemSVThamGia(tgdt);	 
-		 RequestDispatcher dispatcher = request.getRequestDispatcher("/detaicuatoi/chitiet");
-		 List<ThamGiaDeTai> list1 = new ArrayList<>();
+		 tgdtDAO.ThemSVThamGia(tgdt);	
+		 int madon1 = Integer.parseInt(request.getParameter("madon"));
 		 List<ThamGiaDeTai> listSVTrong = new ArrayList<>();
-		 list1 = tgdtDAO.ThamGiaDeTai_MaDeTai(madetai, madon);
-		 listSVTrong = tgdtDAO.SV_Trong();
-		 request.setAttribute("thamgiadetai", list1);
-		 request.setAttribute("svtrong", listSVTrong);
-		 request.setAttribute("madetai", madetai);
-		 dispatcher.forward(request, response);
+			listSVTrong = tgdtDAO.SV_Trong();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/detaicuatoi/chitiet");
+			List<ThamGiaDeTai> list1 = new ArrayList<>();
+			list1 = tgdtDAO.ThamGiaDeTai_MaDeTai(madetai, madon1);
+			request.setAttribute("thamgiadetai", list1);
+			request.setAttribute("svtrong", listSVTrong);
+			request.setAttribute("madetai", madetai);
+			request.setAttribute("madon", madon1);
+			dispatcher.forward(request, response);
+		 
 	}
 }

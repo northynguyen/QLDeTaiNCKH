@@ -203,7 +203,7 @@ public class ThoiGianNCKHDAO {
         	preparedStatement.setDate(1, NgayMoDK);
         	preparedStatement.setDate(2, NgayKetThucDK);
         	preparedStatement.setDate(3, NgayNopDeTai);
-        	preparedStatement.setString(5, MaThoiGian);
+        	preparedStatement.setString(4, MaThoiGian);
         	rowUpdate = preparedStatement.executeUpdate() > 0;
             connection.close();
         } catch (SQLException e) {

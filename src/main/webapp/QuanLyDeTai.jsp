@@ -99,6 +99,7 @@
 							<select id="trangThaiInput" class="select"  name="trangthai" required>
 								<option value="đã đăng ký">đã đăng ký</option>
 								<option value="chưa đăng ký">chưa đăng ký</option>
+								<option value="trống">trống</option>
 							</select>
 							<button id="buttonAdd" type="submit"></button>
 						</form>

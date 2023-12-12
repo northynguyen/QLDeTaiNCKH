@@ -25,7 +25,7 @@
 </head>
 <body>
 
-	<jsp:include page="Components/LeftSideBar.jsp" />
+	<jsp:include page="Components/LeftSideBarPhongQLDTNCKH.jsp" />
 	<div class="container-main">
 		<jsp:include page="Components/NavBar.jsp" />
 		<div class="main_content">

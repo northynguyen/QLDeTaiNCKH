@@ -80,6 +80,7 @@
 								</c:forEach>
 								<input name="mssv" type="hidden" id="mssv">
 								<input name="madetai" type="hidden" id = "madetai" value="${madetai}">
+								<input name="madon" type="hidden" id = "madon" value="${madon}">
 							</table>
 							<select class="select" name="VaiTro">
 								<option value="Coder">Coder</option>
