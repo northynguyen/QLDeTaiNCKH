@@ -66,7 +66,8 @@
 									<td><p>
 											<c:out value="${DeTai.getKinhPhi()}" />
 										</p></td>
-									<td><a href=""> Download</a></td>
+									<td><a
+										href="<%=request.getContextPath()%>/download/fileMoTa?maDT=${DeTai.getMaDeTai()}">Download</a></td>
 
 									<td>
 											<input type="radio" name="chon">
@@ -76,7 +77,7 @@
 						</table>
 					</div>
 
-					<button >ĐĂNG KÝ</button>
+					<button disabled class="btn_disable" id="btn_dk" >ĐĂNG KÝ</button>
 				</form>
 
 			</div>
@@ -103,6 +104,7 @@
 
 		// Đặt màu nền của hàng được nhấp vào thành màu tím nhạt
 		row.style.backgroundColor = "lavender";
+		removedisableButton();
 		var radioButtons = row.getElementsByTagName("input");
 		  for (var i = 0; i < radioButtons.length; i++) {
 		    if (radioButtons[i].type === "radio") {
@@ -114,6 +116,13 @@
 	}
 	function settingsMenuToggle() {
 		settingsmenu.classList.toggle("settings-menu-height");
+	}
+	function removedisableButton()
+	{
+		var sua = document.getElementById("btn_dk");
+		sua.disabled = false;
+		sua.classList.remove('btn_disable');
+		
 	}
 </script>
 </html>

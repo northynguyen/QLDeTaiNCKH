@@ -88,7 +88,7 @@
 				<div class="hide-list" id="hide-box" style="display: none;">
 					<div class="SV" style="flex: 1;">
 						<h2 id="heading"></h2>
-						<form  id = "myform"  method="post">
+						<form  id = "myform"  method="post" enctype="multipart/form-data">
 							<input type="hidden" id="madetaiInput1" name="madetai" />
 							<p>Tên đề tài</p>
 							<input id="tenDeTaiInput" type="text" placeholder="Tên đề tài" name="tendetai" required/>

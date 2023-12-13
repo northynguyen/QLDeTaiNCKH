@@ -68,11 +68,11 @@
 
 				<tr>
 					<td><c:if test="${dxedit != null}">
-							<p>Kinh phí</p> <input name="kinhPhi" type="number"  value="<c:out value='${dxedit.getKinhPhi()}'/>"
+							<p>Kinh phí</p> <input name="kinhPhi" type="text"  value="<c:out value='${dxedit.getKinhPhi()}'/>"
 						placeholder="Kinh phí VNĐ" />
 						</c:if>
 						<c:if test="${dxedit == null}">
-							<p>Kinh phí</p> <input name="kinhPhi" type="number"
+							<p>Kinh phí</p> <input name="kinhPhi" type="text"
 						placeholder="Kinh phí VNĐ" />
 						</c:if>
 					</td>

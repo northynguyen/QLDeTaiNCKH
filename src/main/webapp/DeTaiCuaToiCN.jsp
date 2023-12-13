@@ -119,10 +119,10 @@
 										href="<%=request.getContextPath()%>/download/fileMoTa?maDT=${Duyet.getMaDeTai()}">Download</a></td>
 									<td><a
 										href="<%=request.getContextPath()%>/detaicuatoi/chitiet?madetai=${Duyet.getMaDeTai()}&madon=${Duyet.getMaDon()}"
-										style="text-decoration: underline; color: blue;">Chi tiết
-											thành viên</a></td>
+										style="text-decoration: underline; color: blue;" class="cttv" >Chi
+											tiết thành viên</a></td>
 									<td><p>
-											<c:out value="${Duyet.getTrangThai()}" />
+											<c:out value="${Duyet.getTrangThai()}" /> 
 										</p></td>
 								</tr>
 							</c:forEach>
@@ -132,7 +132,7 @@
 					<button id="btn-DK" style="display: none" type="submit">NỘP
 						ĐỀ TÀI</button>
 				</form>
-				
+
 				<form class="login-form" id="DK" name="maDK" method="post">
 					<h2>ĐỀ TÀI ĐÃ NGHIỆM THU</h2>
 					<div class="table-DeTai" id="dangKy">
@@ -271,6 +271,13 @@
 		else {
 			btn.style.display = "none";
 		}
+		var sua = row.querySelector(".cttv");
+		console.log(sua);
+		if(status != "Đã duyệt")
+			{				
+				sua.href="";
+			}
+			
 	}
 </script>
 </html>

@@ -91,8 +91,8 @@ public class DuyetDeTaiController extends HttpServlet {
 		String MaNguoiDuyet = account.getMaTaiKhoan();
 		java.util.Date utilDate = new java.util.Date();
         Date NgayThongBao = new Date(utilDate.getTime());
-		String TenThongBao = "Thông báo duyệt đề tài đăng ký";
-		String NoiDung ="Đề tài: " + TenDeTai +" đã được duyệt "
+		String TenThongBao = "Thông báo từ chối duyệt đề tài";
+		String NoiDung ="Đề tài: " + TenDeTai +" chưa được duyệt "
         		+ "Lý do: " + LyDo; 
 		thongbaoDAO.TaoThongBao(TenThongBao, NgayThongBao, MaChuNhiem, MaNguoiDuyet, NoiDung);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/duyetdetai/new");

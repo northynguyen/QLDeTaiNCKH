@@ -83,7 +83,7 @@
 						</tr>
 						<tr>
 							<td class="columns-title">
-								<p>File Báo cáo</p>
+								<p>Hồ sơ nghiệm thu</p>
 							</td>
 							<td><input name="file" type="file"
 								value="${nghiemthu.getTaiLieuNghiemThu()}" /></td>

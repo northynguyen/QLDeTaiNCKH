@@ -27,6 +27,8 @@
 	String SignUpErr = (String) request.getAttribute("SignUpErr");
 	String SignUpSucsses = (String) request.getAttribute("SignUpSucsses");
 	String EmailErr = (String) request.getAttribute("EmailErr");
+	String errExcel = (String) request.getAttribute("errExcel");
+	String sucExcel = (String) request.getAttribute("sucExcel");
 	%>
 	<%
 	ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");
@@ -64,7 +66,7 @@
 						<input id="mssvlist" type="hidden" name="mssvlist">
 						<c:forEach var="sinhvien" items="${listSinhVien}">
 							<tr onclick="changeBackgroundColor(this)">
-								
+
 								<td><p>
 										<c:out value="${sinhvien.getMSSV()}" />
 									</p></td>
@@ -92,6 +94,20 @@
 					<button type="button" onclick="ThemSinhVien()">Thêm</button>
 					<button id="editbut" type="button" onclick="SuaSinhVien()" disabled>Sửa</button>
 					<button id="deletebut" type="submit" disabled>Xóa</button>
+					<%
+					if (errExcel != null) {
+					%>
+					<div class="error-message"><%=errExcel%></div>
+					<%
+					}
+					%>
+					<%
+					if (sucExcel != null) {
+					%>
+					<div class="success-message"><%=sucExcel%></div>
+					<%
+					}
+					%>
 				</form>
 				<hr></hr>
 				<div style="display: none" id="themsinhvien">
@@ -103,14 +119,14 @@
 							<tr>
 								<td>
 									<p>
-										Họ và tên: <input name="name" id="name" class="input-infor" type="text"
-											placeholder="Họ và tên" required />
+										Họ và tên: <input name="name" id="name" class="input-infor"
+											type="text" placeholder="Họ và tên" required />
 									</p>
 								</td>
 								<td>
 									<p class>
-										MSSV: <input name="MSSV" id="MSSV" class="input-account" type="text"
-											placeholder="Tên tài khoản" required />
+										MSSV: <input name="MSSV" id="MSSV" class="input-account"
+											type="text" placeholder="Tên tài khoản" required />
 									</p> <%
  if (SignUpErr != null) {
  %>
@@ -122,7 +138,8 @@
 							<tr>
 								<td>
 									<p>
-										Giới tính: <select name="gender" id="gender" class="input-select">
+										Giới tính: <select name="gender" id="gender"
+											class="input-select">
 											<option value="Nam">Nam</option>
 											<option value="Nữ">Nữ</option>
 										</select>
@@ -131,12 +148,11 @@
 
 								<td>
 									<p>
-										Email: <input name="email" id="email" class="input-account" type="email"
-											placeholder="Địa chỉ Email" required />
-									</p>
-									<%
-									if (EmailErr != null) {
-									%>
+										Email: <input name="email" id="email" class="input-account"
+											type="email" placeholder="Địa chỉ Email" required />
+									</p> <%
+ if (EmailErr != null) {
+ %>
 									<div class="error-message"><%=EmailErr%></div> <%
  }
  %>
@@ -156,8 +172,8 @@
 								</td>
 								<td>
 									<p>
-										Địa chỉ: <input name="address" id="address" class="input-account"
-											type="text" placeholder="Địa chỉ" />
+										Địa chỉ: <input name="address" id="address"
+											class="input-account" type="text" placeholder="Địa chỉ" />
 									</p>
 								</td>
 							</tr>
@@ -179,23 +195,28 @@
 						<%
 						}
 						%>
-						<input style="display:none" name="loai" id="loai"  class="input-infor" type="text" value = "${loai}" required/>
-										
-						<button class="buttonThem" type="submit" id="submitbut">THÊM SINH VIÊN</button>				
-				</form>
-				<button type="button" id="excelsubmitbut" onclick="ClickExcel()" >THÊM BẰNG EXCEL</button>	
+						<input style="display: none" name="loai" id="loai"
+							class="input-infor" type="text" value="${loai}" required />
+
+						<button class="buttonThem" type="submit" id="submitbut">THÊM
+							SINH VIÊN</button>
+					</form>
+					<button type="button" id="excelsubmitbut" onclick="ClickExcel()">THÊM
+						BẰNG EXCEL</button>
 				</div>
-				
-				<div style="display:none" id ="themExcel">
-					<form action="<%=request.getContextPath()%>/TTSV/createExcel" method="post" enctype="multipart/form-data">
-			            <div class="form-group">
-			                <p for="excelFile">Chọn tệp Excel:</p>
-			                <input style="margin-left: 5% !important; width:50%" type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls">
-			            </div>
-			            <div class="form-group">
-			                <button type="submit">THÊM</button>
-			            </div>
-			        </form>
+
+				<div style="display: none" id="themExcel">
+					<form action="<%=request.getContextPath()%>/TTSV/createExcel"
+						method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<p for="excelFile">Chọn tệp Excel:</p>
+							<input style="margin-left: 5% !important; width: 50%" type="file"
+								id="excelFile" name="excelFile" accept=".xlsx, .xls">
+						</div>
+						<div class="form-group">
+							<button type="submit">THÊM</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -219,12 +240,12 @@
 			return true;
 		}
 	}
-	function ThemSinhVien(){
+	function ThemSinhVien() {
 		var thoigian = document.getElementById("themsinhvien");
 		document.getElementById("submitbut").innerHTML = "THÊM SINH VIÊN";
 		thoigian.classList.toggle('show')
 		var input = document.getElementById("MSSV");
-        input.readOnly = false;
+		input.readOnly = false;
 		var editbut = document.getElementById("editbut");
 		var deletebut = document.getElementById("deletebut");
 		editbut.disabled = true;
@@ -239,28 +260,29 @@
 		document.getElementById("excelsubmitbut").style.display = "inline-block";
 		document.getElementById("loai").value = "them";
 	}
-	function SuaSinhVien(){
+	function SuaSinhVien() {
 		var thoigian = document.getElementById("themsinhvien");
 		document.getElementById("submitbut").innerHTML = "SỬA SINH VIÊN";
 		thoigian.classList.toggle('show')
 		var input = document.getElementById("MSSV");
-        input.readOnly = true;
-        document.getElementById("excelsubmitbut").style.display = "none";
-        document.getElementById("loai").value = "sua";
+		input.readOnly = true;
+		document.getElementById("excelsubmitbut").style.display = "none";
+		document.getElementById("loai").value = "sua";
 	}
 	function changeBackgroundColor(row) {
 		// Lấy tất cả các hàng trong bảng
-		var rows = document.getElementById("myTable").getElementsByTagName("tr");
+		var rows = document.getElementById("myTable")
+				.getElementsByTagName("tr");
 		var mathoigian = row.cells[0].innerText;
 		document.getElementById("mssvlist").value = mathoigian;
 		// Đặt màu nền của tất cả các hàng về mặc định (trắng)
 		for (var i = 0; i < rows.length; i++) {
 			rows[i].style.backgroundColor = "";
-			
-		var editbut = document.getElementById("editbut");
-		var deletebut = document.getElementById("deletebut");
-		editbut.disabled = false;
-		deletebut.disabled = false;
+
+			var editbut = document.getElementById("editbut");
+			var deletebut = document.getElementById("deletebut");
+			editbut.disabled = false;
+			deletebut.disabled = false;
 		}
 		document.getElementById("name").value = row.cells[1].innerText;
 		document.getElementById("gender").value = row.cells[2].innerText;
@@ -273,17 +295,18 @@
 		// Đặt màu nền của hàng được nhấp vào thành màu tím nhạt
 		row.style.backgroundColor = "lavender";
 	}
-	function ClickExcel(){
+	function ClickExcel() {
 		var element = document.getElementById("themExcel");
 		element.classList.toggle('show');
 	}
 	function myFunction() {
-        if (document.getElementById("loai").value =="sua" || document.getElementById("loai").value =="them"){
-        	var thoigian = document.getElementById("themsinhvien");
-    		document.getElementById("submitbut").innerHTML = "SỬA SINH VIÊN";
-    		thoigian.classList.toggle('show')
-        }
-    }
-    myFunction(); 
+		if (document.getElementById("loai").value == "sua"
+				|| document.getElementById("loai").value == "them") {
+			var thoigian = document.getElementById("themsinhvien");
+			document.getElementById("submitbut").innerHTML = "SỬA SINH VIÊN";
+			thoigian.classList.toggle('show')
+		}
+	}
+	myFunction();
 </script>
 </html>

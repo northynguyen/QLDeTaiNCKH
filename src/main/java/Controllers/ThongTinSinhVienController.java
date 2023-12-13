@@ -131,7 +131,7 @@ public class ThongTinSinhVienController extends HttpServlet {
             XSSFWorkbook workbook = new XSSFWorkbook(fileContent);
             XSSFSheet sheet = workbook.getSheetAt(0); // Láº¥y sheet Ä‘áº§u tiÃªn
             DataFormatter dataFormatter = new DataFormatter();
-
+            boolean check = false;
             for (Row row : sheet) {
             	    String MSSV = dataFormatter.formatCellValue(row.getCell(0));
             	    String HoTen = dataFormatter.formatCellValue(row.getCell(1));
@@ -140,13 +140,19 @@ public class ThongTinSinhVienController extends HttpServlet {
             	    String SoDienThoai = dataFormatter.formatCellValue(row.getCell(4));
             	    String Email = dataFormatter.formatCellValue(row.getCell(5));
             	    String DiaChi = dataFormatter.formatCellValue(row.getCell(6));
-                thongtinsinhvienDAO.TaoSinhVien(MSSV, HoTen, GioiTinh, MaKhoa, SoDienThoai, Email, DiaChi);
+                if (thongtinsinhvienDAO.TaoSinhVien(MSSV, HoTen, GioiTinh, MaKhoa, SoDienThoai, Email, DiaChi)) {
+                	check = true;
+                }
             }
-            request.setAttribute("sucExcel", "Thêm thành công");
+            if (check) {
+            	request.setAttribute("sucExcel", "Thêm thành công");
+            }else {
+            	request.setAttribute("errExcel", "Thêm thất bại, hãy kiểm tra định dạng file");
+            }
+            
             workbook.close();
             fileContent.close();
-        } catch (Exception e) {
-        	request.setAttribute("errExcel", "Thêm thất bại, hãy kiểm tra định dạng file");
+        } catch (Exception e) {      	
             e.printStackTrace();
         }
 		

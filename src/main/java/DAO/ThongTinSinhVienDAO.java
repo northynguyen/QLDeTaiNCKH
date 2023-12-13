@@ -23,7 +23,8 @@ public class ThongTinSinhVienDAO {
 			+ "SET `HoTen` = N?, `GioiTinh` = N?, `MaKhoa` = ?, `SDT` = ?, `Email` =?, `DiaChi` = N? "
 			+ "WHERE (`MSSV` = ?);\r\n";
 	
-	public void TaoSinhVien(String MSSV, String HoTen, String GioiTinh, String MaKhoa, String SDT, String Email, String DiaChi) {
+	public boolean TaoSinhVien(String MSSV, String HoTen, String GioiTinh, String MaKhoa, String SDT, String Email, String DiaChi) {
+		boolean rowUpdate = false;
 		try (Connection connection = JDBCUtil.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(TAO_THONG_TIN_SINH_VIEN);) {			
 			preparedStatement.setString(1, MSSV);
@@ -33,10 +34,11 @@ public class ThongTinSinhVienDAO {
 	        preparedStatement.setString(5, SDT);
 	        preparedStatement.setString(6, Email);
 	        preparedStatement.setString(7, DiaChi);
-			preparedStatement.executeUpdate();						     
+	        rowUpdate = preparedStatement.executeUpdate() > 0;						     
 	     } catch (SQLException exception) {
 	         HandleExeption.printSQLException(exception);
 	     }
+		return rowUpdate;
 	}
 	
 
