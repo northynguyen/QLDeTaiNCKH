@@ -76,7 +76,7 @@
 
 				</form>
 				<form
-					action="<%=request.getContextPath()%>//DeTai/showquyetdinhduyet"
+					action="<%=request.getContextPath()%>/DeTai/showquyetdinhduyet"
 					accept-charset="UTF-8" method="POST">
 					<input id="madexuat" type="hidden" name="MaDeXuatDeTai1">
 					<button disabled class="btn_disable" id="btn_duyet">DUYỆT</button>

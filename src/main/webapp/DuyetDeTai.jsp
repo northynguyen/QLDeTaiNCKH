@@ -77,7 +77,7 @@
 					</div>
 					
 				</form>
-				<form action="<%=request.getContextPath()%>/duyetdetai/xoa"
+				<form action="<%=request.getContextPath()%>/DeTai/showquyetdinhduyet"
 				accept-charset="UTF-8" method="POST">
 					<input id="madon" type="hidden" name ="MaDon1">
 					<button disabled class="btn_disable"  id="btn_duyet">DUYỆT</button>
@@ -87,7 +87,7 @@
 				<div class="hide-list" id="hide-box" style="display: none;">
 					<div class="SV" style="flex: 1;">
 						<h2>LÝ DO KHÔNG DUYỆT</h2>
-						<form action="<%=request.getContextPath()%>/DeTai/showquyetdinhduyet"
+						<form action="<%=request.getContextPath()%>/duyetdetai/xoa"
 				accept-charset="UTF-8" method="POST">
 							<input id="maDonInput" type="hidden" name ="MaDon">
 							<input id="TenDeTai" type="hidden" name ="TenDeTai">

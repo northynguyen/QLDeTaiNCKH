@@ -20,7 +20,7 @@
 </head>
 <body>
 
-	<jsp:include page="Components/LeftSideBarPhongQLDTNCKH.jsp" />
+	<jsp:include page="Components/LeftSideBar.jsp" />
 	<div class="container-main">
 		<jsp:include page="Components/NavBar.jsp" />
 		<!--  IMPORT CODE PHẦN NÀY -->

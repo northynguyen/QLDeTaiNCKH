@@ -82,7 +82,7 @@ public class DuyetDeTaiController extends HttpServlet {
 		ThongTinTaiKhoan account = (ThongTinTaiKhoan) session.getAttribute("account");	
 		DeTaiDAO detaiDAO = new DeTaiDAO();
 		ThongBaoDAO thongbaoDAO = new ThongBaoDAO();
-		int maDon = Integer.parseInt(request.getParameter("MaDon1"));
+		int maDon = Integer.parseInt(request.getParameter("MaDon"));
 		DangKyDeTai dangkydetai = detaiDAO.LayDangKyDeTaiBangMa(maDon);
 		String LyDo= request.getParameter("GhiChu");
 		duyetdetaiDAO.TuChoi(maDon, LyDo);

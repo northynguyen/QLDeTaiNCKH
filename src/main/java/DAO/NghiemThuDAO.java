@@ -24,6 +24,8 @@ public class NghiemThuDAO {
 			+ "";
 	private static final String LAY_NGHIEMTHU_BY_MNDT = "SELECT * FROM qldetainckh.nghiemthu WHERE MaNopDeTai=?;";
 	private static final String LAY_NOPDETAI_BY_MNDT = "SELECT * FROM qldetainckh.nopdetai WHERE MaNopDeTai=?";
+	private static final String CAP_NHAP_TRANG_THAI_NOP = "UPDATE `qldetainckh`.`nopdetai` SET `TrangThai` = 'Đã nghiệm thu' WHERE (`MaNopDeTai` = ?);\r\n"
+			+ "";
 
 	public List<NopDeTai> ShowAllNopDT() throws SQLException {
 		List<NopDeTai> all = new ArrayList<>();
@@ -124,6 +126,19 @@ public class NghiemThuDAO {
 			statement.setString(6, ghiChu);
 			statement.setInt(7, maNghiemThu);
 			
+			rowUpdate = statement.executeUpdate() > 0;
+			conn.close();
+        } catch (SQLException e) {
+            HandleExeption.printSQLException(e);
+        }
+        return rowUpdate;
+	}
+	public boolean CapNhapNghiemThu_NOP(int maNop) throws SQLException {
+		boolean rowUpdate=false;
+		try (Connection conn = JDBCUtil.getConnection();
+				PreparedStatement statement = conn.prepareStatement(CAP_NHAP_TRANG_THAI_NOP);) {
+			statement.setInt(1, maNop);
+			System.out.print(statement);
 			rowUpdate = statement.executeUpdate() > 0;
 			conn.close();
         } catch (SQLException e) {

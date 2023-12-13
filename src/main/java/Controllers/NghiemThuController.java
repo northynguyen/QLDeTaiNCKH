@@ -180,7 +180,7 @@ public class NghiemThuController extends HttpServlet {
 			}
 			else {
 				nghiemThuDAO.ThemNghiemThu(Integer.parseInt(MaNopDeTai), account.getMaTaiKhoan(), formattedDate, FileBaoCao, diem, binhluan);
-				nopDeTai.setTrangThai("Đã nghiệm thu");
+				nghiemThuDAO.CapNhapNghiemThu_NOP(NT.getMaNopDeTai());
 				
 			}
 					

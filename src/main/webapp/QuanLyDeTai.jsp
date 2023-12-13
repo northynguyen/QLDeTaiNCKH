@@ -79,7 +79,8 @@
 				<button onclick=" toggleHideBox('Sửa đề tài');" disabled class="btn_disable" id="btn_sua">SỬA ĐỀ TÀI</button>
 				<form style="width: 300px; display: inline-block;" 
 				action="<%=request.getContextPath()%>/quanlydetai/delete"
-				accept-charset="UTF-8" method="POST">
+				accept-charset="UTF-8" method="POST"
+				enctype="multipart/form-data">
 				<input type="hidden" id="madetaiInput" name="madetai" />
 					<button disabled class="btn_disable" id="btn_xoa">XÓA ĐỀ TÀI</button>
 				</form>
@@ -94,7 +95,7 @@
 							<p>Kinh phí</p>
 							<input id="kinhPhiInput" type="text" placeholder="Kinh phí" name="kinhphi" required/>
 							<p>File mô tả</p>
-							<input id="fileMoTaInput" type="file" placeholder="Chọn tệp" name="chontep" />
+							<input id="fileMoTaInput" type="file" placeholder="Chọn tệp" name="file" />
 							<p>Trạng thái</p>
 							<select id="trangThaiInput" class="select"  name="trangthai" required>
 								<option value="đã đăng ký">đã đăng ký</option>
