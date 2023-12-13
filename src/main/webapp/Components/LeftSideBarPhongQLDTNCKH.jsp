@@ -30,7 +30,7 @@
 		<div class="menu_container">
 			<div class="sidebar_profile flex">
 				<span class="nav_image"> <img
-					src="https://vtv1.mediacdn.vn/zoom/640_400/2023/2/9/090223-twice-16759153857492034544526-crop-16759153913131594780654.jpg"
+					src="https://cdn.pixabay.com/photo/2017/07/18/23/23/user-2517433_640.png?fbclid=IwAR1r1c6ynegByu0GEhclZBf-LuAwQumotH1wwJxlO5xLYHciVhXABPRZ6Ns"
 					alt="logo_img" />
 				</span>
 				<div class="data_text">

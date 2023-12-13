@@ -15,7 +15,7 @@
  <nav class="sidebar locked">
       <div class="logo_items flex">
         <span class="nav_image">
-          <img src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t1.15752-9/398212517_358697683311773_2464055266940039865_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8cd0a2&_nc_eui2=AeHT2VizBNsGjxQTes0CWJXNlkwAk13JIdKWTACTXckh0sCBsXKyq9nTcnIr1xXccWohGCcqfhgWgI6pD9rJcm-B&_nc_ohc=cTnh5a_Hsu4AX8y7L8o&_nc_ht=scontent.fsgn5-8.fna&oh=03_AdS70Aux-3uIGVnHKEpzvKIbas3Yeh7r9HGXoxFM3z33tQ&oe=658A97A7" alt="logo_img" />
+          <img src="https://images.squarespace-cdn.com/content/v1/5930dc9237c5817c00b10842/1557980730821-E0BL40VN22LDSYKQH91O/images.png" alt="logo_img" />
         </span>
         <span class="logo_name">HCMUTE</span>
         <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>

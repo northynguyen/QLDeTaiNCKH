@@ -174,7 +174,7 @@ public class DeXuatDeTaiController extends HttpServlet {
 
 		deXuatDeTaiDAO.ChinhSuaDeXuat(tenDeTai, ngayDeXuat, kinhPhi, fileData, madx);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/DeTaiCuaToiCN.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/detaicuatoi/new");
 		dispatcher.forward(request, response);
 
 	}
